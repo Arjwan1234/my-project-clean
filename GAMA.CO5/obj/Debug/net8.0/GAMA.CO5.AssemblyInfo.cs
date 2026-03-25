@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GAMA.CO5")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99211a49bdc13aa003ecb3f8c095ec1775d301d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+721e3732eb404addd806db50cb49978be87ab6a5")]
 [assembly: System.Reflection.AssemblyProductAttribute("GAMA.CO5")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GAMA.CO5")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
