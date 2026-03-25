@@ -1,0 +1,42 @@
+﻿@model GAMA.CO5.Models.PartnersViewModel
+
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
+
+<!-- HERO -->
+<section class="partners-hero">
+    <div class="overlay"></div>
+    <div class="container hero-content">
+        <span class="hero-badge">الشركاء</span>
+        <h1>الشركاء</h1>
+        <p>شركاء النجاح الذين نفخر بالتعاون معهم لتحقيق التميز</p>
+    </div>
+</section>
+
+<!-- CONTENT -->
+<section class="partners-section">
+    <div class="container text-center">
+
+        <span class="section-badge">شركاء النجاح</span>
+
+        <p class="partners-title">
+            نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متميزة
+        </p>
+
+        <!-- LOGOS -->
+        <div class="partners-logos">
+            @foreach (var p in Model.Partners)
+            {
+                <a href="@p.WebsiteUrl" target="_blank" class="partner-item">
+                    <img src="@p.LogoUrl" alt="@p.Name" />
+                </a>
+            }
+        </div>
+
+        <p class="partners-note">
+            نفخر بشراكاتنا الاستراتيجية مع كبرى الشركات التقنية العالمية
+        </p>
+
+    </div>
+</section>

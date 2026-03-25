@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تواصل معنا - GAMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/Home/Index" class="logo">GAMA</a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/Home/Index">الرئيسية</a></li>
+                <li><a href="/Services/Index">الخدمات</a></li>
+                <li><a href="/Products/Index">المنتجات</a></li>
+                <li><a href="/DTI/Index">مؤشر التحول الرقمي</a></li>
+                <li><a href="/Partners/Index">الشركاء</a></li>
+                <li><a href="/Careers/Index">الوظائف</a></li>
+                <li><a href="/Contact/Index" class="active">التواصل</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2>تواصل معنا</h2>
+                <p style="text-align: center; color: #6b7280; margin-bottom: 4rem; font-size: 1.2rem;">
+                    نحن هنا لمساعدتك. تواصل معنا وسنرد عليك في أقرب وقت ممكن
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-bottom: 4rem;">
+                    <!-- Contact Info -->
+                    <div>
+                        <h3 style="font-size: 2rem; margin-bottom: 2rem;">معلومات التواصل</h3>
+
+                        <div style="display: flex; flex-direction: column; gap: 2rem;">
+                            <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                                <div style="font-size: 2rem; color: #2596be;">📧</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">البريد الإلكتروني</h4>
+                                    <a href="mailto:info@gama-ksa.com" style="color: #6b7280; text-decoration: none;">info@gama-ksa.com</a>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                                <div style="font-size: 2rem; color: #2596be;">📞</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">الهاتف</h4>
+                                    <a href="tel:+966XXXXXXXXX" style="color: #6b7280; text-decoration: none;">+966 XX XXX XXXX</a>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                                <div style="font-size: 2rem; color: #2596be;">📍</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">العنوان</h4>
+                                    <p style="color: #6b7280; margin: 0;">جدة، المملكة العربية السعودية</p>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
+                                <div style="font-size: 2rem; color: #2596be;">⏰</div>
+                                <div>
+                                    <h4 style="margin-bottom: 0.5rem; font-size: 1.1rem;">ساعات العمل</h4>
+                                    <p style="color: #6b7280; margin: 0;">الأحد - الخميس: 9:00 ص - 6:00 م</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 3rem;">
+                            <h4 style="margin-bottom: 1rem;">تابعنا</h4>
+                            <div style="display: flex; gap: 1rem;">
+                                <a href="#" style="width: 50px; height: 50px; background: #f9fafb; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; border: 2px solid #e5e7eb; transition: all 0.3s;">𝕏</a>
+                                <a href="#" style="width: 50px; height: 50px; background: #f9fafb; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; border: 2px solid #e5e7eb; transition: all 0.3s;">in</a>
+                                <a href="#" style="width: 50px; height: 50px; background: #f9fafb; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; border: 2px solid #e5e7eb; transition: all 0.3s;">▶</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div>
+                        <form action="/Contact/Submit" method="post" class="form" style="padding: 0; border: none;">
+                            <h3 style="font-size: 2rem; margin-bottom: 2rem;">أرسل لنا رسالة</h3>
+
+                            <div class="form-group">
+                                <label for="Name">الاسم الكامل *</label>
+                                <input type="text" id="Name" name="Name" class="form-control" required placeholder="أدخل اسمك الكامل" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Email">البريد الإلكتروني *</label>
+                                <input type="email" id="Email" name="Email" class="form-control" required placeholder="example@email.com" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Phone">رقم الهاتف</label>
+                                <input type="tel" id="Phone" name="Phone" class="form-control" placeholder="+966 XX XXX XXXX" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Subject">الموضوع *</label>
+                                <select id="Subject" name="Subject" class="form-control" required style="cursor: pointer;">
+                                    <option value="">اختر الموضوع</option>
+                                    <option value="خدمة">استفسار عن خدمة</option>
+                                    <option value="منتج">استفسار عن منتج</option>
+                                    <option value="شراكة">فرصة شراكة</option>
+                                    <option value="وظيفة">استفسار عن وظيفة</option>
+                                    <option value="دعم">دعم فني</option>
+                                    <option value="آخر">موضوع آخر</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Message">الرسالة *</label>
+                                <textarea id="Message" name="Message" class="form-control" required rows="6" placeholder="اكتب رسالتك هنا..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                إرسال الرسالة
+                            </button>
+
+                            <p style="color: #6b7280; font-size: 0.9rem; margin-top: 1rem; text-align: center;">
+                                * الحقول المطلوبة
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Map Section -->
+                <div style="background: #f9fafb; padding: 3rem; border-radius: 16px; text-align: center;">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">موقعنا</h3>
+                    <p style="color: #6b7280; margin-bottom: 2rem;">
+                        مقرنا الرئيسي في جدة، المملكة العربية السعودية
+                    </p>
+                    <div style="background: #e5e7eb; height: 400px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #6b7280;">
+                        <div>
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🗺️</div>
+                            <p>الخريطة التفاعلية</p>
+                            <p style="font-size: 0.9rem;">(يتم إضافة Google Maps هنا)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div style="margin-top: 6rem;">
+                    <h2 style="text-align: center; margin-bottom: 3rem;">الأسئلة الشائعة</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">ما هي مدة الرد على الاستفسارات؟</h3>
+                            <p style="color: #6b7280;">نرد على جميع الاستفسارات خلال 24 ساعة عمل كحد أقصى</p>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">هل تقدمون استشارات مجانية؟</h3>
+                            <p style="color: #6b7280;">نعم، نقدم استشارة أولية مجانية لتقييم احتياجاتك</p>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">أين يقع مقركم الرئيسي؟</h3>
+                            <p style="color: #6b7280;">مقرنا الرئيسي في جدة، مع مكاتب في الرياض والدمام</p>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="font-size: 1.3rem; margin-bottom: 1rem;">هل تعملون مع الشركات الصغيرة؟</h3>
+                            <p style="color: #6b7280;">نعم، نقدم حلول مخصصة لجميع أحجام الشركات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">GAMA</div>
+                    <h4>الشركة العربية الشاملة للتطبيقات المحدودة</h4>
+                    <p>شريكك الموثوق في التحول الرقمي منذ 2020</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>خدماتنا</h4>
+                    <ul>
+                        <li><a href="/Services/Index">الحوسبة السحابية</a></li>
+                        <li><a href="/Services/Index">الأمن السيبراني</a></li>
+                        <li><a href="/Services/Index">الذكاء الاصطناعي</a></li>
+                        <li><a href="/Services/Index">تحليل البيانات</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="/Home/Index">الرئيسية</a></li>
+                        <li><a href="/Products/Index">المنتجات</a></li>
+                        <li><a href="/Careers/Index">الوظائف</a></li>
+                        <li><a href="/Contact/Index">التواصل</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <div class="footer-contact">
+                        <p><span class="icon">📧</span> info@gama-ksa.com</p>
+                        <p><span class="icon">📞</span> +966 XX XXX XXXX</p>
+                        <p><span class="icon">📍</span> جدة، المملكة العربية السعودية</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#">𝕏</a>
+                        <a href="#">in</a>
+                        <a href="#">▶</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 الشركة العربية الشاملة للتطبيقات المحدودة. جميع الحقوق محفوظة.</p>
+                <div class="footer-links">
+                    <a href="#">سياسة الخصوصية</a>
+                    <span>|</span>
+                    <a href="#">الشروط والأحكام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/site.js"></script>
+</body>
+</html>

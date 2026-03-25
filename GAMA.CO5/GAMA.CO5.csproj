@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Models\CareersViewModel.cs" />
+    <Content Include="Models\ContactViewModel.cs" />
+    <Content Include="Models\DTIViewModel.cs" />
+    <Content Include="Models\ErrorViewModel.cs" />
+    <Content Include="Models\HomeViewModel.cs" />
+    <Content Include="Models\PartnersViewModel.cs" />
+    <Content Include="Models\ProductsViewModel.cs" />
+    <Content Include="Models\ServicesViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Videos\video_2026-02-17_10-52-27.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
+  </ItemGroup>
+
+</Project>

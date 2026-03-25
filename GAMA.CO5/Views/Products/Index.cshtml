@@ -1,0 +1,144 @@
+﻿@model GAMA.CO5.Models.ProductsViewModel
+
+@{
+    ViewData["Title"] = Model.PageTitle;
+    var selected = (string)(ViewBag.SelectedCategory ?? "الكل");
+    var q = (string)(ViewBag.Query ?? "");
+    var featuredProducts = Model.FeaturedProducts ?? new List<GAMA.CO5.Models.Product>();
+    var products = Model.Products ?? new List<GAMA.CO5.Models.Product>();
+    var categories = Model.Categories ?? new List<string>();
+}
+
+<section class="products-hero">
+    <div class="overlay"></div>
+    <div class="container hero-content">
+        <span class="hero-badge">المنتجات</span>
+        <h1>المنتجات</h1>
+        <p>حلول ومنتجات مبتكرة تلبي احتياجات التحول الرقمي لمؤسستك</p>
+    </div>
+</section>
+
+<section class="products-intro">
+    <div class="container text-center">
+        <span class="section-badge">منتجاتنا</span>
+        <h2>المنتجات</h2>
+        <p>نقدم حلولاً تقنية مبتكرة تخدم المجتمع وتلبي احتياجات العصر الرقمي</p>
+    </div>
+</section>
+
+<section class="products-section">
+    <div class="container">
+
+        <div class="featured-section">
+            <div class="featured-header">
+                <span class="featured-count">
+                    <span class="star">★</span>
+                    @featuredProducts.Count منتجات
+                </span>
+
+                <h2>المنتجات المميزة</h2>
+            </div>
+
+            @if (featuredProducts.Any())
+            {
+                <div class="featured-grid">
+                    @foreach (var p in featuredProducts)
+                    {
+                        var imageUrl = string.IsNullOrWhiteSpace(p.ImageUrl)
+                        ? "/images/products/placeholder.jpg"
+                        : p.ImageUrl;
+
+                        <div class="featured-card">
+                            <div class="featured-bg" style="background-image:url('@imageUrl')"></div>
+
+                            <span class="featured-badge @p.BadgeClass">
+                                @p.BadgeText
+                            </span>
+
+                            <div class="featured-content">
+                                <h3>@p.Name</h3>
+                                <p>@p.Description</p>
+
+                                <a asp-action="Details"
+                                   asp-route-id="@p.Id"
+                                   class="featured-link">
+                                    اكتشف المزيد ←
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="empty-products">
+                    لا توجد منتجات مميزة حالياً.
+                </div>
+            }
+        </div>
+
+        <div class="products-toolbar">
+            <div class="chips">
+                @foreach (var c in categories)
+                {
+                    var active = c == selected ? "chip active" : "chip";
+
+                    <a class="@active"
+                       asp-action="Index"
+                       asp-route-category="@c"
+                       asp-route-q="@q">
+                        @c
+                    </a>
+                }
+            </div>
+
+            <form class="search" asp-action="Index" method="get">
+                <input type="hidden" name="category" value="@selected" />
+                <input type="text" name="q" value="@q" placeholder="ابحث عن منتج..." />
+                <button type="submit">بحث</button>
+            </form>
+        </div>
+
+        <div class="products-count">
+            عرض @products.Count من @products.Count منتج
+        </div>
+
+        @if (products.Any())
+        {
+            <div class="figma-grid">
+                @foreach (var p in products)
+                {
+                    var imageUrl = string.IsNullOrWhiteSpace(p.ImageUrl)
+                    ? "/images/products/placeholder.jpg"
+                    : p.ImageUrl;
+
+                    <div class="figma-card">
+                        <div class="figma-media" style="background-image:url('@imageUrl')">
+                            <span class="figma-badge @p.BadgeClass">
+                                @p.BadgeText
+                            </span>
+                        </div>
+
+                        <div class="figma-body">
+                            <h3>@p.Name</h3>
+                            <p>@p.Description</p>
+
+                            <a asp-action="Details"
+                               asp-route-id="@p.Id"
+                               class="figma-link">
+                                عرض ←
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="empty-products">
+                لا توجد منتجات مطابقة للبحث أو التصنيف المحدد.
+            </div>
+        }
+
+    </div>
+</section>

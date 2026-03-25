@@ -1,0 +1,66 @@
+﻿@model GAMA.CO5.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="product-details-hero" style="background-image:url('@Model.ImageUrl')">
+    <div class="overlay"></div>
+    <div class="container pd-hero-inner">
+        <span class="pd-badge">@Model.Category</span>
+        <h1 class="pd-title">@Model.Name</h1>
+        <p class="pd-sub">@Model.Description</p>
+
+        <div class="pd-actions">
+            <a asp-controller="Contact" asp-action="Index" class="pd-btn pd-btn-primary">اطلب المنتج</a>
+            <a asp-action="Index" class="pd-btn pd-btn-ghost">رجوع للمنتجات</a>
+        </div>
+    </div>
+</section>
+
+<section class="product-details">
+    <div class="container">
+        <div class="pd-grid">
+
+            <div class="pd-main">
+                <div class="pd-section-title">
+                    <h2>المميزات الرئيسية</h2>
+                    <p>أبرز ما يميز هذا المنتج</p>
+                </div>
+
+                <div class="pd-features">
+                    @foreach (var f in Model.Features)
+                    {
+                        <div class="pd-feature">
+                            <div class="pd-check">✓</div>
+                            <div>@f</div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <aside class="pd-side">
+                <div class="pd-card">
+                    <div class="pd-card-media">
+                        <img src="@Model.ImageUrl" alt="@Model.Name" />
+                    </div>
+
+                    <div class="pd-card-body">
+                        <div class="pd-mini">
+                            <div class="pd-mini-label">التصنيف</div>
+                            <div class="pd-mini-value">@Model.Category</div>
+                        </div>
+
+                        <a asp-controller="Contact" asp-action="Index" class="pd-btn pd-btn-primary pd-btn-block">
+                            اطلب المنتج
+                        </a>
+
+                        <a asp-action="Index" class="pd-btn pd-btn-block" style="background:#f3f4f6;color:#111827;">
+                            رجوع
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</section>

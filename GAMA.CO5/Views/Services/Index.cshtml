@@ -1,0 +1,58 @@
+﻿@model GAMA.CO5.Models.ServicesViewModel
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
+
+<!-- Hero Section (Image + overlay) -->
+<section class="services-hero" style="background-image:url('@Url.Content("~/images/services-bg.png.jpg")')">
+    <div class="overlay"></div>
+
+    <div class="container hero-content">
+        <span class="hero-badge">الخدمات ✦</span>
+        <h1>@Model.PageTitle</h1>
+        <p>
+            نقدم مجموعة شاملة من الخدمات التقنية المتطورة لمساعدة مؤسستك
+            على النجاح في العصر الرقمي
+        </p>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="services-section">
+    <div class="container">
+        <div class="services-grid">
+            @foreach (var service in Model.Services)
+            {
+                <div class="service-card">
+                    <div class="service-icon">@service.Icon</div>
+
+                    <h3>@service.Title</h3>
+                    <p class="service-desc">@service.Description</p>
+
+                    <ul class="service-features">
+                        @foreach (var feature in service.Features)
+                        {
+                            <li>@feature</li>
+                        }
+                    </ul>
+
+                    <a asp-action="Details"
+                       asp-route-id="@service.Id"
+                       class="service-btn">
+                        اكتشف المزيد
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="services-cta">
+    <div class="container">
+        <h2>هل تحتاج استشارة تقنية؟</h2>
+        <a asp-controller="Contact" asp-action="Index" class="btn-primary">
+            تواصل معنا
+        </a>
+    </div>
+</section>

@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مؤشر التحول الرقمي - GAMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/Home/Index" class="logo">GAMA</a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/Home/Index">الرئيسية</a></li>
+                <li><a href="/Services/Index">الخدمات</a></li>
+                <li><a href="/Products/Index">المنتجات</a></li>
+                <li><a href="/DTI/Index" class="active">مؤشر التحول الرقمي</a></li>
+                <li><a href="/Partners/Index">الشركاء</a></li>
+                <li><a href="/Careers/Index">الوظائف</a></li>
+                <li><a href="/Contact/Index">التواصل</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="dti-container">
+                    <div class="dti-header">
+                        <div style="font-size: 5rem; margin-bottom: 1rem;">📊</div>
+                        <h2 style="margin-bottom: 1rem;">مؤشر التحول الرقمي</h2>
+                        <p style="color: #6b7280; font-size: 1.1rem;">
+                            قيّم مستوى التحول الرقمي في مؤسستك واحصل على توصيات مخصصة
+                        </p>
+                    </div>
+
+                    <form action="/DTI/Calculate" method="post" class="dti-form" id="dtiForm">
+                        <!-- Question 1 -->
+                        <div class="form-group">
+                            <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; display: block;">
+                                1. ما مدى استخدام مؤسستك للحلول السحابية؟
+                            </label>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CloudUsage" value="0" required style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>لا نستخدم الحلول السحابية (0%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CloudUsage" value="33" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>استخدام محدود (33%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CloudUsage" value="66" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>استخدام متوسط (66%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CloudUsage" value="100" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>استخدام كامل (100%)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="form-group">
+                            <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; display: block;">
+                                2. هل لديكم استراتيجية واضحة للتحول الرقمي؟
+                            </label>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="DigitalStrategy" value="0" required style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>لا توجد استراتيجية (0%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="DigitalStrategy" value="33" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>استراتيجية أولية (33%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="DigitalStrategy" value="66" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>استراتيجية واضحة (66%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="DigitalStrategy" value="100" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>استراتيجية شاملة ومطبقة (100%)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="form-group">
+                            <label style="font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; display: block;">
+                                3. ما مستوى الأمن السيبراني في مؤسستك؟
+                            </label>
+                            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CyberSecurity" value="0" required style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>أساسي جداً (0%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CyberSecurity" value="33" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>مستوى متوسط (33%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CyberSecurity" value="66" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>مستوى جيد (66%)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.75rem; border: 2px solid #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                                    <input type="radio" name="CyberSecurity" value="100" style="width: 20px; height: 20px; cursor: pointer;" />
+                                    <span>مستوى متقدم (100%)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">
+                            احسب مؤشر التحول الرقمي
+                        </button>
+                    </form>
+
+                    <!-- Result Section (Hidden by default, shown after form submission) -->
+                    <div class="dti-result" id="dtiResult" style="display: none;">
+                        <h3 style="font-size: 1.75rem; margin-bottom: 1.5rem;">نتيجة التقييم</h3>
+
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <div style="font-size: 4rem; font-weight: 900; color: #2596be; margin-bottom: 0.5rem;" id="scoreValue">0%</div>
+                            <div style="font-size: 1.5rem; font-weight: 600; color: #1a1f35;" id="levelValue">-</div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+                        </div>
+
+                        <div style="background: white; padding: 2rem; border-radius: 12px; margin-top: 2rem; border: 2px solid #e5e7eb;">
+                            <h4 style="margin-bottom: 1rem; color: #1a1f35;">التوصيات:</h4>
+                            <p style="color: #6b7280; line-height: 1.8;" id="recommendationText">-</p>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 2rem;">
+                            <a href="/Contact/Index" class="btn btn-primary">تواصل معنا لتطوير التحول الرقمي</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div style="margin-top: 6rem;">
+                    <h2 style="text-align: center; margin-bottom: 3rem;">فوائد التحول الرقمي</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <div class="icon">⚡</div>
+                            <h3>زيادة الكفاءة</h3>
+                            <p>تحسين العمليات وتقليل الوقت والتكاليف التشغيلية</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="icon">📈</div>
+                            <h3>نمو الأعمال</h3>
+                            <p>فتح فرص جديدة لتوسيع نطاق الأعمال والوصول للعملاء</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="icon">🎯</div>
+                            <h3>اتخاذ قرارات أفضل</h3>
+                            <p>استخدام البيانات والتحليلات لاتخاذ قرارات استراتيجية</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="icon">🛡️</div>
+                            <h3>أمان محسّن</h3>
+                            <p>حماية أفضل للبيانات والمعلومات الحساسة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">GAMA</div>
+                    <h4>الشركة العربية الشاملة للتطبيقات المحدودة</h4>
+                    <p>شريكك الموثوق في التحول الرقمي منذ 2020</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>خدماتنا</h4>
+                    <ul>
+                        <li><a href="/Services/Index">الحوسبة السحابية</a></li>
+                        <li><a href="/Services/Index">الأمن السيبراني</a></li>
+                        <li><a href="/Services/Index">الذكاء الاصطناعي</a></li>
+                        <li><a href="/Services/Index">تحليل البيانات</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="/Home/Index">الرئيسية</a></li>
+                        <li><a href="/Products/Index">المنتجات</a></li>
+                        <li><a href="/Careers/Index">الوظائف</a></li>
+                        <li><a href="/Contact/Index">التواصل</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <div class="footer-contact">
+                        <p><span class="icon">📧</span> info@gama-ksa.com</p>
+                        <p><span class="icon">📞</span> +966 XX XXX XXXX</p>
+                        <p><span class="icon">📍</span> جدة، المملكة العربية السعودية</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#">𝕏</a>
+                        <a href="#">in</a>
+                        <a href="#">▶</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 الشركة العربية الشاملة للتطبيقات المحدودة. جميع الحقوق محفوظة.</p>
+                <div class="footer-links">
+                    <a href="#">سياسة الخصوصية</a>
+                    <span>|</span>
+                    <a href="#">الشروط والأحكام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/site.js"></script>
+    <script>
+        // DTI Calculator - Simple Frontend Calculation
+        document.getElementById('dtiForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const cloudUsage = parseInt(document.querySelector('input[name="CloudUsage"]:checked')?.value || '0');
+            const digitalStrategy = parseInt(document.querySelector('input[name="DigitalStrategy"]:checked')?.value || '0');
+            const cyberSecurity = parseInt(document.querySelector('input[name="CyberSecurity"]:checked')?.value || '0');
+
+            const score = Math.round((cloudUsage + digitalStrategy + cyberSecurity) / 3);
+
+            let level, recommendation;
+            if (score < 30) {
+                level = 'منخفض';
+                recommendation = 'مستوى التحول الرقمي في مؤسستك منخفض. نوصي ببدء رحلة التحول الرقمي مع خدماتنا الاستشارية المتخصصة. سنساعدك في وضع استراتيجية واضحة وخطة تنفيذية للتحول الرقمي الناجح.';
+            } else if (score < 60) {
+                level = 'متوسط';
+                recommendation = 'مستوى التحول الرقمي في مؤسستك متوسط. يمكننا مساعدتك في تسريع رحلة التحول الرقمي من خلال حلولنا المتكاملة في الحوسبة السحابية والأمن السيبراني والذكاء الاصطناعي.';
+            } else {
+                level = 'جيد';
+                recommendation = 'مستوى التحول الرقمي في مؤسستك جيد! نوصي بالاستمرار في التطوير المستمر والاستفادة من أحدث التقنيات. يمكننا مساعدتك في الوصول إلى المستوى التالي من التميز الرقمي.';
+            }
+
+            document.getElementById('scoreValue').textContent = score + '%';
+            document.getElementById('levelValue').textContent = level;
+            document.getElementById('recommendationText').textContent = recommendation;
+            document.getElementById('progressBar').style.width = score + '%';
+
+            document.getElementById('dtiResult').style.display = 'block';
+            document.getElementById('dtiResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        // Radio button selection styling
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Remove active class from all labels in this group
+                const groupName = this.name;
+                document.querySelectorAll(`input[name="${groupName}"]`).forEach(r => {
+                    r.parentElement.style.borderColor = '#e5e7eb';
+                    r.parentElement.style.background = 'white';
+                });
+
+                // Add active class to selected label
+                this.parentElement.style.borderColor = '#2596be';
+                this.parentElement.style.background = '#f0f9ff';
+            });
+        });
+    </script>
+</body>
+</html>
