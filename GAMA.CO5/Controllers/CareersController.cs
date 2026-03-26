@@ -9,7 +9,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
         {
             var model = new CareersViewModel
             {
-                PageTitle = "انضم لفريقنا",
+                PageTitle = "الوظائف",
                 Jobs = GetAllJobs()
             };
 
@@ -22,48 +22,39 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             {
                 new Job
                 {
-                    Id = "fullstack",
-                    Title = "مطور Full Stack",
+                    Id = "software-engineer",
+                    Title = "مهندس برمجيات",
                     Department = "التطوير",
                     Location = "جدة",
                     Type = "دوام كامل",
-                    Description = "نبحث عن مطور Full Stack محترف للانضمام لفريقنا"
+                    Description = "نبحث عن مهندس برمجيات محترف للانضمام إلى فريق التطوير."
                 },
                 new Job
                 {
-                    Id = "security",
-                    Title = "مهندس أمن سيبراني",
-                    Department = "الأمن",
+                    Id = "data-scientist",
+                    Title = "عالم بيانات",
+                    Department = "الذكاء الاصطناعي",
                     Location = "الرياض",
                     Type = "دوام كامل",
-                    Description = "نبحث عن مهندس أمن سيبراني خبير"
+                    Description = "نبحث عن عالم بيانات لتحليل البيانات واستخراج الرؤى الذكية."
                 },
                 new Job
                 {
-                    Id = "analyst",
-                    Title = "محلل بيانات",
-                    Department = "البيانات",
+                    Id = "network-engineer",
+                    Title = "مهندس شبكات",
+                    Department = "البنية التقنية",
                     Location = "جدة",
                     Type = "دوام كامل",
-                    Description = "نبحث عن محلل بيانات محترف"
+                    Description = "نبحث عن مهندس شبكات بخبرة في البنية التحتية والاتصالات."
                 },
                 new Job
                 {
-                    Id = "designer",
-                    Title = "مصمم UX/UI",
-                    Department = "التصميم",
+                    Id = "cloud-architect",
+                    Title = "مهندس معماري سحابي",
+                    Department = "الحوسبة السحابية",
                     Location = "الرياض",
                     Type = "دوام كامل",
-                    Description = "نبحث عن مصمم UX/UI مبدع"
-                },
-                new Job
-                {
-                    Id = "pm",
-                    Title = "مدير مشاريع تقنية",
-                    Department = "الإدارة",
-                    Location = "جدة",
-                    Type = "دوام كامل",
-                    Description = "نبحث عن مدير مشاريع تقنية خبير"
+                    Description = "نبحث عن مهندس معماري سحابي لتصميم حلول سحابية متقدمة."
                 }
             };
         }

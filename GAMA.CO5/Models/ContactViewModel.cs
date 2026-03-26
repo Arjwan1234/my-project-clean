@@ -5,7 +5,7 @@ namespace GAMA.CO5.Models
     public class ContactViewModel
     {
         public string PageTitle { get; set; } = "تواصل معنا";
-        public ContactForm? Form { get; set; }
+        public ContactForm Form { get; set; } = new ContactForm();
         public bool IsSuccess { get; set; } = false;
     }
 

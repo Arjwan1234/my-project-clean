@@ -2,7 +2,7 @@
 {
     public class DTIViewModel
     {
-        public string PageTitle { get; set; } = "مؤشر التحول الرقمي";
+        public string PageTitle { get; set; } = "مؤشر قياس التحول الرقمي";
         public DTIForm? Form { get; set; }
         public DTIResult? Result { get; set; }
     }

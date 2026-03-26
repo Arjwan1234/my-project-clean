@@ -1,6 +1,4 @@
 ﻿using GAMA.CO5.Models;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GAMA_ASP_MVC_CLEAN.Controllers
@@ -11,7 +9,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
         {
             var model = new DTIViewModel
             {
-                PageTitle = "مؤشر التحول الرقمي"
+                PageTitle = "مؤشر قياس التحول الرقمي"
             };
 
             return View(model);
@@ -43,7 +41,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
             var model = new DTIViewModel
             {
-                PageTitle = "مؤشر التحول الرقمي",
+                PageTitle = "مؤشر قياس التحول الرقمي",
                 Form = form,
                 Result = new DTIResult
                 {

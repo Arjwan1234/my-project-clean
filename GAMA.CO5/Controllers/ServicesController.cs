@@ -20,7 +20,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         public IActionResult Details(string id)
         {
-            if (string.IsNullOrWhiteSpace(id))
+           if (string.IsNullOrWhiteSpace(id))
                 return NotFound();
 
             var service = GetAllServices()

@@ -3,7 +3,7 @@
     public class CareersViewModel
     {
         public List<Job> Jobs { get; set; } = new();
-        public string PageTitle { get; set; } = "انضم لفريقنا";
+        public string PageTitle { get; set; } = "الوظائف";
     }
 
     public class Job

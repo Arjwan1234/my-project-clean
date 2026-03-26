@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GAMA.CO5.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- 🔥 هذا هو السطر المهم اللي كان ناقص -->
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body class="site-body">
@@ -58,10 +61,10 @@
                     </p>
 
                     <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
@@ -70,8 +73,8 @@
                     <ul>
                         <li><a asp-controller="Services" asp-action="Index">أنظمة الحضور والانصراف</a></li>
                         <li><a asp-controller="Services" asp-action="Index">السحابات</a></li>
-                        <li><a asp-controller="Services" asp-action="Index">التحول الرقمي والبوابات والأنظمة الإلكترونية</a></li>
-                        <li><a asp-controller="Services" asp-action="Index">خدمة الفوترة الإلكترونية</a></li>
+                        <li><a asp-controller="Services" asp-action="Index">التحول الرقمي</a></li>
+                        <li><a asp-controller="Services" asp-action="Index">الفوترة الإلكترونية</a></li>
                     </ul>
                 </div>
 
@@ -88,18 +91,9 @@
                 <div class="footer-col footer-contact">
                     <h3>معلومات التواصل</h3>
                     <ul>
-                        <li>
-                            <span class="footer-icon"><i class="fa-solid fa-location-dot"></i></span>
-                            <span>جدة، المملكة العربية السعودية</span>
-                        </li>
-                        <li>
-                            <span class="footer-icon"><i class="fa-solid fa-phone"></i></span>
-                            <span>+966 XX XXX XXXX</span>
-                        </li>
-                        <li>
-                            <span class="footer-icon"><i class="fa-regular fa-envelope"></i></span>
-                            <span>info@gama-ksa.com</span>
-                        </li>
+                        <li>📍 جدة، السعودية</li>
+                        <li>📞 +966 XX XXX XXXX</li>
+                        <li>✉️ info@gama-ksa.com</li>
                     </ul>
                 </div>
 
@@ -108,11 +102,11 @@
             <div class="footer-bottom">
                 <div class="footer-links">
                     <a asp-controller="Home" asp-action="Privacy">سياسة الخصوصية</a>
-                    <a href="#">الشروط والأحكام</a>
+                    <a href="#">الشروط</a>
                 </div>
 
                 <div class="footer-copy">
-                    © 2026 الشركة العربية الشاملة للتطبيقات المحدودة جميع الحقوق محفوظة.
+                    © 2026 جميع الحقوق محفوظة
                 </div>
             </div>
         </div>
@@ -121,6 +115,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

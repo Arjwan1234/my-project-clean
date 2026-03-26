@@ -1,274 +1,151 @@
-﻿<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الوظائف - GAMA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/site.css" />
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="/Home/Index" class="logo">GAMA</a>
+﻿@model GAMA.CO5.Models.CareersViewModel
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+<section class="hero-section">
+    <div class="overlay"></div>
 
-            <ul class="nav-links" id="navLinks">
-                <li><a href="/Home/Index">الرئيسية</a></li>
-                <li><a href="/Services/Index">الخدمات</a></li>
-                <li><a href="/Products/Index">المنتجات</a></li>
-                <li><a href="/DTI/Index">مؤشر التحول الرقمي</a></li>
-                <li><a href="/Partners/Index">الشركاء</a></li>
-                <li><a href="/Careers/Index" class="active">الوظائف</a></li>
-                <li><a href="/Contact/Index">التواصل</a></li>
-            </ul>
+    <div class="container hero-content">
+        <span class="hero-badge">الوظائف ✦</span>
+        <h1>@Model.PageTitle</h1>
+        <p>
+            انضم إلى فريقنا وكن جزءًا من رحلة الابتكار والتحول الرقمي
+        </p>
+    </div>
+</section>
+
+<section class="careers-section">
+    <div class="container">
+        <div class="careers-header">
+            <h2>الفرص الوظيفية</h2>
+            <p>اكتشف الوظائف المتاحة لدينا وابدأ رحلتك المهنية معنا</p>
         </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main>
-        <section class="section">
-            <div class="container">
-                <h2>انضم لفريقنا</h2>
-                <p style="text-align: center; color: #6b7280; margin-bottom: 4rem; font-size: 1.2rem;">
-                    نبحث عن أفضل المواهب التقنية للانضمام إلى فريقنا المتميز
-                </p>
+        <div class="jobs-grid">
+            @foreach (var job in Model.Jobs)
+            {
+                <div class="job-card">
+                    <div class="job-type">@job.Type</div>
 
-                <!-- Why Join Us -->
-                <div style="margin-bottom: 5rem;">
-                    <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem;">لماذا تنضم إلينا؟</h2>
-                    <div class="grid">
-                        <div class="card">
-                            <div class="icon">🚀</div>
-                            <h3>نمو مهني</h3>
-                            <p>فرص تطوير مستمرة وتدريب على أحدث التقنيات</p>
-                        </div>
+                    <h3>@job.Title</h3>
+                    <p class="job-location">📍 @job.Location</p>
+                    <p class="job-desc">@job.Description</p>
 
-                        <div class="card">
-                            <div class="icon">💰</div>
-                            <h3>رواتب تنافسية</h3>
-                            <p>رواتب ومزايا مجزية تتناسب مع خبرتك ومهاراتك</p>
-                        </div>
-
-                        <div class="card">
-                            <div class="icon">🏢</div>
-                            <h3>بيئة عمل مميزة</h3>
-                            <p>بيئة عمل احترافية ومرنة تشجع على الإبداع</p>
-                        </div>
-
-                        <div class="card">
-                            <div class="icon">🎯</div>
-                            <h3>مشاريع رائدة</h3>
-                            <p>العمل على مشاريع تقنية متقدمة مع كبرى المؤسسات</p>
-                        </div>
-                    </div>
+                    <a href="#" class="apply-btn">قدّم الآن</a>
                 </div>
-
-                <!-- Available Positions -->
-                <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem;">الوظائف المتاحة</h2>
-
-                <div class="jobs-list">
-                    <!-- Job 1 -->
-                    <div class="job-card">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">مطور Full Stack</h3>
-                            <div class="job-meta">
-                                <span class="badge">💼 التطوير</span>
-                                <span class="badge">📍 جدة</span>
-                                <span class="badge">⏰ دوام كامل</span>
-                            </div>
-                            <p style="color: #6b7280; margin-top: 1rem;">
-                                نبحث عن مطور Full Stack محترف يمتلك خبرة في تطوير تطبيقات الويب الحديثة
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-primary">قدّم الآن</a>
-                    </div>
-
-                    <!-- Job 2 -->
-                    <div class="job-card">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">مهندس أمن سيبراني</h3>
-                            <div class="job-meta">
-                                <span class="badge">🔐 الأمن السيبراني</span>
-                                <span class="badge">📍 الرياض</span>
-                                <span class="badge">⏰ دوام كامل</span>
-                            </div>
-                            <p style="color: #6b7280; margin-top: 1rem;">
-                                نبحث عن مهندس أمن سيبراني خبير لحماية أنظمتنا وأنظمة عملائنا
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-primary">قدّم الآن</a>
-                    </div>
-
-                    <!-- Job 3 -->
-                    <div class="job-card">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">محلل بيانات</h3>
-                            <div class="job-meta">
-                                <span class="badge">📊 تحليل البيانات</span>
-                                <span class="badge">📍 جدة</span>
-                                <span class="badge">⏰ دوام كامل</span>
-                            </div>
-                            <p style="color: #6b7280; margin-top: 1rem;">
-                                نبحث عن محلل بيانات محترف لاستخراج رؤى قيمة من البيانات
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-primary">قدّم الآن</a>
-                    </div>
-
-                    <!-- Job 4 -->
-                    <div class="job-card">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">مصمم UX/UI</h3>
-                            <div class="job-meta">
-                                <span class="badge">🎨 التصميم</span>
-                                <span class="badge">📍 الرياض</span>
-                                <span class="badge">⏰ دوام كامل</span>
-                            </div>
-                            <p style="color: #6b7280; margin-top: 1rem;">
-                                نبحث عن مصمم UX/UI مبدع لتصميم تجارب مستخدم استثنائية
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-primary">قدّم الآن</a>
-                    </div>
-
-                    <!-- Job 5 -->
-                    <div class="job-card">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">مدير مشاريع تقنية</h3>
-                            <div class="job-meta">
-                                <span class="badge">⚙️ إدارة المشاريع</span>
-                                <span class="badge">📍 جدة</span>
-                                <span class="badge">⏰ دوام كامل</span>
-                            </div>
-                            <p style="color: #6b7280; margin-top: 1rem;">
-                                نبحث عن مدير مشاريع تقنية خبير لقيادة مشاريعنا الاستراتيجية
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-primary">قدّم الآن</a>
-                    </div>
-
-                    <!-- Job 6 -->
-                    <div class="job-card">
-                        <div style="flex: 1;">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">مطور تطبيقات الجوال</h3>
-                            <div class="job-meta">
-                                <span class="badge">📱 تطبيقات الجوال</span>
-                                <span class="badge">📍 الرياض</span>
-                                <span class="badge">⏰ دوام كامل</span>
-                            </div>
-                            <p style="color: #6b7280; margin-top: 1rem;">
-                                نبحث عن مطور تطبيقات جوال لنظامي iOS و Android
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-primary">قدّم الآن</a>
-                    </div>
-                </div>
-
-                <!-- Application Process -->
-                <div style="margin-top: 6rem;">
-                    <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem;">عملية التقديم</h2>
-                    <div class="grid">
-                        <div class="card">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">1️⃣</div>
-                            <h3>قدّم طلبك</h3>
-                            <p>اختر الوظيفة المناسبة وأرسل سيرتك الذاتية</p>
-                        </div>
-
-                        <div class="card">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">2️⃣</div>
-                            <h3>المقابلة الأولية</h3>
-                            <p>مقابلة أولية مع قسم الموارد البشرية</p>
-                        </div>
-
-                        <div class="card">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">3️⃣</div>
-                            <h3>التقييم التقني</h3>
-                            <p>اختبار تقني مع الفريق المختص</p>
-                        </div>
-
-                        <div class="card">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">4️⃣</div>
-                            <h3>العرض الوظيفي</h3>
-                            <p>استلام العرض الوظيفي والانضمام للفريق</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CTA -->
-                <div style="background: linear-gradient(135deg, #2596be 0%, #1e7a9e 100%); padding: 4rem; border-radius: 16px; margin-top: 4rem; text-align: center; color: white;">
-                    <h3 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">لم تجد الوظيفة المناسبة؟</h3>
-                    <p style="margin-bottom: 2rem; font-size: 1.2rem; opacity: 0.95;">
-                        أرسل لنا سيرتك الذاتية وسنتواصل معك عند توفر الفرصة المناسبة
-                    </p>
-                    <a href="/Contact/Index" class="btn" style="background: white; color: #2596be;">أرسل سيرتك الذاتية</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">GAMA</div>
-                    <h4>الشركة العربية الشاملة للتطبيقات المحدودة</h4>
-                    <p>شريكك الموثوق في التحول الرقمي منذ 2020</p>
-                </div>
-
-                <div class="footer-col">
-                    <h4>خدماتنا</h4>
-                    <ul>
-                        <li><a href="/Services/Index">الحوسبة السحابية</a></li>
-                        <li><a href="/Services/Index">الأمن السيبراني</a></li>
-                        <li><a href="/Services/Index">الذكاء الاصطناعي</a></li>
-                        <li><a href="/Services/Index">تحليل البيانات</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>روابط سريعة</h4>
-                    <ul>
-                        <li><a href="/Home/Index">الرئيسية</a></li>
-                        <li><a href="/Products/Index">المنتجات</a></li>
-                        <li><a href="/Careers/Index">الوظائف</a></li>
-                        <li><a href="/Contact/Index">التواصل</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>تواصل معنا</h4>
-                    <div class="footer-contact">
-                        <p><span class="icon">📧</span> info@gama-ksa.com</p>
-                        <p><span class="icon">📞</span> +966 XX XXX XXXX</p>
-                        <p><span class="icon">📍</span> جدة، المملكة العربية السعودية</p>
-                    </div>
-                    <div class="footer-social">
-                        <a href="#">𝕏</a>
-                        <a href="#">in</a>
-                        <a href="#">▶</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 الشركة العربية الشاملة للتطبيقات المحدودة. جميع الحقوق محفوظة.</p>
-                <div class="footer-links">
-                    <a href="#">سياسة الخصوصية</a>
-                    <span>|</span>
-                    <a href="#">الشروط والأحكام</a>
-                </div>
-            </div>
+            }
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="/js/site.js"></script>
-</body>
-</html>
+@section Styles {
+    <style>
+        .careers-section {
+            background: #f7f8fc;
+            padding: 70px 0;
+        }
+
+        .careers-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .careers-header h2 {
+                font-size: 2rem;
+                font-weight: 800;
+                color: #0f172a;
+                margin-bottom: 10px;
+            }
+
+            .careers-header p {
+                color: #6b7280;
+                margin: 0;
+            }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .job-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+            border: 1px solid #e5e7eb;
+            transition: .25s ease;
+        }
+
+            .job-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 16px 36px rgba(15, 23, 42, 0.10);
+            }
+
+        .job-type {
+            display: inline-block;
+            margin-bottom: 14px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(37, 150, 190, 0.12);
+            color: #2596be;
+            font-size: .85rem;
+            font-weight: 700;
+        }
+
+        .job-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .job-location {
+            color: #475569;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .job-desc {
+            color: #64748b;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #2596be, #1d4ed8);
+            color: #fff;
+            font-weight: 800;
+            text-decoration: none;
+            transition: .25s ease;
+        }
+
+            .apply-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 24px rgba(37, 150, 190, 0.22);
+                color: #fff;
+            }
+
+        @@media (max-width: 991px) {
+            .jobs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .jobs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .careers-section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+}

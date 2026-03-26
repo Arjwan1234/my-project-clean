@@ -16,23 +16,15 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
         }
 
         [HttpPost]
-        public IActionResult Submit(ContactForm form)
+        [ValidateAntiForgeryToken]
+        public IActionResult Submit(ContactViewModel model)
         {
+            model.PageTitle = "تواصل معنا";
+
             if (!ModelState.IsValid)
             {
-                var errorModel = new ContactViewModel
-                {
-                    PageTitle = "تواصل معنا",
-                    Form = form
-                };
-                return View("Index", errorModel);
+                return View("Index", model);
             }
-
-            // هنا يتم معالجة البيانات (إرسال إلى قاعدة البيانات أو إيميل)
-            // مثال فقط:
-            Console.WriteLine($"رسالة جديدة من: {form.Name}");
-            Console.WriteLine($"البريد: {form.Email}");
-            Console.WriteLine($"الموضوع: {form.Subject}");
 
             var successModel = new ContactViewModel
             {
