@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GAMA.CO5")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a3131832110f43ebffe3f2a7b23d3aabac4576a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc8e76a98ee2c9864b87ba69ca40ffe0811f5d78")]
 [assembly: System.Reflection.AssemblyProductAttribute("GAMA.CO5")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GAMA.CO5")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

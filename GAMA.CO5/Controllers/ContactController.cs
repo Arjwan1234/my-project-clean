@@ -23,6 +23,8 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
             if (!ModelState.IsValid)
             {
+                echo bin/ >> .gitignore
+
                 return View("Index", model);
             }
 
