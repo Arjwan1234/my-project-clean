@@ -3,7 +3,7 @@ wwwroot\favicon.ico
 wwwroot\images\logo gama.jpg
 wwwroot\images\mudar.jpg
 wwwroot\images\qobool.jpg
-wwwroot\images\services-bg.png
+wwwroot\images\services-bg.jpg
 wwwroot\images\vesa.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
