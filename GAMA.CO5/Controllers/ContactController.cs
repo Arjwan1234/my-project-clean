@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using GAMA.CO5.Models;
+﻿using GAMA.CO5.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GAMA_ASP_MVC_CLEAN.Controllers
 {
@@ -23,7 +23,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
             if (!ModelState.IsValid)
             {
-                echo bin/ >> .gitignore
+
 
                 return View("Index", model);
             }
