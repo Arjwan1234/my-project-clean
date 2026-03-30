@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="pd-features">
-                    @foreach (var f in Model.Features)
+                    @foreach (var f in Model.Features.Split(',', StringSplitOptions.RemoveEmptyEntries))
                     {
                         <div class="pd-feature">
                             <div class="pd-check">✓</div>

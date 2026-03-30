@@ -1,12 +1,12 @@
-﻿@model GAMA.CO5.Models.ProductsViewModel
+﻿@model List<GAMA.CO5.Models.Product>
 
 @{
-    ViewData["Title"] = Model.PageTitle;
+    ViewData["Title"] = "المنتجات";
     var selected = (string)(ViewBag.SelectedCategory ?? "الكل");
     var q = (string)(ViewBag.Query ?? "");
-    var featuredProducts = Model.FeaturedProducts ?? new List<GAMA.CO5.Models.Product>();
-    var products = Model.Products ?? new List<GAMA.CO5.Models.Product>();
-    var categories = Model.Categories ?? new List<string>();
+    var featuredProducts = ViewBag.FeaturedProducts as List<GAMA.CO5.Models.Product> ?? new List<GAMA.CO5.Models.Product>();
+    var categories = ViewBag.Categories as List<string> ?? new List<string>();
+    var products = Model ?? new List<GAMA.CO5.Models.Product>();
 }
 
 <section class="products-hero">

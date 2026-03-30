@@ -1,6 +1,6 @@
-﻿@model GAMA.CO5.Models.ContactViewModel
+﻿@model GAMA.CO5.Models.ContactMessage
 @{
-    ViewData["Title"] = Model.PageTitle;
+    ViewData["Title"] = "تواصل معنا";
 }
 
 <!-- Hero Section -->
@@ -9,7 +9,7 @@
 
     <div class="container hero-content">
         <span class="hero-badge">تواصل معنا ✦</span>
-        <h1>@Model.PageTitle</h1>
+        <h1>تواصل معنا</h1>
         <p>
             نحن هنا للإجابة على استفساراتك ومساعدتك في تحقيق أهدافك الرقمية
         </p>
@@ -25,7 +25,7 @@
             <p>نسعد بخدمتكم والإجابة على جميع استفساراتكم</p>
         </div>
 
-        @if (Model.IsSuccess)
+        @if (ViewBag.Success != null)
         {
             <div class="success-alert">
                 تم إرسال رسالتك بنجاح، شكرًا لتواصلك معنا
@@ -37,42 +37,6 @@
             <!-- معلومات التواصل -->
             <div class="contact-info">
                 <h3>معلومات التواصل</h3>
-
-                <div class="info-box">
-                    <div class="icon blue">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </div>
-                    <div class="info-text">
-                        <span>الموقع</span>
-                        <strong>جدة، المملكة العربية السعودية</strong>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <div class="icon green">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <div class="info-text">
-                        <span>رقم الهاتف</span>
-                        <strong dir="ltr">+966 XX XXX XXXX</strong>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <div class="icon purple">
-                        <i class="fa-regular fa-envelope"></i>
-                    </div>
-                    <div class="info-text">
-                        <span>البريد الإلكتروني</span>
-                        <strong>info@gama-ksa.com</strong>
-                    </div>
-                </div>
-
-                <div class="map-box">
-                    <div class="map-placeholder">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </div>
-                </div>
             </div>
 
             <!-- الفورم -->
@@ -85,33 +49,33 @@
                     <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
 
                     <div class="form-group">
-                        <label asp-for="Form.Name">الاسم الكامل</label>
-                        <input asp-for="Form.Name" class="form-control" placeholder="أدخل اسمك الكامل" />
-                        <span asp-validation-for="Form.Name" class="text-danger"></span>
+                        <label asp-for="Name">الاسم الكامل</label>
+                        <input asp-for="Name" class="form-control" placeholder="أدخل اسمك الكامل" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Form.Email">البريد الإلكتروني</label>
-                        <input asp-for="Form.Email" class="form-control" placeholder="example@email.com" />
-                        <span asp-validation-for="Form.Email" class="text-danger"></span>
+                        <label asp-for="Email">البريد الإلكتروني</label>
+                        <input asp-for="Email" class="form-control" placeholder="example@email.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Form.Phone">رقم الهاتف</label>
-                        <input asp-for="Form.Phone" class="form-control" placeholder="+966 XX XXX XXXX" />
-                        <span asp-validation-for="Form.Phone" class="text-danger"></span>
+                        <label asp-for="Phone">رقم الهاتف</label>
+                        <input asp-for="Phone" class="form-control" placeholder="+966 XX XXX XXXX" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Form.Subject">الموضوع</label>
-                        <input asp-for="Form.Subject" class="form-control" placeholder="موضوع الرسالة" />
-                        <span asp-validation-for="Form.Subject" class="text-danger"></span>
+                        <label asp-for="Subject">الموضوع</label>
+                        <input asp-for="Subject" class="form-control" placeholder="موضوع الرسالة" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Form.Message">الرسالة</label>
-                        <textarea asp-for="Form.Message" class="form-control textarea" placeholder="اكتب رسالتك هنا"></textarea>
-                        <span asp-validation-for="Form.Message" class="text-danger"></span>
+                        <label asp-for="Message">الرسالة</label>
+                        <textarea asp-for="Message" class="form-control textarea" placeholder="اكتب رسالتك هنا"></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
                     </div>
 
                     <button type="submit" class="btn-send">
@@ -123,264 +87,6 @@
         </div>
     </div>
 </section>
-
-@section Styles {
-    <style>
-        .contact-hero {
-            position: relative;
-            min-height: 320px;
-            background: url('/images/services-bg.jpg') center center / cover no-repeat !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-            .contact-hero .overlay {
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(180deg, rgba(5, 20, 60, 0.45), rgba(10, 30, 80, 0.70));
-                z-index: 1;
-            }
-
-            .contact-hero .hero-content {
-                position: relative;
-                z-index: 2;
-                text-align: center;
-                color: #fff;
-                padding: 40px 20px;
-            }
-
-            .contact-hero .hero-badge {
-                display: inline-block;
-                background: rgba(255, 255, 255, 0.16);
-                color: #fff;
-                padding: 8px 16px;
-                border-radius: 999px;
-                font-weight: 700;
-                margin-bottom: 16px;
-            }
-
-            .contact-hero h1 {
-                color: #fff;
-                font-size: 3rem;
-                font-weight: 900;
-                margin-bottom: 12px;
-            }
-
-            .contact-hero p {
-                color: rgba(255, 255, 255, 0.92);
-                font-size: 1.06rem;
-                margin: 0;
-            }
-
-        .contact-section {
-            background: #f7f8fc;
-            padding: 70px 0;
-        }
-
-        .contact-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-            .contact-header h2 {
-                font-size: 2rem;
-                font-weight: 800;
-                color: #0f172a;
-                margin-bottom: 10px;
-            }
-
-            .contact-header p {
-                color: #6b7280;
-                margin: 0;
-            }
-
-        .success-alert {
-            background: #ecfdf3;
-            border: 1px solid #b7ebc6;
-            color: #166534;
-            padding: 12px 16px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            align-items: start;
-        }
-
-        .contact-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-            .contact-card h3,
-            .contact-info h3 {
-                font-size: 1.5rem;
-                font-weight: 800;
-                margin-bottom: 18px;
-                color: #0f172a;
-            }
-
-        .form-group {
-            margin-bottom: 14px;
-        }
-
-            .form-group label {
-                display: block;
-                margin-bottom: 6px;
-                font-weight: 700;
-                color: #334155;
-            }
-
-        .form-control {
-            width: 100%;
-            height: 48px;
-            border-radius: 12px;
-            border: 1px solid #d1d5db;
-            padding: 10px 14px;
-            background: #fff;
-            outline: none;
-            transition: 0.2s ease;
-        }
-
-            .form-control:focus {
-                border-color: #7c3aed;
-                box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.10);
-            }
-
-        .textarea {
-            min-height: 130px;
-            height: 130px;
-            resize: vertical;
-        }
-
-        .btn-send {
-            width: 100%;
-            height: 48px;
-            border: none;
-            background: linear-gradient(90deg, #6d28d9, #7c3aed);
-            color: #fff;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s ease;
-        }
-
-            .btn-send:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 10px 20px rgba(124, 58, 237, 0.18);
-            }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .info-box {
-            background: #fff;
-            padding: 18px;
-            border-radius: 14px;
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .info-text span {
-            display: block;
-            font-size: 0.9rem;
-            color: #64748b;
-            margin-bottom: 4px;
-        }
-
-        .info-text strong {
-            color: #0f172a;
-            font-size: 0.95rem;
-            font-weight: 800;
-        }
-
-        .icon {
-            width: 42px;
-            height: 42px;
-            min-width: 42px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1rem;
-        }
-
-        .blue {
-            background: #2563eb;
-        }
-
-        .green {
-            background: #16a34a;
-        }
-
-        .purple {
-            background: #9333ea;
-        }
-
-        .map-box {
-            height: 170px;
-            background: #dbe3ef;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        .map-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            font-size: 2rem;
-            color: #64748b;
-        }
-
-        .text-danger,
-        .validation-summary {
-            color: #dc2626;
-            font-size: 0.88rem;
-            margin-top: 5px;
-        }
-
-        .validation-summary {
-            margin-bottom: 12px;
-        }
-
-            .validation-summary ul {
-                margin: 0;
-                padding-right: 18px;
-            }
-
-        @@media (max-width: 900px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-hero {
-                min-height: 250px;
-            }
-
-                .contact-hero h1 {
-                    font-size: 2.1rem;
-                }
-        }
-    </style>
-}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

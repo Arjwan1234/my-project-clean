@@ -1,41 +1,39 @@
-﻿using GAMA.CO5.Models;
+﻿using GAMA.CO5.Data;
+using GAMA.CO5.Models;
 using Microsoft.AspNetCore.Mvc;
-//Arjwan SAud 
+
 namespace GAMA_ASP_MVC_CLEAN.Controllers
 {
     public class ContactController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public ContactController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
-            var model = new ContactViewModel
-            {
-                PageTitle = "تواصل معنا"
-
-            };
-
-            return View(model);
+            return View(new ContactMessage());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Submit(ContactViewModel model)
+        public IActionResult Submit(ContactMessage model)
         {
-            model.PageTitle = "تواصل معنا";
-
             if (!ModelState.IsValid)
             {
-
-
                 return View("Index", model);
             }
 
-            var successModel = new ContactViewModel
-            {
-                PageTitle = "تواصل معنا",
-                IsSuccess = true
-            };
+            _context.ContactMessages.Add(model);
+            _context.SaveChanges();
 
-            return View("Index", successModel);
+            ViewBag.Success = true;
+
+            return View("Index", new ContactMessage());
         }
     }
 }
