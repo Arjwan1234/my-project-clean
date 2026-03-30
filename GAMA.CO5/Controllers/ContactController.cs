@@ -10,6 +10,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             var model = new ContactViewModel
             {
                 PageTitle = "تواصل معنا"
+
             };
 
             return View(model);
