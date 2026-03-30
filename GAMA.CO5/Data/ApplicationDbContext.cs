@@ -11,5 +11,7 @@ namespace GAMA.CO5.Data
         }
 
         public DbSet<ContactMessage> ContactMessages { get; set; }
+
+        public DbSet<Job> Jobs { get; set; }
     }
 }
