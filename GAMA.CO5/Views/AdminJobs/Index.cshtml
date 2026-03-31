@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GAMA.CO5.Models.Job>
+
+@{
+    ViewData["Title"] = "إدارة الوظائف";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>إدارة الوظائف</h2>
+        <a asp-action="Create" class="btn btn-primary">إضافة وظيفة جديدة</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>الوظيفة</th>
+                <th>القسم</th>
+                <th>المدينة</th>
+                <th>النوع</th>
+                <th>مفعلة</th>
+                <th>العمليات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in Model)
+            {
+                <tr>
+                    <td>@job.Title</td>
+                    <td>@job.Department</td>
+                    <td>@job.Location</td>
+                    <td>@job.Type</td>
+                    <td>@(job.IsActive ? "نعم" : "لا")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@job.Id" class="btn btn-sm btn-warning">تعديل</a>
+                        <a asp-action="Delete" asp-route-id="@job.Id" class="btn btn-sm btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
