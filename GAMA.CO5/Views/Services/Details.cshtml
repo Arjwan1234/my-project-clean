@@ -17,9 +17,9 @@
             </p>
 
             <ul class="details-features">
-                @foreach (var feature in Model.Features)
+                @foreach (var feature in Model.Features.Split(',', StringSplitOptions.RemoveEmptyEntries))
                 {
-                    <li>@feature</li>
+                    <li>@feature.Trim()</li>
                 }
             </ul>
 

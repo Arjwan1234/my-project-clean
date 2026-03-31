@@ -1,6 +1,7 @@
-﻿@model GAMA.CO5.Models.ServicesViewModel
+﻿@model List<GAMA.CO5.Models.Service>
 @{
-    ViewData["Title"] = Model.PageTitle;
+    ViewData["Title"] = "خدماتنا التقنية";
+    var services = Model ?? new List<GAMA.CO5.Models.Service>();
 }
 
 <!-- Hero Section (Image + overlay) -->
@@ -9,7 +10,7 @@
 
     <div class="container hero-content">
         <span class="hero-badge">الخدمات ✦</span>
-        <h1>@Model.PageTitle</h1>
+        <h1>خدماتنا التقنية</h1>
         <p>
             نقدم مجموعة شاملة من الخدمات التقنية المتطورة لمساعدة مؤسستك
             على النجاح في العصر الرقمي
@@ -21,7 +22,7 @@
 <section class="services-section">
     <div class="container">
         <div class="services-grid">
-            @foreach (var service in Model.Services)
+            @foreach (var service in services)
             {
                 <div class="service-card">
                     <div class="service-icon">@service.Icon</div>
@@ -30,9 +31,9 @@
                     <p class="service-desc">@service.Description</p>
 
                     <ul class="service-features">
-                        @foreach (var feature in service.Features)
+                        @foreach (var feature in service.Features.Split(',', StringSplitOptions.RemoveEmptyEntries))
                         {
-                            <li>@feature</li>
+                            <li>@feature.Trim()</li>
                         }
                     </ul>
 
