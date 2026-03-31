@@ -15,19 +15,21 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         public IActionResult Index()
         {
-            var services = _context.Services.ToList();
+            //var services = _context.Services.ToList();
             ViewBag.PageTitle = "خدماتنا التقنية";
-            return View(services);
+            //services
+            return View();
         }
 
         public IActionResult Details(int id)
         {
-            var service = _context.Services.FirstOrDefault(s => s.Id == id);
+            //var service = _context.Services.FirstOrDefault(s => s.Id == id);
 
-            if (service == null)
-                return NotFound();
+            //if (service == null)
+            //    return NotFound();
 
-            return View(service);
+            //return View(service);
+            return View();
         }
     }
 }
