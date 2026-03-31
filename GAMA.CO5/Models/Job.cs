@@ -1,4 +1,6 @@
-﻿namespace GAMA.CO5.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace GAMA.CO5.Models
 {
     public class CareersViewModel
     {
@@ -8,11 +10,25 @@
 
     public class Job
     {
-        public string Id { get; set; } = string.Empty;
+        public int Id { get; set; }
+
+        [Required]
         public string Title { get; set; } = string.Empty;
+
+        [Required]
         public string Department { get; set; } = string.Empty;
+
+        [Required]
         public string Location { get; set; } = string.Empty;
+
+        [Required]
         public string Type { get; set; } = string.Empty;
+
+        [Required]
         public string Description { get; set; } = string.Empty;
+
+        public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }
