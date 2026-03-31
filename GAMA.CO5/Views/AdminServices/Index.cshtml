@@ -1,0 +1,36 @@
+﻿@model List<GAMA.CO5.Models.Service>
+
+@{
+    ViewData["Title"] = "إدارة الخدمات";
+}
+
+<h2>إدارة الخدمات</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إضافة خدمة جديدة</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>العنوان</th>
+            <th>الوصف</th>
+            <th>الأيقونة</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.Title</td>
+                <td>@service.Description</td>
+                <td>@service.Icon</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@service.Id">تعديل</a> |
+                    <a asp-action="Delete" asp-route-id="@service.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
