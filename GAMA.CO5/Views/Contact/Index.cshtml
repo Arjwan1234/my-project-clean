@@ -3,45 +3,71 @@
     ViewData["Title"] = "تواصل معنا";
 }
 
-<!-- Hero Section -->
-<section class="hero-section contact-hero">
-    <div class="overlay"></div>
+<section class="contact-page">
+    <div class="container contact-wrapper">
 
-    <div class="container hero-content">
-        <span class="hero-badge">تواصل معنا ✦</span>
-        <h1>تواصل معنا</h1>
-        <p>
-            نحن هنا للإجابة على استفساراتك ومساعدتك في تحقيق أهدافك الرقمية
-        </p>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="contact-section">
-    <div class="container">
-
-        <div class="contact-header">
-            <h2>تواصل معنا</h2>
-            <p>نسعد بخدمتكم والإجابة على جميع استفساراتكم</p>
+        <div class="contact-page-header">
+            <span class="contact-badge">
+                <i class="fa-regular fa-envelope"></i>
+                تواصل معنا
+            </span>
+            <h1>تواصل معنا</h1>
+            <p>نسعد بخدمتكم والإجابة على استفساراتكم</p>
         </div>
 
         @if (ViewBag.Success != null)
         {
             <div class="success-alert">
-                تم إرسال رسالتك بنجاح، شكرًا لتواصلك معنا
+                تم إرسال رسالتك بنجاح، شكرًا لتواصلك معنا.
             </div>
         }
 
         <div class="contact-grid">
 
-            <!-- معلومات التواصل -->
-            <div class="contact-info">
-                <h3>معلومات التواصل</h3>
+            <!-- Contact Info -->
+            <div class="contact-info-card">
+                <h2>معلومات التواصل</h2>
+
+                <div class="info-item">
+                    <div class="info-icon blue">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="info-content">
+                        <span>الموقع</span>
+                        <strong>جدة، المملكة العربية السعودية</strong>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon green">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="info-content">
+                        <span>رقم الهاتف</span>
+                        <strong dir="ltr">+966 XX XXX XXXX</strong>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon purple">
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <span>البريد الإلكتروني</span>
+                        <strong>info@gama-ksa.com</strong>
+                    </div>
+                </div>
+
+                <div class="map-box">
+                    <div class="map-placeholder">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                </div>
             </div>
 
-            <!-- الفورم -->
-            <div class="contact-card">
-                <h3>أرسل لنا رسالة</h3>
+            <!-- Contact Form -->
+            <div class="contact-form-card">
+                <h2>أرسل لنا رسالة</h2>
 
                 <form asp-action="Submit" asp-controller="Contact" method="post">
                     @Html.AntiForgeryToken()
@@ -74,11 +100,12 @@
 
                     <div class="form-group">
                         <label asp-for="Message">الرسالة</label>
-                        <textarea asp-for="Message" class="form-control textarea" placeholder="اكتب رسالتك هنا"></textarea>
+                        <textarea asp-for="Message" class="form-control textarea" placeholder="اكتب رسالتك هنا..."></textarea>
                         <span asp-validation-for="Message" class="text-danger"></span>
                     </div>
 
                     <button type="submit" class="btn-send">
+                        <i class="fa-regular fa-paper-plane"></i>
                         إرسال الرسالة
                     </button>
                 </form>
@@ -87,6 +114,242 @@
         </div>
     </div>
 </section>
+
+@section Styles {
+    <style>
+        .contact-page {
+            background: #f8f9fc;
+            padding: 70px 0 90px;
+        }
+
+        .contact-wrapper {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .contact-page-header {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .contact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: #f4efff;
+            color: #7c3aed;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            border: 1px solid #e8ddff;
+        }
+
+        .contact-page-header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .contact-page-header p {
+            color: #64748b;
+            font-size: 1.08rem;
+            margin: 0;
+        }
+
+        .success-alert {
+            max-width: 700px;
+            margin: 0 auto 24px;
+            background: #ecfdf3;
+            border: 1px solid #b7ebc6;
+            color: #166534;
+            padding: 14px 18px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .contact-form-card,
+        .contact-info-card {
+            background: #fff;
+            border: 1px solid #edf0f6;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+            padding: 28px;
+        }
+
+            .contact-form-card h2,
+            .contact-info-card h2 {
+                font-size: 1.7rem;
+                font-weight: 800;
+                color: #0f172a;
+                margin-bottom: 22px;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: #334155;
+                margin-bottom: 8px;
+            }
+
+        .form-control {
+            width: 100%;
+            height: 50px;
+            border-radius: 14px;
+            border: 1px solid #dbe3ef;
+            background: #fff;
+            padding: 12px 16px;
+            font-size: 0.97rem;
+            color: #0f172a;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+            .form-control::placeholder {
+                color: #94a3b8;
+            }
+
+            .form-control:focus {
+                border-color: #8b5cf6;
+                box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.10);
+            }
+
+        .textarea {
+            min-height: 120px;
+            height: 120px;
+            resize: vertical;
+            padding-top: 14px;
+        }
+
+        .btn-send {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(90deg, #6d28d9, #7c3aed);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+
+            .btn-send:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 12px 24px rgba(124, 58, 237, 0.18);
+            }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid #edf0f6;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .blue {
+            background: #2563eb;
+        }
+
+        .green {
+            background: #16a34a;
+        }
+
+        .purple {
+            background: #9333ea;
+        }
+
+        .info-content span {
+            display: block;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .info-content strong {
+            color: #0f172a;
+            font-size: 0.98rem;
+            font-weight: 800;
+        }
+
+        .map-box {
+            margin-top: 8px;
+            height: 220px;
+            border-radius: 18px;
+            background: #dde5f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            font-size: 3rem;
+            color: #64748b;
+        }
+
+        .text-danger,
+        .validation-summary {
+            color: #dc2626;
+            font-size: 0.88rem;
+            margin-top: 6px;
+        }
+
+        .validation-summary {
+            margin-bottom: 12px;
+        }
+
+            .validation-summary ul {
+                margin: 0;
+                padding-right: 18px;
+            }
+
+        @@media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-page-header h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
