@@ -12,7 +12,6 @@
     <Content Include="Models\DTIViewModel.cs" />
     <Content Include="Models\ErrorViewModel.cs" />
     <Content Include="Models\HomeViewModel.cs" />
-    <Content Include="Models\PartnersViewModel.cs" />
     <Content Include="Models\ServicesViewModel.cs" />
   </ItemGroup>
 

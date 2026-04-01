@@ -1,0 +1,38 @@
+﻿@model GAMA.CO5.Models.Partner
+
+@{
+    ViewData["Title"] = "إضافة شريك";
+}
+
+<h2>إضافة شريك</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div>
+        <label asp-for="Name">اسم الشريك</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description">الوصف</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div>
+        <label asp-for="WebsiteUrl">رابط الموقع</label>
+        <input asp-for="WebsiteUrl" class="form-control" />
+    </div>
+
+    <div>
+        <label>صورة الشريك</label>
+        <input type="file" name="imageFile" class="form-control" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">حفظ</button>
+    <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

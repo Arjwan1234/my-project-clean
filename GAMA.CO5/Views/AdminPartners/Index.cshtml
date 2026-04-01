@@ -1,0 +1,48 @@
+﻿@model List<GAMA.CO5.Models.Partner>
+
+@{
+    ViewData["Title"] = "إدارة الشركاء";
+}
+
+<h2>إدارة الشركاء</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إضافة شريك جديد</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>الصورة</th>
+            <th>الاسم</th>
+            <th>الوصف</th>
+            <th>الموقع</th>
+            <th>الإجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var partner in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrWhiteSpace(partner.LogoUrl))
+                    {
+                        <img src="@partner.LogoUrl" alt="@partner.Name" style="width:70px;height:70px;border-radius:50%;object-fit:cover;" />
+                    }
+                </td>
+                <td>@partner.Name</td>
+                <td>@partner.Description</td>
+                <td>
+                    @if (!string.IsNullOrWhiteSpace(partner.WebsiteUrl))
+                    {
+                        <a href="@partner.WebsiteUrl" target="_blank">زيارة الموقع</a>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@partner.Id">تعديل</a> |
+                    <a asp-action="Delete" asp-route-id="@partner.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

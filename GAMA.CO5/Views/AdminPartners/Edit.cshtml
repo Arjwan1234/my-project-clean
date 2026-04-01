@@ -1,0 +1,49 @@
+﻿@model GAMA.CO5.Models.Partner
+
+@{
+    ViewData["Title"] = "تعديل الشريك";
+}
+
+<h2>تعديل الشريك</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="LogoUrl" />
+
+    <div>
+        <label asp-for="Name">اسم الشريك</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description">الوصف</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div>
+        <label asp-for="WebsiteUrl">رابط الموقع</label>
+        <input asp-for="WebsiteUrl" class="form-control" />
+    </div>
+
+    <div>
+        <label>الصورة الحالية</label><br />
+        @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
+        {
+            <img src="@Model.LogoUrl" alt="@Model.Name" style="width:90px;height:90px;border-radius:50%;object-fit:cover;" />
+        }
+    </div>
+
+    <div style="margin-top:10px;">
+        <label>تغيير الصورة</label>
+        <input type="file" name="imageFile" class="form-control" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+    <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

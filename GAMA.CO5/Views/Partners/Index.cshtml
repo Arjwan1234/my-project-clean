@@ -1,39 +1,207 @@
-﻿@model GAMA.CO5.Models.PartnersViewModel
+﻿@model List<GAMA.CO5.Models.Partner>
 
 @{
-    ViewData["Title"] = Model.PageTitle;
+    ViewData["Title"] = "الشركاء";
+    var partners = Model ?? new List<GAMA.CO5.Models.Partner>();
 }
 
 <section class="partners-hero">
-    <div class="overlay"></div>
-    <div class="container hero-content">
-        <span class="hero-badge">الشركاء</span>
+    <div class="partners-hero-overlay"></div>
+
+    <div class="container partners-hero-content">
+        <span class="hero-badge">الشركاء ✦</span>
         <h1>الشركاء</h1>
         <p>شركاء النجاح الذين نفخر بالتعاون معهم لتحقيق التميز</p>
     </div>
 </section>
 
 <section class="partners-section">
-    <div class="container text-center">
-
-        <span class="section-badge">شركاء النجاح</span>
-
-        <p class="partners-title">
-            نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متميزة
-        </p>
+    <div class="container partners-container">
+        <div class="partners-intro">
+            <span class="section-badge">شركاء النجاح</span>
+            <p class="intro-text">
+                نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متطورة
+            </p>
+        </div>
 
         <div class="partners-logos">
-            @foreach (var p in Model.Partners)
+            @foreach (var partner in partners)
             {
-                <a href="@p.WebsiteUrl" target="_blank" class="partner-item">
-                    <img src="@p.LogoUrl" alt="@p.Name" />
-                </a>
+                <div class="partner-logo-item" title="@partner.Name">
+                    <div class="partner-logo-circle">
+                        @if (!string.IsNullOrWhiteSpace(partner.LogoUrl))
+                        {
+                            <img src="@partner.LogoUrl" alt="@partner.Name" class="partner-logo-img" />
+                        }
+                        else
+                        {
+                            <div class="partner-no-logo">Logo</div>
+                        }
+                    </div>
+                </div>
             }
         </div>
 
-        <p class="partners-note">
-            نفخر بشراكاتنا الاستراتيجية مع كبرى الشركات التقنية العالمية
+        <p class="partners-footer-text">
+            نفخر بهذه الشراكات التي تسهم في دعم حلول التقنية العالمية
         </p>
-
     </div>
 </section>
+
+@section Styles {
+    <style>
+        .partners-hero {
+            position: relative;
+            min-height: 250px;
+            background: url('/images/services-bg.jpg') center center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .partners-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(8, 47, 73, 0.45), rgba(5, 27, 61, 0.82));
+        }
+
+        .partners-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .partners-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .partners-hero p {
+            margin: 0;
+            color: rgba(255,255,255,0.92);
+            font-size: 1rem;
+        }
+
+        .partners-section {
+            background: #ffffff;
+            padding: 60px 0 70px;
+        }
+
+        .partners-container {
+            text-align: center;
+        }
+
+        .partners-intro {
+            margin-bottom: 30px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: #f3e8ff;
+            color: #7c3aed;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            border: 1px solid #ead7ff;
+        }
+
+        .intro-text {
+            color: #64748b;
+            font-size: 0.98rem;
+            margin: 0;
+        }
+
+        .partners-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 26px;
+            margin-bottom: 28px;
+        }
+
+        .partner-logo-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .partner-logo-circle {
+            width: 86px;
+            height: 86px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid #eadcf7;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .partner-logo-circle:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+            }
+
+        .partner-logo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .partner-no-logo {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .partners-footer-text {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            margin: 0;
+        }
+
+        @@media (max-width: 768px) {
+            .partners-hero {
+                min-height: 210px;
+            }
+
+                .partners-hero h1 {
+                    font-size: 2.2rem;
+                }
+
+            .partner-logo-circle {
+                width: 76px;
+                height: 76px;
+            }
+
+            .partner-logo-img {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
+}
