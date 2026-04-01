@@ -1,0 +1,56 @@
+﻿@model GAMA.CO5.Models.Service
+
+@{
+    ViewData["Title"] = "تعديل الخدمة";
+}
+
+<h2>تعديل الخدمة</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Icon"></label>
+        <input asp-for="Icon" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="ImageUrl"></label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="BadgeText"></label>
+        <input asp-for="BadgeText" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="BadgeColor"></label>
+        <input asp-for="BadgeColor" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Features">المميزات</label>
+        <input asp-for="Features" class="form-control" placeholder="ميزة 1,ميزة 2,ميزة 3" />
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+    <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
