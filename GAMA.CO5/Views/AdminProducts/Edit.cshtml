@@ -1,0 +1,47 @@
+﻿@model GAMA.CO5.Models.Product
+
+<h2>تعديل منتج</h2>
+
+<input type="hidden" asp-for="Id" />
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label>اسم المنتج</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div>
+        <label>الوصف</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div>
+        <label>رابط الصورة</label>
+        <input asp-for="ImageUrl" class="form-control" />
+    </div>
+
+    <div>
+        <label>التصنيف</label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+
+    <div>
+        <label>نص البادج</label>
+        <input asp-for="BadgeText" class="form-control" />
+    </div>
+
+    <div>
+        <label>المميزات</label>
+        <input asp-for="Features" class="form-control" />
+    </div>
+
+    <div>
+        <label>مميز</label>
+        <input asp-for="IsFeatured" type="checkbox" />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-success">حفظ</button>
+</form>

@@ -1,0 +1,37 @@
+﻿@model List<GAMA.CO5.Models.Product>
+
+<h2>إدارة المنتجات</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">إضافة منتج</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>الصورة</th>
+            <th>الاسم</th>
+            <th>التصنيف</th>
+            <th>مميز</th>
+            <th>إجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@product.ImageUrl"
+                         style="width:80px;height:60px;object-fit:cover;border-radius:10px;" />
+                </td>
+                <td>@product.Name</td>
+                <td>@product.Category</td>
+                <td>@(product.IsFeatured ? "نعم" : "لا")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@product.Id">تعديل</a> |
+                    <a asp-action="Delete" asp-route-id="@product.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
