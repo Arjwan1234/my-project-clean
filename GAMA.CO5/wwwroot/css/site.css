@@ -89,8 +89,6 @@ body {
             color: white;
         }
 
-/* ================= SERVICES HERO IMAGE (FIXED) ================= */
-/* ملاحظة: استخدمت !important لتجنب أي تعارض من CSS ثاني */
 
 .services-hero {
     position: relative;
@@ -268,17 +266,14 @@ body {
         grid-template-columns: 1fr;
     }
 }
-/* خلي المحتوى ينزل تحت النافبار الثابت */
 .site-main {
     flex: 1;
-    padding-top: 90px; /* عدّلها حسب ارتفاع نافبارك */
+    padding-top: 90px; 
 }
 
-/* الفوتر يكون طبيعي تحت المحتوى (مو fixed) */
 .footer {
     position: static !important;
 }
-/* ================= PRODUCTS HERO ================= */
 
 .products-hero {
     position: relative;
@@ -2465,5 +2460,144 @@ body {
 @media (max-width: 600px) {
     .servicesX-grid {
         grid-template-columns: 1fr;
+    }
+}
+:root {
+    --bg-dark: #061a2f;
+    --bg-mid: #0b2742;
+    --bg-card: rgba(20, 53, 84, 0.78);
+    --primary: #1fa3d7;
+    --primary-light: #5fd3ff;
+    --text-main: #eaf6ff;
+    --text-muted: #a9c4d9;
+    --border-glow: rgba(95, 211, 255, 0.25);
+    --shadow-blue: rgba(10, 94, 148, 0.28);
+}
+
+
+.about-highlight-section {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0;
+    background: radial-gradient(circle at top left, rgba(31, 163, 215, 0.15), transparent 35%), radial-gradient(circle at bottom right, rgba(95, 211, 255, 0.08), transparent 30%), linear-gradient(135deg, #061a2f 0%, #0b2742 50%, #0a2238 100%);
+}
+
+    .about-highlight-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to left, rgba(255,255,255,0.03), transparent 40%);
+        pointer-events: none;
+    }
+
+.about-highlight-container {
+    position: relative;
+    z-index: 2;
+}
+
+.about-highlight-title {
+    color: var(--text-main);
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 22px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+
+.about-highlight-line {
+    width: 160px;
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    margin: 20px 0 28px;
+    box-shadow: 0 0 22px rgba(95, 211, 255, 0.35);
+}
+
+.about-highlight-text {
+    color: var(--text-muted);
+    font-size: 1.08rem;
+    line-height: 2;
+    max-width: 620px;
+}
+
+.stats-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 28px 26px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(28, 64, 97, 0.88), rgba(17, 45, 73, 0.88));
+    border: 1px solid var(--border-glow);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+    .stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 22px 48px rgba(0, 0, 0, 0.24), 0 0 28px var(--shadow-blue);
+        border-color: rgba(95, 211, 255, 0.45);
+    }
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.stat-value {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 0 18px rgba(95, 211, 255, 0.18);
+}
+
+.stat-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(31, 163, 215, 0.22), rgba(95, 211, 255, 0.14));
+    color: var(--primary-light);
+    font-size: 1.5rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+@media (max-width: 991px) {
+    .about-highlight-title {
+        font-size: 2.4rem;
+    }
+
+    .stat-value {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-highlight-section {
+        padding: 70px 0;
+    }
+
+    .about-highlight-title {
+        font-size: 2rem;
+    }
+
+    .stat-card {
+        padding: 22px 18px;
+    }
+
+    .stat-value {
+        font-size: 2rem;
     }
 }

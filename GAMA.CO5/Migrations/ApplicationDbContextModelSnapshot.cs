@@ -52,7 +52,7 @@ namespace GAMA.CO5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactMessages");
+                    b.ToTable("ContactMessages", (string)null);
                 });
 
             modelBuilder.Entity("GAMA.CO5.Models.Job", b =>
@@ -91,7 +91,7 @@ namespace GAMA.CO5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Jobs", (string)null);
                 });
 
             modelBuilder.Entity("GAMA.CO5.Models.Partner", b =>
@@ -120,7 +120,7 @@ namespace GAMA.CO5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Partners");
+                    b.ToTable("Partners", (string)null);
                 });
 
             modelBuilder.Entity("GAMA.CO5.Models.Product", b =>
@@ -164,7 +164,7 @@ namespace GAMA.CO5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("GAMA.CO5.Models.Service", b =>
@@ -205,7 +205,7 @@ namespace GAMA.CO5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 #pragma warning restore 612, 618
         }
