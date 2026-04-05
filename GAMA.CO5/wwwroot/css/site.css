@@ -1,5 +1,4 @@
-﻿/* GAMA - Site CSS (Final + Fixed Services Hero Image) */
-
+﻿
 * {
     margin: 0;
     padding: 0;
@@ -40,7 +39,6 @@ body {
     padding: 0 2rem;
 }
 
-/* ================= NAVBAR ================= */
 
 .navbar {
     position: fixed;
