@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GAMA.CO5.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260406071406_initial-1")]
-    partial class initial1
+    [Migration("20260406073538_initial-migration2")]
+    partial class initialmigration2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
