@@ -1,0 +1,92 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <title>الرئيسية</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 32px;
+            font-family: "Cairo", sans-serif;
+            background: #f8fafc;
+        }
+
+        .admin-home-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+            .admin-home-card h2 {
+                font-size: 2rem;
+                font-weight: 900;
+                margin-bottom: 12px;
+                color: #0f172a;
+            }
+
+            .admin-home-card p {
+                color: #475569;
+                margin-bottom: 24px;
+                line-height: 1.9;
+            }
+
+        .admin-home-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .admin-home-link {
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(135deg, #0b2545, #123a68);
+            color: #fff;
+            padding: 22px;
+            border-radius: 18px;
+            font-weight: 800;
+            text-align: center;
+            transition: .22s ease;
+        }
+
+            .admin-home-link:hover {
+                transform: translateY(-3px);
+                color: #fff;
+                box-shadow: 0 14px 28px rgba(18, 58, 104, 0.18);
+            }
+
+        @@media (max-width: 991px) {
+            .admin-home-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @@media (max-width: 576px) {
+            .admin-home-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-home-card">
+        <h2>مرحبًا بك في لوحة التحكم</h2>
+        <p>اختَر من القائمة اليمنى القسم الذي تريد إدارته، وسيظهر هنا مباشرة.</p>
+
+        <div class="admin-home-grid">
+            <a href="/AdminJobs" class="admin-home-link">إدارة الوظائف</a>
+            <a href="/AdminServices" class="admin-home-link">إدارة الخدمات</a>
+            <a href="/AdminProducts" class="admin-home-link">إدارة المنتجات</a>
+            <a href="/AdminPartners" class="admin-home-link">إدارة الشركاء</a>
+            <a href="/AdminUsers" class="admin-home-link">إدارة المستخدمين</a>
+            <a href="/AdminContactMessages" class="admin-home-link">رسائل التواصل</a>
+        </div>
+    </div>
+</body>
+</html>

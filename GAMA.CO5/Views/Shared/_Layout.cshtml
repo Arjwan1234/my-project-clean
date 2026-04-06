@@ -10,14 +10,13 @@
     <link rel="stylesheet" href="~/GAMA.CO5.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <!-- 🔥 هذا هو السطر المهم اللي كان ناقص -->
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body class="site-body">
 
     <nav class="navbar">
-        <div class="container">
+        <div class="container nav-container">
 
             <a asp-controller="Home" asp-action="Index" class="logo">
                 <img src="~/images/logo-gama.jpg" alt="GAMA Logo" />
@@ -115,6 +114,19 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileBtn = document.getElementById("mobileMenuBtn");
+            const navLinks = document.getElementById("navLinks");
+
+            if (mobileBtn && navLinks) {
+                mobileBtn.addEventListener("click", function () {
+                    navLinks.classList.toggle("open");
+                });
+            }
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 

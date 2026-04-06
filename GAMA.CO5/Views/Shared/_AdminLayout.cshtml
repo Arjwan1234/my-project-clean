@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - لوحة التحكم</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+<body class="admin-body">
+
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">
+            <h2>لوحة التحكم</h2>
+            <span>GAMA Admin</span>
+        </div>
+
+        <nav class="admin-sidebar-nav">
+            <a href="#" onclick="loadAdminPage('/Admin/HomeContent', 'الرئيسية'); return false;">
+                <i class="fa-solid fa-house"></i>
+                الرئيسية
+            </a>
+
+            <a href="#" onclick="loadAdminPage('/AdminJobs', 'إدارة الوظائف'); return false;">
+                <i class="fa-solid fa-briefcase"></i>
+                إدارة الوظائف
+            </a>
+
+            <a href="#" onclick="loadAdminPage('/AdminServices', 'إدارة الخدمات'); return false;">
+                <i class="fa-solid fa-gears"></i>
+                إدارة الخدمات
+            </a>
+
+            <a href="#" onclick="loadAdminPage('/AdminProducts', 'إدارة المنتجات'); return false;">
+                <i class="fa-solid fa-box-open"></i>
+                إدارة المنتجات
+            </a>
+
+            <a href="#" onclick="loadAdminPage('/AdminPartners', 'إدارة الشركاء'); return false;">
+                <i class="fa-solid fa-handshake"></i>
+                إدارة الشركاء
+            </a>
+
+            <a href="#" onclick="loadAdminPage('/AdminUsers', 'إدارة المستخدمين'); return false;">
+                <i class="fa-solid fa-users"></i>
+                إدارة المستخدمين
+            </a>
+
+            <a href="#" onclick="loadAdminPage('/AdminContactMessages', 'رسائل التواصل'); return false;">
+                <i class="fa-solid fa-envelope"></i>
+                رسائل التواصل
+            </a>
+        </nav>
+
+        <form asp-area="Identity"
+              asp-page="/Account/Logout"
+              asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
+              method="post"
+              class="admin-logout-form">
+            <button type="submit" class="admin-logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                تسجيل الخروج
+            </button>
+        </form>
+    </aside>
+
+    <div class="admin-content-wrapper">
+        <header class="admin-topbar">
+            <h1 id="adminPageTitle">@ViewData["Title"]</h1>
+        </header>
+
+        <main class="admin-content">
+            <iframe id="adminFrame"
+                    src="/Admin/HomeContent"
+                    title="Admin Content"
+                    frameborder="0">
+            </iframe>
+        </main>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function loadAdminPage(url, title) {
+            document.getElementById("adminFrame").src = url;
+            document.getElementById("adminPageTitle").innerText = title;
+        }
+    </script>
+
+    @{
+        IgnoreBody();
+    }
+</body>
+</html>

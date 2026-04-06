@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewData["Title"] = "إدارة المستخدمين";
+}
+
+<div class="container py-5">
+    <h2 class="mb-4">الحسابات المسجلة</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>البريد الإلكتروني</th>
+                <th>اسم المستخدم</th>
+                <th>رقم الجوال</th>
+                <th>تأكيد البريد</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.UserName</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@(user.EmailConfirmed ? "نعم" : "لا")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
