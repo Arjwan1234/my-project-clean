@@ -20,7 +20,6 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             {
                 PageTitle = "الوظائف",
                 Jobs = await _context.Jobs
-                    .Where(j => j.IsActive)
                     .OrderByDescending(j => j.CreatedAt)
                     .ToListAsync()
             };

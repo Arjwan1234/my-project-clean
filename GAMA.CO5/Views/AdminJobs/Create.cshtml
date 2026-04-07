@@ -4,47 +4,58 @@
     ViewData["Title"] = "إضافة وظيفة";
 }
 
-<div class="container py-5">
-    <h2 class="mb-4">إضافة وظيفة</h2>
+<div class="table-card">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title mb-0">إضافة وظيفة</h2>
+        <a asp-action="Index" class="btn-outline-brand">رجوع</a>
+    </div>
 
     <form asp-action="Create" method="post">
-        <div class="mb-3">
-            <label asp-for="Title" class="form-label">اسم الوظيفة</label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="Title" class="form-label">اسم الوظيفة</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Department" class="form-label">القسم</label>
+                <input asp-for="Department" class="form-control" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Location" class="form-label">المدينة</label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Type" class="form-label">نوع الوظيفة</label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <label asp-for="Description" class="form-label">الوصف</label>
+                <textarea asp-for="Description" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <div class="form-check">
+                    <input asp-for="IsActive" class="form-check-input" />
+                    <label asp-for="IsActive" class="form-check-label">الوظيفة مفعلة</label>
+                </div>
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label asp-for="Department" class="form-label">القسم</label>
-            <input asp-for="Department" class="form-control" />
-            <span asp-validation-for="Department" class="text-danger"></span>
+        <div class="mt-4 d-flex gap-2">
+            <button type="submit" class="btn-brand">حفظ</button>
+            <a asp-action="Index" class="btn-outline-brand">إلغاء</a>
         </div>
-
-        <div class="mb-3">
-            <label asp-for="Location" class="form-label">المدينة</label>
-            <input asp-for="Location" class="form-control" />
-            <span asp-validation-for="Location" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Type" class="form-label">نوع الوظيفة</label>
-            <input asp-for="Type" class="form-control" />
-            <span asp-validation-for="Type" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label">الوصف</label>
-            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
-
-        <div class="form-check mb-3">
-            <input asp-for="IsActive" class="form-check-input" />
-            <label asp-for="IsActive" class="form-check-label">الوظيفة مفعلة</label>
-        </div>
-
-        <button type="submit" class="btn btn-success">حفظ</button>
-        <a asp-action="Index" class="btn btn-secondary">رجوع</a>
     </form>
 </div>
 
