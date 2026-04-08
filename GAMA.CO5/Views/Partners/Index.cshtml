@@ -5,202 +5,443 @@
     var partners = Model ?? new List<GAMA.CO5.Models.Partner>();
 }
 
-<section class="partners-hero">
-    <div class="partners-hero-overlay"></div>
+<section class="partners-luxury-hero">
+    <div class="partners-luxury-hero-overlay"></div>
 
-    <div class="container partners-hero-content">
-        <span class="hero-badge">الشركاء ✦</span>
-        <h1>الشركاء</h1>
-        <p>شركاء النجاح الذين نفخر بالتعاون معهم لتحقيق التميز</p>
+    <div class="container partners-luxury-hero-content">
+        <span class="partners-top-badge">شبكة الشراكات</span>
+        <h1>شراكات تعزز التميز</h1>
+        <p>
+            نفخر بالتعاون مع نخبة من الشركاء المحليين والعالميين، ونسعى من خلال هذه الشراكات
+            إلى تقديم حلول تقنية موثوقة ومتقدمة تدعم النمو والتحول الرقمي.
+        </p>
     </div>
 </section>
 
-<section class="partners-section">
-    <div class="container partners-container">
-        <div class="partners-intro">
+<section class="partners-luxury-section">
+    <div class="side-decor side-decor-right"></div>
+    <div class="side-decor side-decor-left"></div>
+
+    <div class="decor-line decor-line-right"></div>
+    <div class="decor-line decor-line-left"></div>
+
+    <div class="container">
+        <div class="partners-luxury-intro">
             <span class="section-badge">شركاء النجاح</span>
-            <p class="intro-text">
-                نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متطورة
+            <h2>شركاؤنا في النمو والابتكار</h2>
+            <p>
+                نؤمن أن القيمة الحقيقية تبدأ من شراكات استراتيجية قوية، لذلك نعمل مع أفضل الجهات
+                لتقديم حلول أعمال وتجارب رقمية بمستوى احترافي راقٍ.
             </p>
         </div>
 
-        <div class="partners-logos">
+        <div class="partners-luxury-grid">
             @foreach (var partner in partners)
             {
-                <div class="partner-logo-item" title="@partner.Name">
-                    <div class="partner-logo-circle">
-                        @if (!string.IsNullOrWhiteSpace(partner.LogoUrl))
-                        {
-                            <img src="@partner.LogoUrl" alt="@partner.Name" class="partner-logo-img" />
-                        }
-                        else
-                        {
-                            <div class="partner-no-logo">Logo</div>
-                        }
+                <div class="partner-item-wrap" title="@partner.Name">
+                    <div class="partner-luxury-card">
+                        <div class="partner-ring ring-one"></div>
+                        <div class="partner-ring ring-two"></div>
+
+                        <div class="partner-logo-shell">
+                            @if (!string.IsNullOrWhiteSpace(partner.LogoUrl))
+                            {
+                                <img src="@partner.LogoUrl" alt="@partner.Name" class="partner-logo-fill" />
+                            }
+                            else
+                            {
+                                <div class="partner-no-logo">Logo</div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="partner-info">
+                        <h3>@partner.Name</h3>
+                        <span class="partner-status">شريك استراتيجي</span>
                     </div>
                 </div>
             }
         </div>
 
-        <p class="partners-footer-text">
-            نفخر بهذه الشراكات التي تسهم في دعم حلول التقنية العالمية
-        </p>
+        <div class="partners-luxury-footer">
+            <p>
+                نفخر بهذه الشراكات التي تمثل جزءًا مهمًا من مسيرتنا في تقديم حلول تقنية عالية الجودة.
+            </p>
+        </div>
     </div>
 </section>
 
 @section Styles {
     <style>
-        .partners-hero {
+        :root {
+            --luxury-primary: #0f3d75;
+            --luxury-secondary: #7c3aed;
+            --luxury-accent: #38bdf8;
+            --luxury-dark: #0f172a;
+            --luxury-text: #5f6f82;
+        }
+
+        .partners-luxury-hero {
             position: relative;
-            min-height: 250px;
-            background: url('/images/services-bg.jpg') center center / cover no-repeat;
+            min-height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
             overflow: hidden;
+            background: linear-gradient(135deg, rgba(6, 22, 45, 0.82), rgba(9, 33, 62, 0.74)), url('/images/services-bg.jpg') center center / cover no-repeat;
         }
 
-        .partners-hero-overlay {
+        .partners-luxury-hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(8, 47, 73, 0.45), rgba(5, 27, 61, 0.82));
+            background: radial-gradient(circle at 20% 25%, rgba(56, 189, 248, 0.14), transparent 28%), radial-gradient(circle at 80% 68%, rgba(124, 58, 237, 0.18), transparent 32%), linear-gradient(180deg, rgba(4, 18, 35, 0.22), rgba(4, 18, 35, 0.74));
         }
 
-        .partners-hero-content {
+        .partners-luxury-hero-content {
             position: relative;
             z-index: 2;
-            text-align: center;
-            color: #fff;
-            padding: 40px 20px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 7px 16px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-
-        .partners-hero h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 10px;
+            max-width: 980px;
+            padding: 120px 20px 50px;
             color: #fff;
         }
 
-        .partners-hero p {
-            margin: 0;
-            color: rgba(255,255,255,0.92);
-            font-size: 1rem;
-        }
-
-        .partners-section {
-            background: #ffffff;
-            padding: 60px 0 70px;
-        }
-
-        .partners-container {
-            text-align: center;
-        }
-
-        .partners-intro {
-            margin-bottom: 30px;
-        }
-
-        .section-badge {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 999px;
-            background: #f3e8ff;
-            color: #7c3aed;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 14px;
-            border: 1px solid #ead7ff;
-        }
-
-        .intro-text {
-            color: #64748b;
-            font-size: 0.98rem;
-            margin: 0;
-        }
-
-        .partners-logos {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 18px;
-            margin-top: 26px;
-            margin-bottom: 28px;
-        }
-
-        .partner-logo-item {
-            display: flex;
+        .partners-top-badge {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            padding: 10px 20px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.18);
+            backdrop-filter: blur(14px);
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 22px;
         }
 
-        .partner-logo-circle {
-            width: 86px;
-            height: 86px;
+        .partners-luxury-hero-content h1 {
+            margin: 0 0 16px;
+            font-size: 58px;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            color: #fff;
+            text-shadow: 0 10px 30px rgba(0,0,0,.18);
+        }
+
+        .partners-luxury-hero-content p {
+            margin: 0 auto;
+            max-width: 780px;
+            font-size: 20px;
+            line-height: 1.95;
+            color: rgba(255,255,255,0.88);
+        }
+
+        .partners-luxury-section {
+            position: relative;
+            padding: 100px 0 110px;
+            background: linear-gradient(180deg, #f8fbfd 0%, #f2f6fb 100%);
+            overflow: hidden;
+        }
+
+        .side-decor {
+            position: absolute;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 1;
+        }
+
+        .side-decor-right {
+            right: 0;
+            background: radial-gradient(circle at 86% 8%, rgba(99,102,241,.40) 0 28px, transparent 29px), radial-gradient(circle at 80% 22%, rgba(59,130,246,.28) 0 14px, transparent 15px), radial-gradient(circle at 90% 40%, rgba(139,92,246,.30) 0 38px, transparent 39px), radial-gradient(circle at 84% 58%, rgba(56,189,248,.24) 0 18px, transparent 19px), radial-gradient(circle at 92% 78%, rgba(124,58,237,.28) 0 30px, transparent 31px), linear-gradient( 180deg, rgba(124,58,237,.10) 0%, rgba(59,130,246,.08) 28%, transparent 52%, rgba(124,58,237,.08) 74%, rgba(56,189,248,.08) 100% );
+        }
+
+        .side-decor-left {
+            left: 0;
+            background: radial-gradient(circle at 14% 10%, rgba(56,189,248,.36) 0 28px, transparent 29px), radial-gradient(circle at 20% 24%, rgba(139,92,246,.26) 0 14px, transparent 15px), radial-gradient(circle at 12% 46%, rgba(59,130,246,.28) 0 38px, transparent 39px), radial-gradient(circle at 18% 66%, rgba(124,58,237,.24) 0 18px, transparent 19px), radial-gradient(circle at 10% 86%, rgba(56,189,248,.28) 0 30px, transparent 31px), linear-gradient( 180deg, rgba(56,189,248,.10) 0%, rgba(124,58,237,.08) 26%, transparent 50%, rgba(59,130,246,.08) 72%, rgba(124,58,237,.08) 100% );
+        }
+
+        .decor-line {
+            position: absolute;
+            top: 50%;
+            width: 220px;
+            height: 3px;
+            transform: translateY(-50%);
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient( 90deg, transparent, rgba(99,102,241,.65), rgba(56,189,248,.42), transparent );
+            box-shadow: 0 0 18px rgba(99,102,241,.20), 0 0 30px rgba(56,189,248,.08);
+        }
+
+            .decor-line::after {
+                content: "";
+                position: absolute;
+                top: -12px;
+                width: 90px;
+                height: 28px;
+                border-top: 2px solid rgba(124,58,237,.28);
+                border-bottom: 2px solid rgba(56,189,248,.18);
+                border-radius: 50px;
+            }
+
+        .decor-line-right {
+            right: 42px;
+        }
+
+            .decor-line-right::after {
+                right: 24px;
+            }
+
+        .decor-line-left {
+            left: 42px;
+        }
+
+            .decor-line-left::after {
+                left: 24px;
+            }
+
+        .partners-luxury-intro {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto 52px;
+            text-align: center;
+        }
+
+            .partners-luxury-intro .section-badge {
+                display: inline-block;
+                padding: 10px 18px;
+                border-radius: 999px;
+                background: rgba(124,58,237,0.10);
+                color: #6d28d9;
+                border: 1px solid rgba(124,58,237,0.18);
+                font-size: 14px;
+                font-weight: 800;
+                margin-bottom: 16px;
+            }
+
+            .partners-luxury-intro h2 {
+                margin: 0 0 14px;
+                font-size: 46px;
+                font-weight: 900;
+                line-height: 1.2;
+                color: var(--luxury-dark);
+            }
+
+            .partners-luxury-intro p {
+                margin: 0;
+                font-size: 19px;
+                line-height: 2;
+                color: var(--luxury-text);
+            }
+
+        .partners-luxury-grid {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 42px;
+        }
+
+        .partner-item-wrap {
+            text-align: center;
+        }
+
+        .partner-luxury-card {
+            position: relative;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
-            background: #fff;
-            border: 1px solid #eadcf7;
-            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: linear-gradient(180deg, #ffffff, #f7f9fc);
+            border: 1px solid rgba(226,232,240,.95);
+            box-shadow: 0 20px 55px rgba(15,23,42,.08), inset 0 1px 0 rgba(255,255,255,.95);
+            transition: transform .28s ease, box-shadow .28s ease;
         }
 
-            .partner-logo-circle:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+            .partner-luxury-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 26px 70px rgba(15,23,42,.10), 0 0 24px rgba(124,58,237,.05);
             }
 
-        .partner-logo-img {
+        .partner-ring {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+            .partner-ring.ring-one {
+                width: 90%;
+                height: 90%;
+                border: 1px dashed rgba(124,58,237,.14);
+            }
+
+            .partner-ring.ring-two {
+                width: 74%;
+                height: 74%;
+                border: 1px dashed rgba(56,189,248,.14);
+            }
+
+        .partner-logo-shell {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 1px solid rgba(203,213,225,.95);
+            box-shadow: 0 10px 24px rgba(15,23,42,.06), inset 0 1px 0 rgba(255,255,255,.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+            padding: 0;
+        }
+
+        .partner-logo-fill {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
             display: block;
+            border-radius: 50%;
         }
 
         .partner-no-logo {
             color: #94a3b8;
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 700;
         }
 
-        .partners-footer-text {
-            color: #94a3b8;
-            font-size: 0.88rem;
-            margin: 0;
+        .partner-info {
+            margin-top: 18px;
+        }
+
+            .partner-info h3 {
+                margin: 0 0 10px;
+                font-size: 28px;
+                font-weight: 900;
+                line-height: 1.4;
+                color: var(--luxury-dark);
+            }
+
+        .partner-status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            color: #2563eb;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .partners-luxury-footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-top: 42px;
+        }
+
+            .partners-luxury-footer p {
+                margin: 0;
+                color: var(--luxury-text);
+                font-size: 16px;
+                line-height: 2;
+            }
+
+        @@media (max-width: 992px) {
+            .partners-luxury-hero-content h1 {
+                font-size: 44px;
+            }
+
+            .partners-luxury-hero-content p {
+                font-size: 18px;
+            }
+
+            .partners-luxury-intro h2 {
+                font-size: 36px;
+            }
+
+            .partners-luxury-intro p {
+                font-size: 17px;
+            }
+
+            .partner-luxury-card {
+                width: 240px;
+                height: 240px;
+            }
+
+            .partner-logo-shell {
+                width: 126px;
+                height: 126px;
+            }
+
+            .partner-info h3 {
+                font-size: 22px;
+            }
         }
 
         @@media (max-width: 768px) {
-            .partners-hero {
-                min-height: 210px;
+            .partners-luxury-section {
+                padding: 80px 0 90px;
             }
 
-                .partners-hero h1 {
-                    font-size: 2.2rem;
+            .partners-luxury-hero {
+                min-height: 330px;
+            }
+
+            .partners-luxury-hero-content {
+                padding: 100px 20px 40px;
+            }
+
+                .partners-luxury-hero-content h1 {
+                    font-size: 32px;
                 }
 
-            .partner-logo-circle {
-                width: 76px;
-                height: 76px;
+                .partners-luxury-hero-content p {
+                    font-size: 15px;
+                }
+
+            .partners-luxury-intro {
+                margin-bottom: 36px;
             }
 
-            .partner-logo-img {
-                width: 50px;
-                height: 50px;
+                .partners-luxury-intro h2 {
+                    font-size: 28px;
+                }
+
+                .partners-luxury-intro p {
+                    font-size: 15px;
+                }
+
+            .partner-luxury-card {
+                width: 220px;
+                height: 220px;
+            }
+
+            .partner-logo-shell {
+                width: 112px;
+                height: 112px;
+            }
+
+            .partner-info h3 {
+                font-size: 20px;
+            }
+
+            .side-decor {
+                width: 120px;
+                opacity: .6;
+            }
+
+            .decor-line {
+                display: none;
             }
         }
     </style>
