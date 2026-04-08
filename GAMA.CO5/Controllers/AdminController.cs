@@ -8,7 +8,6 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Title"] = "لوحة التحكم";
             return View();
         }
 
