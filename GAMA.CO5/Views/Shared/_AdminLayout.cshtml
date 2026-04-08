@@ -114,6 +114,12 @@
 </head>
 <body class="admin-body">
 
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <h2>لوحة التحكم</h2>
+                <span>GAMA Admin</span>
+            </div>
     <aside class="admin-sidebar">
         <div>
             <div class="admin-sidebar-header">
@@ -127,31 +133,56 @@
                     الرئيسية
                 </a>
 
+                <a href="#" onclick="loadAdminPage('/AdminJobs', 'إدارة الوظائف'); return false;">
+                    <i class="fa-solid fa-briefcase"></i>
+                    إدارة الوظائف
+                </a>
                 <a asp-controller="AdminJobs" asp-action="Index">
                     <i class="fa-solid fa-briefcase"></i>
                     إدارة الوظائف
                 </a>
 
+                <a href="#" onclick="loadAdminPage('/AdminServices', 'إدارة الخدمات'); return false;">
+                    <i class="fa-solid fa-gears"></i>
+                    إدارة الخدمات
+                </a>
                 <a asp-controller="AdminServices" asp-action="Index">
                     <i class="fa-solid fa-gears"></i>
                     إدارة الخدمات
                 </a>
 
+                <a href="#" onclick="loadAdminPage('/AdminProducts', 'إدارة المنتجات'); return false;">
+                    <i class="fa-solid fa-box-open"></i>
+                    إدارة المنتجات
+                </a>
                 <a asp-controller="AdminProducts" asp-action="Index">
                     <i class="fa-solid fa-box-open"></i>
                     إدارة المنتجات
                 </a>
 
+                <a href="#" onclick="loadAdminPage('/AdminPartners', 'إدارة الشركاء'); return false;">
+                    <i class="fa-solid fa-handshake"></i>
+                    إدارة الشركاء
+                </a>
                 <a asp-controller="AdminPartners" asp-action="Index">
                     <i class="fa-solid fa-handshake"></i>
                     إدارة الشركاء
                 </a>
 
+                <a href="#" onclick="loadAdminPage('/AdminUsers', 'إدارة المستخدمين'); return false;">
+                    <i class="fa-solid fa-users"></i>
+                    إدارة المستخدمين
+                </a>
                 <a asp-controller="AdminUsers" asp-action="Index">
                     <i class="fa-solid fa-users"></i>
                     إدارة المستخدمين
                 </a>
 
+                <a href="#" onclick="loadAdminPage('/AdminContactMessages', 'رسائل التواصل'); return false;">
+                    <i class="fa-solid fa-envelope"></i>
+                    رسائل التواصل
+                </a>
+            </nav>
                 <a asp-controller="AdminContactMessages" asp-action="Index">
                     <i class="fa-solid fa-envelope"></i>
                     رسائل التواصل
@@ -159,6 +190,17 @@
             </nav>
         </div>
 
+            <form asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl='@Url.Action("Index", "Home", new { area = "" })'
+                  method="post"
+                  class="admin-logout-form">
+                <button type="submit" class="admin-logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    تسجيل الخروج
+                </button>
+            </form>
+        </aside>
         <form asp-area="Identity"
               asp-page="/Account/Logout"
               asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
@@ -170,11 +212,25 @@
         </form>
     </aside>
 
+        <div class="admin-content-wrapper">
+            <header class="admin-topbar">
+                <h1 id="adminPageTitle">@ViewData["Title"]</h1>
+            </header>
     <div class="admin-content-wrapper">
         <header class="admin-topbar">
             <h1>@ViewData["Title"]</h1>
         </header>
 
+            <main class="admin-content">
+                <iframe id="adminFrame"
+                        src="/Admin/HomeContent"
+                        title="Admin Content"
+                        frameborder="0"
+                        style="width:100%; height:100%; border:none;">
+                </iframe>
+            </main>
+        </div>
+    </div>
         <main class="admin-content">
             @RenderBody()
         </main>
