@@ -1,10 +1,8 @@
 ﻿@model List<GAMA.CO5.Models.Partner>
-
 @{
     ViewData["Title"] = "الشركاء";
     var partners = Model ?? new List<GAMA.CO5.Models.Partner>();
 }
-
 <section class="partners-luxury-section">
 
     <div class="partners-luxury-intro">
@@ -15,7 +13,6 @@
             لتقديم حلول أعمال وتجارب رقمية بمستوى احترافي راقٍ.
         </p>
     </div>
-
     <div class="partners-luxury-grid">
         @foreach (var partner in partners)
         {

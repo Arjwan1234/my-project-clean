@@ -5,12 +5,13 @@
     var partners = Model ?? new List<GAMA.CO5.Models.Partner>();
 }
 
-<section class="partners-luxury-hero">
-    <div class="partners-luxury-hero-overlay"></div>
+<section class="partners-hero-clean">
+    <div class="partners-hero-overlay"></div>
+    <div class="partners-hero-left-bars"></div>
 
-    <div class="container partners-luxury-hero-content">
-        <span class="partners-top-badge">شبكة الشراكات</span>
-        <h1>شراكات تعزز التميز</h1>
+    <div class="container partners-hero-inner">
+        <span class="partners-hero-badge">شبكة الشراكات</span>
+        <h1>شركاؤنا في النمو والابتكار</h1>
         <p>
             نفخر بالتعاون مع نخبة من الشركاء المحليين والعالميين، ونسعى من خلال هذه الشراكات
             إلى تقديم حلول تقنية موثوقة ومتقدمة تدعم النمو والتحول الرقمي.
@@ -18,52 +19,49 @@
     </div>
 </section>
 
-<section class="partners-luxury-section">
-    <div class="side-decor side-decor-right"></div>
-    <div class="side-decor side-decor-left"></div>
-
-    <div class="decor-line decor-line-right"></div>
-    <div class="decor-line decor-line-left"></div>
+<section class="partners-clean-section">
+    <div class="partners-clean-side partners-clean-side-left"></div>
+    <div class="partners-clean-side partners-clean-side-right"></div>
 
     <div class="container">
-        <div class="partners-luxury-intro">
+        <div class="partners-clean-intro">
             <span class="section-badge">شركاء النجاح</span>
-            <h2>شركاؤنا في النمو والابتكار</h2>
+            <h2>شراكات تعزز التميز</h2>
             <p>
                 نؤمن أن القيمة الحقيقية تبدأ من شراكات استراتيجية قوية، لذلك نعمل مع أفضل الجهات
                 لتقديم حلول أعمال وتجارب رقمية بمستوى احترافي راقٍ.
             </p>
         </div>
 
-        <div class="partners-luxury-grid">
+        <div class="partners-clean-grid">
             @foreach (var partner in partners)
             {
-                <div class="partner-item-wrap" title="@partner.Name">
-                    <div class="partner-luxury-card">
-                        <div class="partner-ring ring-one"></div>
-                        <div class="partner-ring ring-two"></div>
+                <div class="partner-clean-item" title="@partner.Name">
+                    <div class="partner-clean-circle">
+                        <div class="partner-clean-ring ring-outer"></div>
+                        <div class="partner-clean-ring ring-inner"></div>
 
-                        <div class="partner-logo-shell">
+                        <div class="partner-clean-logo-shell">
                             @if (!string.IsNullOrWhiteSpace(partner.LogoUrl))
                             {
-                                <img src="@partner.LogoUrl" alt="@partner.Name" class="partner-logo-fill" />
+                                <img src="@partner.LogoUrl" alt="@partner.Name" class="partner-clean-logo" />
                             }
                             else
                             {
-                                <div class="partner-no-logo">Logo</div>
+                                <div class="partner-clean-no-logo">Logo</div>
                             }
                         </div>
                     </div>
 
-                    <div class="partner-info">
+                    <div class="partner-clean-info">
                         <h3>@partner.Name</h3>
-                        <span class="partner-status">شريك استراتيجي</span>
+                        <span class="partner-clean-status">شريك استراتيجي</span>
                     </div>
                 </div>
             }
         </div>
 
-        <div class="partners-luxury-footer">
+        <div class="partners-clean-footer">
             <p>
                 نفخر بهذه الشراكات التي تمثل جزءًا مهمًا من مسيرتنا في تقديم حلول تقنية عالية الجودة.
             </p>
@@ -74,228 +72,241 @@
 @section Styles {
     <style>
         :root {
-            --luxury-primary: #0f3d75;
-            --luxury-secondary: #7c3aed;
-            --luxury-accent: #38bdf8;
-            --luxury-dark: #0f172a;
-            --luxury-text: #5f6f82;
+            --pc-navy: #0b2344;
+            --pc-navy-2: #12335f;
+            --pc-purple: #7c3aed;
+            --pc-cyan: #38bdf8;
+            --pc-text: #5f6f82;
+            --pc-dark: #0f172a;
+            --pc-bg: #f7fafc;
+            --pc-line: rgba(148,163,184,.18);
         }
 
-        .partners-luxury-hero {
+        .partners-hero-clean {
             position: relative;
-            min-height: 420px;
+            min-height: 430px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(6, 22, 45, 0.82), rgba(9, 33, 62, 0.74)), url('/images/services-bg.jpg') center center / cover no-repeat;
+            background: linear-gradient(135deg, rgba(7,27,55,.88), rgba(12,42,84,.78), rgba(44,32,90,.46)), url('/images/services-bg.jpg') center center / cover no-repeat;
         }
 
-        .partners-luxury-hero-overlay {
+        .partners-hero-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 20% 25%, rgba(56, 189, 248, 0.14), transparent 28%), radial-gradient(circle at 80% 68%, rgba(124, 58, 237, 0.18), transparent 32%), linear-gradient(180deg, rgba(4, 18, 35, 0.22), rgba(4, 18, 35, 0.74));
+            background: radial-gradient(circle at 20% 22%, rgba(56,189,248,.10), transparent 24%), radial-gradient(circle at 82% 20%, rgba(124,58,237,.12), transparent 24%), linear-gradient(180deg, rgba(5,18,36,.16), rgba(5,18,36,.66));
         }
 
-        .partners-luxury-hero-content {
+        
+
+        .partners-hero-inner {
             position: relative;
             z-index: 2;
-            max-width: 980px;
-            padding: 120px 20px 50px;
+            max-width: 940px;
+            padding: 120px 20px 60px;
             color: #fff;
         }
 
-        .partners-top-badge {
+        .partners-hero-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 999px;
-            background: rgba(255,255,255,0.10);
-            border: 1px solid rgba(255,255,255,0.18);
-            backdrop-filter: blur(14px);
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.16);
+            backdrop-filter: blur(12px);
             font-size: 14px;
             font-weight: 800;
             margin-bottom: 22px;
         }
 
-        .partners-luxury-hero-content h1 {
-            margin: 0 0 16px;
-            font-size: 58px;
+        .partners-hero-inner h1 {
+            margin: 0 0 18px;
+            font-size: 60px;
             font-weight: 900;
-            line-height: 1.15;
+            line-height: 1.1;
             letter-spacing: -1px;
             color: #fff;
-            text-shadow: 0 10px 30px rgba(0,0,0,.18);
+            text-shadow: 0 10px 24px rgba(0,0,0,.18);
         }
 
-        .partners-luxury-hero-content p {
+        .partners-hero-inner p {
             margin: 0 auto;
-            max-width: 780px;
+            max-width: 760px;
             font-size: 20px;
             line-height: 1.95;
-            color: rgba(255,255,255,0.88);
+            color: rgba(255,255,255,.90);
         }
 
-        .partners-luxury-section {
+        .partners-clean-section {
             position: relative;
             padding: 100px 0 110px;
-            background: linear-gradient(180deg, #f8fbfd 0%, #f2f6fb 100%);
+            background: linear-gradient(180deg, #f8fbfd 0%, #f4f8fc 100%);
             overflow: hidden;
         }
 
-        .side-decor {
+        /* زخارف جانبية مؤسسية هادئة جدًا */
+        .partners-clean-side {
             position: absolute;
             top: 0;
-            width: 300px;
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 1;
         }
 
-        .side-decor-right {
-            right: 0;
-            background: radial-gradient(circle at 86% 8%, rgba(99,102,241,.40) 0 28px, transparent 29px), radial-gradient(circle at 80% 22%, rgba(59,130,246,.28) 0 14px, transparent 15px), radial-gradient(circle at 90% 40%, rgba(139,92,246,.30) 0 38px, transparent 39px), radial-gradient(circle at 84% 58%, rgba(56,189,248,.24) 0 18px, transparent 19px), radial-gradient(circle at 92% 78%, rgba(124,58,237,.28) 0 30px, transparent 31px), linear-gradient( 180deg, rgba(124,58,237,.10) 0%, rgba(59,130,246,.08) 28%, transparent 52%, rgba(124,58,237,.08) 74%, rgba(56,189,248,.08) 100% );
-        }
-
-        .side-decor-left {
+        .partners-clean-side-left {
             left: 0;
-            background: radial-gradient(circle at 14% 10%, rgba(56,189,248,.36) 0 28px, transparent 29px), radial-gradient(circle at 20% 24%, rgba(139,92,246,.26) 0 14px, transparent 15px), radial-gradient(circle at 12% 46%, rgba(59,130,246,.28) 0 38px, transparent 39px), radial-gradient(circle at 18% 66%, rgba(124,58,237,.24) 0 18px, transparent 19px), radial-gradient(circle at 10% 86%, rgba(56,189,248,.28) 0 30px, transparent 31px), linear-gradient( 180deg, rgba(56,189,248,.10) 0%, rgba(124,58,237,.08) 26%, transparent 50%, rgba(59,130,246,.08) 72%, rgba(124,58,237,.08) 100% );
+            width: 90px;
         }
 
-        .decor-line {
-            position: absolute;
-            top: 50%;
-            width: 220px;
-            height: 3px;
-            transform: translateY(-50%);
-            z-index: 1;
-            pointer-events: none;
-            background: linear-gradient( 90deg, transparent, rgba(99,102,241,.65), rgba(56,189,248,.42), transparent );
-            box-shadow: 0 0 18px rgba(99,102,241,.20), 0 0 30px rgba(56,189,248,.08);
-        }
-
-            .decor-line::after {
+            .partners-clean-side-left::before {
                 content: "";
                 position: absolute;
-                top: -12px;
-                width: 90px;
+                left: 42px;
+                top: 14%;
+                width: 1px;
+                height: 72%;
+                background: linear-gradient(180deg, transparent, rgba(148,163,184,.24), transparent);
+            }
+
+            .partners-clean-side-left::after {
+                content: "";
+                position: absolute;
+                left: 28px;
+                top: 38%;
+                width: 28px;
                 height: 28px;
-                border-top: 2px solid rgba(124,58,237,.28);
-                border-bottom: 2px solid rgba(56,189,248,.18);
-                border-radius: 50px;
+                border-radius: 50%;
+                border: 1px solid rgba(56,189,248,.18);
+                box-shadow: 0 0 0 10px rgba(56,189,248,.04);
             }
 
-        .decor-line-right {
-            right: 42px;
+        .partners-clean-side-right {
+            right: 0;
+            width: 110px;
         }
 
-            .decor-line-right::after {
-                right: 24px;
+            .partners-clean-side-right::before {
+                content: "";
+                position: absolute;
+                right: 40px;
+                top: 18%;
+                width: 1px;
+                height: 64%;
+                background: linear-gradient(180deg, transparent, rgba(148,163,184,.22), transparent);
             }
 
-        .decor-line-left {
-            left: 42px;
-        }
-
-            .decor-line-left::after {
-                left: 24px;
-            }
-
-        .partners-luxury-intro {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            margin: 0 auto 52px;
-            text-align: center;
-        }
-
-            .partners-luxury-intro .section-badge {
-                display: inline-block;
-                padding: 10px 18px;
+            .partners-clean-side-right::after {
+                content: "";
+                position: absolute;
+                right: 20px;
+                top: 52%;
+                width: 54px;
+                height: 18px;
                 border-radius: 999px;
-                background: rgba(124,58,237,0.10);
-                color: #6d28d9;
-                border: 1px solid rgba(124,58,237,0.18);
-                font-size: 14px;
-                font-weight: 800;
-                margin-bottom: 16px;
+                border: 1px solid rgba(148,163,184,.18);
+                background: rgba(255,255,255,.20);
             }
 
-            .partners-luxury-intro h2 {
-                margin: 0 0 14px;
-                font-size: 46px;
-                font-weight: 900;
-                line-height: 1.2;
-                color: var(--luxury-dark);
-            }
-
-            .partners-luxury-intro p {
-                margin: 0;
-                font-size: 19px;
-                line-height: 2;
-                color: var(--luxury-text);
-            }
-
-        .partners-luxury-grid {
+        .partners-clean-intro,
+        .partners-clean-grid,
+        .partners-clean-footer {
             position: relative;
             z-index: 2;
+        }
+
+        .partners-clean-intro {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: rgba(124,58,237,.10);
+            color: #6d28d9;
+            border: 1px solid rgba(124,58,237,.16);
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .partners-clean-intro h2 {
+            margin: 0 0 16px;
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.18;
+            color: var(--pc-dark);
+        }
+
+        .partners-clean-intro p {
+            margin: 0;
+            font-size: 19px;
+            line-height: 2;
+            color: var(--pc-text);
+        }
+
+        .partners-clean-grid {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 42px;
+            gap: 54px;
         }
 
-        .partner-item-wrap {
+        .partner-clean-item {
             text-align: center;
         }
 
-        .partner-luxury-card {
+        .partner-clean-circle {
             position: relative;
-            width: 280px;
-            height: 280px;
+            width: 290px;
+            height: 290px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: linear-gradient(180deg, #ffffff, #f7f9fc);
-            border: 1px solid rgba(226,232,240,.95);
-            box-shadow: 0 20px 55px rgba(15,23,42,.08), inset 0 1px 0 rgba(255,255,255,.95);
-            transition: transform .28s ease, box-shadow .28s ease;
+            background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.98), rgba(246,249,252,.96)), linear-gradient(180deg, #ffffff, #f7f9fc);
+            border: 1px solid rgba(226,232,240,.92);
+            box-shadow: 0 20px 56px rgba(15,23,42,.07), inset 0 1px 0 rgba(255,255,255,.95);
+            transition: transform .25s ease, box-shadow .25s ease;
         }
 
-            .partner-luxury-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 26px 70px rgba(15,23,42,.10), 0 0 24px rgba(124,58,237,.05);
+            .partner-clean-circle:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 26px 72px rgba(15,23,42,.10), 0 0 24px rgba(124,58,237,.05);
             }
 
-        .partner-ring {
+        .partner-clean-ring {
             position: absolute;
             border-radius: 50%;
             pointer-events: none;
         }
 
-            .partner-ring.ring-one {
-                width: 90%;
-                height: 90%;
-                border: 1px dashed rgba(124,58,237,.14);
-            }
+        .ring-outer {
+            width: 90%;
+            height: 90%;
+            border: 1px dashed rgba(124,58,237,.14);
+        }
 
-            .partner-ring.ring-two {
-                width: 74%;
-                height: 74%;
-                border: 1px dashed rgba(56,189,248,.14);
-            }
+        .ring-inner {
+            width: 74%;
+            height: 74%;
+            border: 1px dashed rgba(56,189,248,.14);
+        }
 
-        .partner-logo-shell {
-            width: 150px;
-            height: 150px;
+        .partner-clean-logo-shell {
+            width: 154px;
+            height: 154px;
             border-radius: 50%;
-            background: #ffffff;
-            border: 1px solid rgba(203,213,225,.95);
+            background: #fff;
+            border: 1px solid rgba(203,213,225,.92);
             box-shadow: 0 10px 24px rgba(15,23,42,.06), inset 0 1px 0 rgba(255,255,255,.9);
             display: flex;
             align-items: center;
@@ -303,146 +314,153 @@
             overflow: hidden;
             position: relative;
             z-index: 2;
-            padding: 0;
         }
 
-        .partner-logo-fill {
+        .partner-clean-logo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
             border-radius: 50%;
+            display: block;
         }
 
-        .partner-no-logo {
+        .partner-clean-no-logo {
             color: #94a3b8;
             font-size: 13px;
             font-weight: 700;
         }
 
-        .partner-info {
-            margin-top: 18px;
+        .partner-clean-info {
+            margin-top: 20px;
         }
 
-            .partner-info h3 {
+            .partner-clean-info h3 {
                 margin: 0 0 10px;
-                font-size: 28px;
+                font-size: 30px;
                 font-weight: 900;
-                line-height: 1.4;
-                color: var(--luxury-dark);
+                color: var(--pc-dark);
+                line-height: 1.35;
             }
 
-        .partner-status {
+        .partner-clean-status {
             display: inline-block;
             padding: 8px 16px;
             border-radius: 999px;
-            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            background: linear-gradient(135deg, #e0f2fe, #ede9fe);
             color: #2563eb;
             font-size: 12px;
             font-weight: 800;
         }
 
-        .partners-luxury-footer {
-            position: relative;
-            z-index: 2;
+        .partners-clean-footer {
+            margin-top: 48px;
             text-align: center;
-            margin-top: 42px;
         }
 
-            .partners-luxury-footer p {
+            .partners-clean-footer p {
                 margin: 0;
-                color: var(--luxury-text);
+                color: var(--pc-text);
                 font-size: 16px;
                 line-height: 2;
             }
 
         @@media (max-width: 992px) {
-            .partners-luxury-hero-content h1 {
+            .partners-hero-inner h1 {
                 font-size: 44px;
             }
 
-            .partners-luxury-hero-content p {
+            .partners-hero-inner p {
                 font-size: 18px;
             }
 
-            .partners-luxury-intro h2 {
+            .partners-clean-intro h2 {
                 font-size: 36px;
             }
 
-            .partners-luxury-intro p {
+            .partners-clean-intro p {
                 font-size: 17px;
             }
 
-            .partner-luxury-card {
-                width: 240px;
-                height: 240px;
+            .partner-clean-circle {
+                width: 245px;
+                height: 245px;
             }
 
-            .partner-logo-shell {
-                width: 126px;
-                height: 126px;
+            .partner-clean-logo-shell {
+                width: 128px;
+                height: 128px;
             }
 
-            .partner-info h3 {
+            .partner-clean-info h3 {
                 font-size: 22px;
             }
         }
 
         @@media (max-width: 768px) {
-            .partners-luxury-section {
-                padding: 80px 0 90px;
+            .partners-hero-clean {
+                min-height: 340px;
             }
 
-            .partners-luxury-hero {
-                min-height: 330px;
+            .partners-hero-left-bars {
+                width: 56px;
+                background: radial-gradient(circle at 0 12px, transparent 12px, #7c3aed 13px, #7c3aed 18px, transparent 19px) 0 0 / 56px 52px repeat-y, radial-gradient(circle at 0 12px, transparent 12px, #38bdf8 13px, #38bdf8 18px, transparent 19px) 0 18px / 56px 52px repeat-y, radial-gradient(circle at 0 12px, transparent 12px, #f97316 13px, #f97316 18px, transparent 19px) 0 36px / 56px 52px repeat-y;
+                opacity: .84;
             }
 
-            .partners-luxury-hero-content {
-                padding: 100px 20px 40px;
+            .partners-hero-inner {
+                padding: 100px 20px 44px;
             }
 
-                .partners-luxury-hero-content h1 {
-                    font-size: 32px;
+                .partners-hero-inner h1 {
+                    font-size: 34px;
                 }
 
-                .partners-luxury-hero-content p {
+                .partners-hero-inner p {
                     font-size: 15px;
                 }
 
-            .partners-luxury-intro {
-                margin-bottom: 36px;
+            .partners-clean-section {
+                padding: 82px 0 92px;
             }
 
-                .partners-luxury-intro h2 {
-                    font-size: 28px;
+            .partners-clean-intro {
+                margin-bottom: 38px;
+            }
+
+                .partners-clean-intro h2 {
+                    font-size: 29px;
                 }
 
-                .partners-luxury-intro p {
+                .partners-clean-intro p {
                     font-size: 15px;
                 }
 
-            .partner-luxury-card {
+            .partner-clean-circle {
                 width: 220px;
                 height: 220px;
             }
 
-            .partner-logo-shell {
+            .partner-clean-logo-shell {
                 width: 112px;
                 height: 112px;
             }
 
-            .partner-info h3 {
+            .partner-clean-info h3 {
                 font-size: 20px;
             }
 
-            .side-decor {
-                width: 120px;
-                opacity: .6;
+            .partners-clean-side-left,
+            .partners-clean-side-right {
+                width: 60px;
+                opacity: .65;
             }
 
-            .decor-line {
-                display: none;
-            }
+                .partners-clean-side-left::before,
+                .partners-clean-side-left::after,
+                .partners-clean-side-right::before,
+                .partners-clean-side-right::after {
+                    display: none;
+                }
         }
     </style>
 }
