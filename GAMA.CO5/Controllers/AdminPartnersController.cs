@@ -1,6 +1,7 @@
 ﻿using GAMA.CO5.Data;
 using GAMA.CO5.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GAMA_ASP_MVC_CLEAN.Controllers
 {
@@ -15,9 +16,9 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             _environment = environment;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var partners = _context.Partners.ToList();
+            var partners = await _context.Partners.ToListAsync();
             return View(partners);
         }
 
@@ -28,7 +29,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Partner model, IFormFile? imageFile)
+        public async Task<IActionResult> Create(Partner model, IFormFile? imageFile)
         {
             if (!ModelState.IsValid)
             {
@@ -37,33 +38,19 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
             if (imageFile != null && imageFile.Length > 0)
             {
-                string folderPath = Path.Combine(_environment.WebRootPath, "images", "partners");
-
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                string filePath = Path.Combine(folderPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    imageFile.CopyTo(stream);
-                }
-
-                model.LogoUrl = "/images/partners/" + fileName;
+                model.LogoUrl = await SaveImageAsync(imageFile);
             }
 
             _context.Partners.Add(model);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            TempData["SuccessMessage"] = "تمت إضافة الشريك بنجاح";
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var partner = _context.Partners.FirstOrDefault(p => p.Id == id);
+            var partner = await _context.Partners.FirstOrDefaultAsync(p => p.Id == id);
 
             if (partner == null)
             {
@@ -75,14 +62,19 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Partner model, IFormFile? imageFile)
+        public async Task<IActionResult> Edit(int id, Partner model, IFormFile? imageFile)
         {
+            if (id != model.Id)
+            {
+                return NotFound();
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var partner = _context.Partners.FirstOrDefault(p => p.Id == model.Id);
+            var partner = await _context.Partners.FirstOrDefaultAsync(p => p.Id == model.Id);
 
             if (partner == null)
             {
@@ -95,32 +87,19 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
             if (imageFile != null && imageFile.Length > 0)
             {
-                string folderPath = Path.Combine(_environment.WebRootPath, "images", "partners");
-
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-
-                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                string filePath = Path.Combine(folderPath, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    imageFile.CopyTo(stream);
-                }
-
-                partner.LogoUrl = "/images/partners/" + fileName;
+                DeleteImage(partner.LogoUrl);
+                partner.LogoUrl = await SaveImageAsync(imageFile);
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            TempData["SuccessMessage"] = "تم تعديل بيانات الشريك بنجاح";
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var partner = _context.Partners.FirstOrDefault(p => p.Id == id);
+            var partner = await _context.Partners.FirstOrDefaultAsync(p => p.Id == id);
 
             if (partner == null)
             {
@@ -132,19 +111,55 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var partner = _context.Partners.FirstOrDefault(p => p.Id == id);
+            var partner = await _context.Partners.FirstOrDefaultAsync(p => p.Id == id);
 
             if (partner == null)
             {
                 return NotFound();
             }
 
-            _context.Partners.Remove(partner);
-            _context.SaveChanges();
+            DeleteImage(partner.LogoUrl);
 
-            return RedirectToAction("Index");
+            _context.Partners.Remove(partner);
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "تم حذف الشريك بنجاح";
+            return RedirectToAction(nameof(Index));
+        }
+
+        private async Task<string> SaveImageAsync(IFormFile imageFile)
+        {
+            string folderPath = Path.Combine(_environment.WebRootPath, "images", "partners");
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+            string filePath = Path.Combine(folderPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(stream);
+            }
+
+            return "/images/partners/" + fileName;
+        }
+
+        private void DeleteImage(string? imagePath)
+        {
+            if (string.IsNullOrWhiteSpace(imagePath))
+                return;
+
+            string fullPath = Path.Combine(_environment.WebRootPath, imagePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
         }
     }
 }
