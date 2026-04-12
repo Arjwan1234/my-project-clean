@@ -37,8 +37,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
-
-// ????? Role ????? ?????? ????????
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

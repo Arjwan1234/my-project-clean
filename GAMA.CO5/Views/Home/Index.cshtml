@@ -13,140 +13,193 @@
         <div class="hero-content">
             <h1>@Model.Hero.Title</h1>
             <p>@Model.Hero.Description</p>
-            <a asp-controller="@Model.Hero.ButtonController" asp-action="@Model.Hero.ButtonAction" class="btn btn-primary">
+            <a asp-controller="@Model.Hero.ButtonController"
+               asp-action="@Model.Hero.ButtonAction"
+               class="btn btn-primary">
                 @Model.Hero.ButtonText
             </a>
         </div>
     </div>
 </section>
 
-<section class="promo-section">
-    <div class="promo-bg"></div>
+<div class="home-flow">
 
-    <div class="container">
-        <div class="promo-wrap">
+    <section class="promo-section">
+        <div class="promo-bg"></div>
 
-            <div class="promo-left">
-                @foreach (var stat in Model.Promo.Stats)
-                {
-                    <div class="stat-card">
-                        <div class="stat-icon">@stat.Icon</div>
-                        <div class="stat-content">
-                            <div class="stat-value">@stat.Value</div>
-                            <div class="stat-label">@stat.Label</div>
+        <div class="container">
+            <div class="promo-wrap">
+
+                <div class="promo-left">
+                    @foreach (var stat in Model.Promo.Stats)
+                    {
+                        <div class="stat-card">
+                            <div class="stat-icon">@stat.Icon</div>
+                            <div class="stat-content">
+                                <div class="stat-value">@stat.Value</div>
+                                <div class="stat-label">@stat.Label</div>
+                            </div>
                         </div>
+                    }
+                </div>
+
+                <div class="promo-right">
+                    <h2 class="promo-title">@Html.Raw(Model.Promo.Title.Replace("\n", "<br />"))</h2>
+                    <div class="promo-line"></div>
+
+                    <p class="promo-desc">
+                        @Model.Promo.Description
+                    </p>
+
+                    <div class="promo-features">
+                        @foreach (var feature in Model.Promo.Features)
+                        {
+                            <div class="feature-item">
+                                <div class="feature-text">
+                                    <div class="feature-title">@feature.Title</div>
+                                    <div class="feature-sub">@feature.SubTitle</div>
+                                </div>
+                                <div class="feature-icon">@feature.Icon</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="servicesX">
+        <div class="servicesX-bg"></div>
+
+        <div class="container">
+            <div class="servicesX-head">
+                <h2 class="servicesX-title">خدماتنا التقنية</h2>
+                <p class="servicesX-sub">
+                    حلول متكاملة للجهات الحكومية والمؤسسات لدعم التحول الرقمي وتحقيق أفضل تجربة للمستفيدين.
+                </p>
+            </div>
+
+            <div class="servicesX-grid">
+                @foreach (var service in Model.Services)
+                {
+                    <a asp-controller="@service.Controller"
+                       asp-action="@service.Action"
+                       class="servicesX-card">
+                        <div class="servicesX-icon">@service.Icon</div>
+                        <h3>@service.Title</h3>
+                        <p>@service.Description</p>
+                        <span class="servicesX-link">@service.LinkText</span>
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="partnersX">
+        <div class="partnersX-bg"></div>
+
+        <div class="container">
+            <div class="partnersX-head">
+                <div class="partnersX-pill">
+                    <span>شركاء النجاح</span>
+                    <span class="partnersX-pill-icon">🤝</span>
+                </div>
+
+                <p class="partnersX-title">
+                    نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متميزة
+                </p>
+            </div>
+
+            <div class="partnersX-logos">
+                @foreach (var partner in Model.Partners)
+                {
+                    <div class="partnerX-circle">
+                        <img src="@Url.Content(partner.ImagePath)" alt="@partner.Name" />
                     </div>
                 }
             </div>
 
-            <div class="promo-right">
-                <h2 class="promo-title">@Html.Raw(Model.Promo.Title.Replace("\n", "<br />"))</h2>
-                <div class="promo-line"></div>
+            <p class="partnersX-footer">
+                نفخر بشراكاتنا الاستراتيجية مع كبرى الشركات التقنية العالمية
+            </p>
+        </div>
+    </section>
 
-                <p class="promo-desc">
-                    @Model.Promo.Description
-                </p>
+    <section class="clientsX">
+        <div class="clientsX-bg"></div>
 
-                <div class="promo-features">
-                    @foreach (var feature in Model.Promo.Features)
-                    {
-                        <div class="feature-item">
-                            <div class="feature-text">
-                                <div class="feature-title">@feature.Title</div>
-                                <div class="feature-sub">@feature.SubTitle</div>
-                            </div>
-                            <div class="feature-icon">@feature.Icon</div>
+        <div class="container">
+            <div class="clientsX-head">
+                <div class="clientsX-pill">
+                    <span>نحن فخورون</span>
+                    <span class="clientsX-pill-icon">🏢</span>
+                </div>
+
+                <h2 class="clientsX-title">عملاؤنا</h2>
+                <p class="clientsX-sub">نفخر بشراكاتنا مع كبرى المؤسسات في المملكة.</p>
+            </div>
+
+            <div class="clientsX-grid">
+                @foreach (var client in Model.Clients)
+                {
+                    <a class="clientX-card @(client.IsFeatured ? "featured" : "")"
+                       href="@client.Url" target="_blank" rel="noopener">
+                        <div class="clientX-logo">
+                            <img src="@Url.Content(client.ImagePath)" alt="@client.Name" />
                         </div>
-                    }
-                </div>
+                        <div class="clientX-name @(client.IsFeatured ? "featured-name" : "")">
+                            @client.Name
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="newsX">
+        <div class="newsX-bg"></div>
+
+        <div class="container">
+            <div class="newsX-head">
+                <h2 class="newsX-title">أخبار وتحديثات</h2>
+                <p class="newsX-sub">
+                    تابع آخر أخبارنا ومستجداتنا في عالم التقنية والتحول الرقمي
+                </p>
             </div>
 
-        </div>
-    </div>
-</section>
+            <div class="newsX-wrapper">
+                <button class="newsX-arrow newsX-left" type="button">❮</button>
 
-<section class="servicesX">
-    <div class="servicesX-bg"></div>
-
-    <div class="container">
-        <div class="servicesX-head">
-            <h2 class="servicesX-title">خدماتنا التقنية</h2>
-            <p class="servicesX-sub">
-                حلول متكاملة للجهات الحكومية والمؤسسات لدعم التحول الرقمي وتحقيق أفضل تجربة للمستفيدين.
-            </p>
-        </div>
-
-        <div class="servicesX-grid">
-            @foreach (var service in Model.Services)
-            {
-                <a asp-controller="@service.Controller" asp-action="@service.Action" class="servicesX-card">
-                    <div class="servicesX-icon">@service.Icon</div>
-                    <h3>@service.Title</h3>
-                    <p>@service.Description</p>
-                    <span class="servicesX-link">@service.LinkText</span>
-                </a>
-            }
-        </div>
-    </div>
-</section>
-
-<section class="partnersX">
-    <div class="partnersX-bg"></div>
-
-    <div class="container">
-        <div class="partnersX-head">
-            <div class="partnersX-pill">
-                <span>شركاء النجاح</span>
-                <span class="partnersX-pill-icon">🤝</span>
-            </div>
-
-            <p class="partnersX-title">
-                نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متميزة
-            </p>
-        </div>
-
-        <div class="partnersX-logos">
-            @foreach (var partner in Model.Partners)
-            {
-                <div class="partnerX-circle">
-                    <img src="@Url.Content(partner.ImagePath)" alt="@partner.Name" />
-                </div>
-            }
-        </div>
-
-        <p class="partnersX-footer">
-            نفخر بشراكاتنا الاستراتيجية مع كبرى الشركات التقنية العالمية
-        </p>
-    </div>
-</section>
-
-<section class="clientsX">
-    <div class="clientsX-bg"></div>
-
-    <div class="container">
-        <div class="clientsX-head">
-            <div class="clientsX-pill">
-                <span>نحن فخورون</span>
-                <span class="clientsX-pill-icon">🏢</span>
-            </div>
-
-            <h2 class="clientsX-title">عملاؤنا</h2>
-            <p class="clientsX-sub">نفخر بشراكاتنا مع كبرى المؤسسات في المملكة.</p>
-        </div>
-
-        <div class="clientsX-grid">
-            @foreach (var client in Model.Clients)
-            {
-                <a class="clientX-card @(client.IsFeatured ? "featured" : "")"
-                   href="@client.Url" target="_blank" rel="noopener">
-                    <div class="clientX-logo">
-                        <img src="@Url.Content(client.ImagePath)" alt="@client.Name" />
+                <div class="newsX-card">
+                    <div class="newsX-image">
+                        <img src="~/images/news-saudi.jpg" alt="خبر" />
+                        <span class="newsX-badge">الذكاء الاصطناعي</span>
                     </div>
-                    <div class="clientX-name @(client.IsFeatured ? "featured-name" : "")">
-                        @client.Name
+
+                    <div class="newsX-content">
+                        <div class="newsX-date">📅 20 يناير 2026</div>
+
+                        <h3>
+                            حلول الذكاء الاصطناعي باللغة العربية تحقق نجاحًا كبيرًا
+                        </h3>
+
+                        <p>
+                            تطبيقاتنا للذكاء الاصطناعي باللغة العربية تخدم الآن أكثر من
+                            100 جهة حكومية ومؤسسة خاصة في المملكة
+                        </p>
+
+                        <a href="#" class="newsX-btn">اقرأ المزيد</a>
                     </div>
-                </a>
-            }
+                </div>
+
+                <button class="newsX-arrow newsX-right" type="button">❯</button>
+            </div>
+
+            <div class="newsX-footer">
+                <a href="#" class="newsX-all">عرض جميع الأخبار</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</div>

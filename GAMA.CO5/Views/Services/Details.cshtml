@@ -1,0 +1,197 @@
+﻿@model GAMA.CO5.Models.Service
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="service-details-hero" style="background-image:url('@Url.Content("~/images/services-bg.jpg")')">
+    <div class="service-details-overlay"></div>
+
+    <div class="container service-details-hero-content">
+        <span class="service-details-badge">الخدمات ✦</span>
+        <h1>@Model.Title</h1>
+        <p>@Model.Description</p>
+    </div>
+</section>
+
+<section class="service-details-section">
+    <div class="container">
+
+        <div class="service-details-card">
+            <div class="service-details-icon">
+                @Model.Icon
+            </div>
+
+            <div class="service-details-content">
+                <h2>@Model.Title</h2>
+                <p>@Model.Description</p>
+
+                <div class="service-features-box">
+                    <h3>مميزات الخدمة</h3>
+
+                    <ul>
+                        @foreach (var feature in Model.Features.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <li>✓ @feature.Trim()</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="service-actions">
+                    <a asp-controller="Contact" asp-action="Index" class="btn-contact-service">
+                        تواصل معنا
+                    </a>
+
+                    <a asp-action="Index" class="btn-back-service">
+                        رجوع للخدمات
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@section Styles {
+    <style>
+        .service-details-hero {
+            position: relative;
+            min-height: 280px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-details-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(7, 38, 78, 0.72);
+        }
+
+        .service-details-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 40px 20px;
+        }
+
+        .service-details-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.14);
+            color: #fff;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .service-details-hero-content h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .service-details-section {
+            background: #f8fafc;
+            padding: 80px 0;
+        }
+
+        .service-details-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .service-details-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: #1d9acb;
+            color: #fff;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 18px rgba(29,154,203,0.2);
+        }
+
+        .service-details-content {
+            flex: 1;
+        }
+
+            .service-details-content h2 {
+                font-size: 2rem;
+                font-weight: 900;
+                margin-bottom: 15px;
+                color: #0f172a;
+            }
+
+            .service-details-content p {
+                color: #475569;
+                line-height: 1.9;
+                font-size: 1.05rem;
+            }
+
+        .service-features-box {
+            margin-top: 30px;
+            background: #f8fafc;
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+            .service-features-box h3 {
+                margin-bottom: 18px;
+                font-size: 1.3rem;
+                font-weight: 800;
+                color: #0f172a;
+            }
+
+            .service-features-box ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .service-features-box li {
+                padding: 10px 0;
+                color: #334155;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+        .service-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-contact-service {
+            background: #7c3aed;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .btn-back-service {
+            background: #e2e8f0;
+            color: #0f172a;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @@media (max-width: 768px) {
+            .service-details-card {
+                flex-direction: column;
+            }
+        }
+    </style>
+}

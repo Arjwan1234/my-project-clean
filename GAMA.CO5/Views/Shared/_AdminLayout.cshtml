@@ -11,6 +11,109 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Cairo", sans-serif;
+            background: #f8fafc;
+        }
+
+        .admin-body {
+            min-height: 100vh;
+            display: flex;
+            background: #f8fafc;
+        }
+
+        .admin-sidebar {
+            width: 280px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #041c3c, #07264f);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 18px;
+            flex-shrink: 0;
+        }
+
+        .admin-sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .admin-sidebar-header h2 {
+                font-size: 28px;
+                font-weight: 900;
+                margin: 0 0 6px;
+            }
+
+            .admin-sidebar-header span {
+                font-size: 14px;
+                opacity: .8;
+            }
+
+        .admin-sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+            .admin-sidebar-nav a {
+                color: #fff;
+                text-decoration: none;
+                padding: 14px 16px;
+                border-radius: 12px;
+                transition: .25s;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+                .admin-sidebar-nav a:hover {
+                    background: rgba(255,255,255,0.12);
+                    color: #fff;
+                }
+
+        .admin-logout-btn {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            background: #ef4444;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .admin-content-wrapper {
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-topbar {
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 18px 24px;
+        }
+
+            .admin-topbar h1 {
+                margin: 0;
+                font-size: 28px;
+                font-weight: 900;
+                color: #0f172a;
+            }
+
+        .admin-content {
+            padding: 24px;
+            flex: 1;
+        }
+    </style>
 </head>
 <body class="admin-body">
 
@@ -20,9 +123,15 @@
                 <h2>لوحة التحكم</h2>
                 <span>GAMA Admin</span>
             </div>
+    <aside class="admin-sidebar">
+        <div>
+            <div class="admin-sidebar-header">
+                <h2>لوحة التحكم</h2>
+                <span>GAMA Admin</span>
+            </div>
 
             <nav class="admin-sidebar-nav">
-                <a href="#" onclick="loadAdminPage('/Admin/HomeContent', 'الرئيسية'); return false;">
+                <a asp-controller="Admin" asp-action="Index">
                     <i class="fa-solid fa-house"></i>
                     الرئيسية
                 </a>
@@ -31,8 +140,16 @@
                     <i class="fa-solid fa-briefcase"></i>
                     إدارة الوظائف
                 </a>
+                <a asp-controller="AdminJobs" asp-action="Index">
+                    <i class="fa-solid fa-briefcase"></i>
+                    إدارة الوظائف
+                </a>
 
                 <a href="#" onclick="loadAdminPage('/AdminServices', 'إدارة الخدمات'); return false;">
+                    <i class="fa-solid fa-gears"></i>
+                    إدارة الخدمات
+                </a>
+                <a asp-controller="AdminServices" asp-action="Index">
                     <i class="fa-solid fa-gears"></i>
                     إدارة الخدمات
                 </a>
@@ -41,13 +158,25 @@
                     <i class="fa-solid fa-box-open"></i>
                     إدارة المنتجات
                 </a>
+                <a asp-controller="AdminProducts" asp-action="Index">
+                    <i class="fa-solid fa-box-open"></i>
+                    إدارة المنتجات
+                </a>
 
                 <a href="#" onclick="loadAdminPage('/AdminPartners', 'إدارة الشركاء'); return false;">
                     <i class="fa-solid fa-handshake"></i>
                     إدارة الشركاء
                 </a>
+                <a asp-controller="AdminPartners" asp-action="Index">
+                    <i class="fa-solid fa-handshake"></i>
+                    إدارة الشركاء
+                </a>
 
                 <a href="#" onclick="loadAdminPage('/AdminUsers', 'إدارة المستخدمين'); return false;">
+                    <i class="fa-solid fa-users"></i>
+                    إدارة المستخدمين
+                </a>
+                <a asp-controller="AdminUsers" asp-action="Index">
                     <i class="fa-solid fa-users"></i>
                     إدارة المستخدمين
                 </a>
@@ -57,6 +186,12 @@
                     رسائل التواصل
                 </a>
             </nav>
+                <a asp-controller="AdminContactMessages" asp-action="Index">
+                    <i class="fa-solid fa-envelope"></i>
+                    رسائل التواصل
+                </a>
+            </nav>
+        </div>
 
             <form asp-area="Identity"
                   asp-page="/Account/Logout"
@@ -69,11 +204,25 @@
                 </button>
             </form>
         </aside>
+        <form asp-area="Identity"
+              asp-page="/Account/Logout"
+              asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"
+              method="post">
+            <button type="submit" class="admin-logout-btn">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                تسجيل الخروج
+            </button>
+        </form>
+    </aside>
 
         <div class="admin-content-wrapper">
             <header class="admin-topbar">
                 <h1 id="adminPageTitle">@ViewData["Title"]</h1>
             </header>
+    <div class="admin-content-wrapper">
+        <header class="admin-topbar">
+            <h1>@ViewData["Title"]</h1>
+        </header>
 
             <main class="admin-content">
                 <iframe id="adminFrame"
@@ -85,17 +234,11 @@
             </main>
         </div>
     </div>
+        <main class="admin-content">
+            @RenderBody()
+        </main>
+    </div>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        function loadAdminPage(url, title) {
-            document.getElementById("adminFrame").src = url;
-            document.getElementById("adminPageTitle").innerText = title;
-        }
-    </script>
-    @{
-        IgnoreBody();
-    }
 </body>
 </html>
