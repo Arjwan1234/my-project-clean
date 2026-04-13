@@ -4,64 +4,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GAMA.CO5</title>
+
+    <link href="~/css/output.css" rel="stylesheet" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/GAMA.CO5.styles.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
-<body class="site-body">
+<body class="bg-slate-50 font-[Cairo] text-slate-900">
 
-    <nav class="navbar">
-        <div class="container nav-container">
+    <nav class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
 
-            <a asp-controller="Home" asp-action="Index" class="logo">
-                <img src="~/images/logo-gama.jpg" alt="GAMA Logo" />
+            <a asp-controller="Home" asp-action="Index" class="flex items-center gap-3 no-underline">
+                <img src="~/images/logo-gama.jpg" alt="GAMA Logo" class="h-12 w-auto rounded-lg object-contain" />
+                <span class="text-2xl font-black text-sky-400">GAMA</span>
             </a>
 
-            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <ul class="nav-links" id="navLinks">
-                <li><a asp-controller="Services" asp-action="Index">الخدمات</a></li>
-                <li><a asp-controller="Products" asp-action="Index">المنتجات</a></li>
-                <li><a asp-controller="DTI" asp-action="Index">مؤشر التحول الرقمي</a></li>
-                <li><a asp-controller="Partners" asp-action="Index">الشركاء</a></li>
-                <li><a asp-controller="Careers" asp-action="Index">الوظائف</a></li>
-                <li><a asp-controller="Contact" asp-action="Index">التواصل</a></li>
+            <ul class="hidden items-center gap-2 md:flex">
+                <li><a asp-controller="Services" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">الخدمات</a></li>
+                <li><a asp-controller="Products" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">المنتجات</a></li>
+                <li><a asp-controller="DTI" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">مؤشر التحول الرقمي</a></li>
+                <li><a asp-controller="Partners" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">الشركاء</a></li>
+                <li><a asp-controller="Careers" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">الوظائف</a></li>
+                <li><a asp-controller="Contact" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">التواصل</a></li>
             </ul>
 
         </div>
     </nav>
 
-    <main class="site-main">
+    <main>
         @RenderBody()
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid">
+    <footer class="bg-slate-950 text-white">
+        <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+            <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
 
-                <div class="footer-brand">
-                    <div class="footer-logo-wrap">
-                        <span class="footer-logo-text">GAMA</span>
-                        <span class="footer-logo-icon">G</span>
+                <div>
+                    <div class="mb-4 flex items-center gap-3">
+                        <span class="text-3xl font-black text-sky-400">GAMA</span>
                     </div>
 
-                    <p class="footer-desc">
+                    <p class="text-sm leading-8 text-slate-300">
                         نقدم حلولاً تقنية مبتكرة تدعم ريادة الشركات
                         على النمو والازدهار في العصر الرقمي
                     </p>
 
-                    <div class="footer-social">
+                    <div class="mt-4 flex gap-3 text-sky-400">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-x-twitter"></i></a>
@@ -69,29 +64,29 @@
                     </div>
                 </div>
 
-                <div class="footer-col">
-                    <h3>خدماتنا</h3>
-                    <ul>
-                        <li><a asp-controller="Services" asp-action="Index">أنظمة الحضور والانصراف</a></li>
-                        <li><a asp-controller="Services" asp-action="Index">السحابات</a></li>
-                        <li><a asp-controller="Services" asp-action="Index">التحول الرقمي</a></li>
-                        <li><a asp-controller="Services" asp-action="Index">الفوترة الإلكترونية</a></li>
+                <div>
+                    <h3 class="mb-4 text-xl font-extrabold">خدماتنا</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">أنظمة الحضور والانصراف</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">السحابات</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">التحول الرقمي</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">الفوترة الإلكترونية</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-col">
-                    <h3>الشركة</h3>
-                    <ul>
-                        <li><a asp-controller="Home" asp-action="About">من نحن</a></li>
-                        <li><a asp-controller="Services" asp-action="Index">الخدمات</a></li>
-                        <li><a asp-controller="Products" asp-action="Index">المنتجات</a></li>
-                        <li><a asp-controller="Contact" asp-action="Index">التواصل</a></li>
+                <div>
+                    <h3 class="mb-4 text-xl font-extrabold">الشركة</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><a asp-controller="Home" asp-action="About" class="hover:text-white">من نحن</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">الخدمات</a></li>
+                        <li><a asp-controller="Products" asp-action="Index" class="hover:text-white">المنتجات</a></li>
+                        <li><a asp-controller="Contact" asp-action="Index" class="hover:text-white">التواصل</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-col footer-contact">
-                    <h3>معلومات التواصل</h3>
-                    <ul>
+                <div>
+                    <h3 class="mb-4 text-xl font-extrabold">معلومات التواصل</h3>
+                    <ul class="space-y-3 text-slate-300">
                         <li>📍 جدة، السعودية</li>
                         <li>📞 +966 XX XXX XXXX</li>
                         <li>✉️ info@gama-ksa.com</li>
@@ -100,36 +95,20 @@
 
             </div>
 
-            <div class="footer-bottom">
-                <div class="footer-links">
-                    <a asp-controller="Home" asp-action="Privacy">سياسة الخصوصية</a>
-                    <a href="#">الشروط</a>
+            <div class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+                <div class="flex gap-4">
+                    <a asp-controller="Home" asp-action="Privacy" class="hover:text-white">سياسة الخصوصية</a>
+                    <a href="#" class="hover:text-white">الشروط</a>
                 </div>
 
-                <div class="footer-copy">
+                <div>
                     © 2026 جميع الحقوق محفوظة
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const mobileBtn = document.getElementById("mobileMenuBtn");
-            const navLinks = document.getElementById("navLinks");
-
-            if (mobileBtn && navLinks) {
-                mobileBtn.addEventListener("click", function () {
-                    navLinks.classList.toggle("open");
-                });
-            }
-        });
-    </script>
-
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

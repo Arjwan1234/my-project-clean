@@ -4,147 +4,171 @@
     ViewData["Title"] = Model.PageTitle;
 }
 
-<section class="dti-hero">
-    <div class="overlay"></div>
-    <div class="container hero-content">
-        <span class="hero-badge">رؤية المملكة 2030</span>
-        <h1>مؤشر قياس التحول الرقمي</h1>
-        <p>
-            هو مؤشر يهدف لقياس التزام الجهات الحكومية الأساسية بالتحول الرقمي، ومساعدتها على تشخيص وضعها
-            الراهن وبناء خطط تطوير ترسخ التحول الرقمي في جميع المجالات والخدمات والمعايير بما يسهم في تحقيق
-            مستهدفات رؤية المملكة 2030.
-        </p>
+<section class="relative overflow-hidden bg-[#07142b]">
+    <div class="absolute inset-0">
+        <img src="/images/dti/dti-benefits.jpg"
+             class="h-full w-full object-cover opacity-10"
+             alt="التحول الرقمي" />
+        <div class="absolute inset-0 bg-gradient-to-br from-[#07142b] via-[#0a1d3d] to-[#07142b]"></div>
+    </div>
 
-        <a asp-controller="Contact" asp-action="Index" class="dti-hero-btn">
-            تواصل معنا الآن ←
-        </a>
+    <div class="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28">
+        <div class="max-w-4xl">
+            <span class="inline-flex items-center rounded-full border border-[#1d3d75] bg-[#102347] px-4 py-2 text-sm font-semibold tracking-[0.18em] text-slate-200">
+                رؤية المملكة 2030
+            </span>
+
+            <h1 class="mt-6 text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl">
+                مؤشر قياس التحول الرقمي
+            </h1>
+
+            <p class="mt-6 text-lg leading-9 text-slate-300">
+                هو مؤشر يهدف لقياس التزام الجهات الحكومية الأساسية بالتحول الرقمي، ومساعدتها على تشخيص وضعها
+                الراهن وبناء خطط تطوير ترسخ التحول الرقمي في جميع المجالات والخدمات والمعايير بما يسهم في تحقيق
+                مستهدفات رؤية المملكة 2030.
+            </p>
+
+            <a asp-controller="Contact"
+               asp-action="Index"
+               class="mt-8 inline-flex items-center justify-center rounded-xl bg-white px-6 py-4 font-bold text-[#07142b] no-underline transition hover:bg-slate-100">
+                تواصل معنا الآن ←
+            </a>
+        </div>
     </div>
 </section>
 
-<section class="dti-about-section">
-    <div class="container">
+<section class="bg-[#f8fafc] py-20 lg:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div class="dti-intro text-center">
-            <span class="section-badge">ما هو المؤشر؟</span>
-            <h2>ما هو المؤشر؟</h2>
-        </div>
+        <div class="grid gap-10 lg:grid-cols-2">
+            <div class="relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-8 shadow-[0_10px_25px_rgba(2,6,23,0.04)] lg:p-10">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
 
-        <div class="dti-about-grid">
-            <div class="dti-about-image-wrap">
-                <div class="dti-about-image-card">
-                    <img src="/images/dti/dti-card.png" alt="مؤشر التحول الرقمي" />
-                </div>
-            </div>
+                <span class="text-sm font-bold tracking-[0.2em] text-slate-500">
+                    ما هو المؤشر؟
+                </span>
 
-            <div class="dti-about-content">
-                <p>
+                <h2 class="mt-3 text-3xl font-black tracking-tight text-[#07142b]">
+                    أداة شاملة لقياس التحول الرقمي
+                </h2>
+
+                <p class="mt-6 text-lg leading-9 text-slate-600">
                     مؤشر قياس التحول الرقمي هو أداة شاملة ومتطورة تم تصميمها خصيصًا لقياس ومتابعة التزام الجهات
                     الحكومية الأساسية بالتحول الرقمي. يعتمد المؤشر على منهجية علمية دقيقة تشمل مجموعة من المعايير
                     والمؤشرات الفرعية التي تغطي جميع جوانب التحول الرقمي.
                 </p>
             </div>
-        </div>
 
-        <div class="dti-highlight-card">
-            <div class="dti-highlight-icon">
-                <span>🛡</span>
-            </div>
-
-            <div class="dti-highlight-text">
-                <h3>يساهم في تحقيق رؤية المملكة 2030</h3>
-                <p>
-                    يعد المؤشر أحد الأدوات الرئيسية لتحقيق أهداف رؤية المملكة 2030 في مجال التحول الرقمي الحكومي.
-                </p>
+            <div class="relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white shadow-[0_10px_25px_rgba(2,6,23,0.04)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+                <img src="/images/dti/dti-card.png"
+                     class="h-full w-full object-cover"
+                     alt="مؤشر التحول الرقمي" />
             </div>
         </div>
 
-    </div>
-</section>
+        <div class="mt-10 relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-8 shadow-[0_10px_25px_rgba(2,6,23,0.04)]">
+            <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
 
-<section class="dti-features-section">
-    <div class="container">
+            <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">
+                    🛡
+                </div>
 
-        <div class="dti-section-head text-center">
-            <span class="section-badge">المميزات الرئيسية</span>
-            <h2>المميزات الرئيسية</h2>
-            <p>نوفر لك مجموعة شاملة من المميزات التي تساعدك على قياس وتحسين التحول الرقمي</p>
-        </div>
+                <div>
+                    <h3 class="text-2xl font-black text-[#07142b]">
+                        يساهم في تحقيق رؤية المملكة 2030
+                    </h3>
 
-        <div class="dti-features-grid">
-            <div class="dti-feature-box">
-                <div class="dti-feature-icon purple">📊</div>
-                <h3>تشخيص الوضع الحالي</h3>
-                <p>تحديد نقاط القوة والضعف في رحلة التحول الرقمي</p>
-            </div>
-
-            <div class="dti-feature-box">
-                <div class="dti-feature-icon blue">🎯</div>
-                <h3>قياس دقيق</h3>
-                <p>قياس شامل لمستوى التحول الرقمي في الجهات الحكومية</p>
-            </div>
-
-            <div class="dti-feature-box">
-                <div class="dti-feature-icon orange">⏱</div>
-                <h3>أفضل الممارسات</h3>
-                <p>مبني على أفضل الممارسات والمعايير العالمية</p>
-            </div>
-
-            <div class="dti-feature-box">
-                <div class="dti-feature-icon green">📈</div>
-                <h3>متابعة التطور</h3>
-                <p>رصد ومتابعة التقدم المحرز بشكل دوري ومستمر</p>
+                    <p class="mt-3 text-base leading-8 text-slate-600">
+                        يعد المؤشر أحد الأدوات الرئيسية لتحقيق أهداف رؤية المملكة 2030 في مجال التحول الرقمي الحكومي.
+                    </p>
+                </div>
             </div>
         </div>
 
     </div>
 </section>
 
-<section class="dti-benefits-section">
-    <div class="container">
+<section class="bg-white py-20 lg:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div class="dti-benefits-grid">
+        <div class="mb-12 text-center">
+            <span class="text-sm font-bold tracking-[0.2em] text-slate-500">
+                المميزات الرئيسية
+            </span>
 
-            <div class="dti-benefits-content">
-                <span class="section-badge green-badge">فوائد المؤشر</span>
-                <h2>فوائد المؤشر</h2>
+            <h2 class="mt-3 text-4xl font-black tracking-tight text-[#07142b]">
+                المميزات الرئيسية
+            </h2>
 
-                <div class="dti-benefits-list">
-                    <div class="dti-benefit-item">
-                        <span class="dti-benefit-check">✓</span>
-                        <span>تحسين جودة الخدمات الحكومية المقدمة للمواطنين والمقيمين</span>
-                    </div>
+            <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
+                نوفر لك مجموعة شاملة من المميزات التي تساعدك على قياس وتحسين التحول الرقمي.
+            </p>
+        </div>
 
-                    <div class="dti-benefit-item">
-                        <span class="dti-benefit-check">✓</span>
-                        <span>رفع كفاءة العمليات الحكومية وتقليل التكاليف التشغيلية</span>
-                    </div>
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">📊</div>
+                <h3 class="mt-5 text-xl font-black text-[#07142b]">تشخيص الوضع الحالي</h3>
+                <p class="mt-3 text-sm leading-8 text-slate-600">تحديد نقاط القوة والضعف في رحلة التحول الرقمي</p>
+            </div>
 
-                    <div class="dti-benefit-item">
-                        <span class="dti-benefit-check">✓</span>
-                        <span>تعزيز الشفافية والمساءلة في القطاع الحكومي</span>
-                    </div>
+            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">🎯</div>
+                <h3 class="mt-5 text-xl font-black text-[#07142b]">قياس دقيق</h3>
+                <p class="mt-3 text-sm leading-8 text-slate-600">قياس شامل لمستوى التحول الرقمي في الجهات الحكومية</p>
+            </div>
 
-                    <div class="dti-benefit-item">
-                        <span class="dti-benefit-check">✓</span>
-                        <span>دعم اتخاذ القرارات الاستراتيجية المبنية على البيانات</span>
-                    </div>
+            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">⏱</div>
+                <h3 class="mt-5 text-xl font-black text-[#07142b]">أفضل الممارسات</h3>
+                <p class="mt-3 text-sm leading-8 text-slate-600">مبني على أفضل الممارسات والمعايير العالمية</p>
+            </div>
 
-                    <div class="dti-benefit-item">
-                        <span class="dti-benefit-check">✓</span>
-                        <span>تسريع وتيرة التطور الرقمي في القطاع الحكومي</span>
-                    </div>
+            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">📈</div>
+                <h3 class="mt-5 text-xl font-black text-[#07142b]">متابعة التطور</h3>
+                <p class="mt-3 text-sm leading-8 text-slate-600">رصد ومتابعة التقدم المحرز بشكل دوري ومستمر</p>
+            </div>
+        </div>
 
-                    <div class="dti-benefit-item">
-                        <span class="dti-benefit-check">✓</span>
-                        <span>المساهمة في تحقيق مستهدفات رؤية المملكة 2030</span>
-                    </div>
+    </div>
+</section>
+
+<section class="bg-[#f8fafc] py-20 lg:py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+        <div class="grid gap-10 lg:grid-cols-2">
+            <div>
+                <span class="text-sm font-bold tracking-[0.2em] text-slate-500">
+                    فوائد المؤشر
+                </span>
+
+                <h2 class="mt-3 text-4xl font-black tracking-tight text-[#07142b]">
+                    فوائد المؤشر
+                </h2>
+
+                <div class="mt-8 space-y-4">
+                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ تحسين جودة الخدمات الحكومية المقدمة للمواطنين والمقيمين</div>
+                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ رفع كفاءة العمليات الحكومية وتقليل التكاليف التشغيلية</div>
+                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ تعزيز الشفافية والمساءلة في القطاع الحكومي</div>
+                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ دعم اتخاذ القرارات الاستراتيجية المبنية على البيانات</div>
+                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ تسريع وتيرة التطور الرقمي في القطاع الحكومي</div>
+                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ المساهمة في تحقيق مستهدفات رؤية المملكة 2030</div>
                 </div>
             </div>
 
-            <div class="dti-benefits-image-wrap">
-                <img src="/images/dti/dti-benefits.jpg" alt="فوائد المؤشر" />
+            <div class="relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white shadow-[0_10px_25px_rgba(2,6,23,0.04)]">
+                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+                <img src="/images/dti/dti-benefits.jpg"
+                     class="h-full w-full object-cover"
+                     alt="فوائد المؤشر" />
             </div>
-
         </div>
 
     </div>
