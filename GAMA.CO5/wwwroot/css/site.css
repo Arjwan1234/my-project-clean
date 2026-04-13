@@ -1,71 +1,56 @@
 ﻿/* ========================================== */
 /* HOME UNIFIED FLOW - ONE CONTINUOUS PAGE    */
 /* ========================================== */
-
-:root {
-    --home-primary: #2596be;
-    --home-primary-dark: #1b6f8d;
-    --home-primary-light: #7fe0ff;
-    --home-bg-1: #081422;
-    --home-bg-2: #0d2742;
-    --home-bg-3: #0a2138;
-    --home-surface: rgba(255,255,255,0.06);
-    --home-border: rgba(255,255,255,0.12);
-    --home-text-main: #ffffff;
-    --home-text-soft: rgba(255,255,255,0.78);
-    --home-text-muted: #a9c4d9;
-}
-
-/* ================= NAVBAR ================= */
-
 .navbar {
+    width: 100%;
+    padding: 18px 40px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
-    z-index: 1200;
-    padding: 1rem 0;
-    background: rgba(8, 20, 34, 0.42);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    left: 0;
+    z-index: 1000;
 }
 
-    .navbar .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 .logo {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    font-size: 2rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, #7fe0ff, #2596be);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
+
+    .logo img {
+        width: 120px;
+        height: auto;
+    }
 
 .nav-links {
     display: flex;
+    align-items: center;
+    gap: 30px;
     list-style: none;
-    gap: .5rem;
+    margin: 0;
+    padding: 0;
 }
 
-    .nav-links a {
-        padding: .75rem 1.25rem;
-        color: rgba(255,255,255,.88);
-        text-decoration: none;
-        border-radius: 12px;
-        transition: .25s ease;
+    .nav-links li a {
+        color: #0b1f4d;
         font-weight: 700;
+        text-decoration: none;
+        transition: 0.3s;
     }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            background: rgba(37,150,190,.20);
-            color: #fff;
+        .nav-links li a:hover {
+            color: #2596be;
         }
-
 /* ================= HERO ================= */
 
 .hero-video {
@@ -1042,4 +1027,17 @@
     .newsX-title {
         font-size: 34px;
     }
+}
+.logo img {
+    height: 80px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+.mobile-menu-btn {
+    display: none;
 }
