@@ -1,63 +1,142 @@
 ﻿@model GAMA.CO5.Models.Product
+
 @{
     ViewData["Title"] = Model.Name;
+    var imageUrl = string.IsNullOrWhiteSpace(Model.ImageUrl)
+        ? "/images/products/placeholder.jpg"
+        : Model.ImageUrl;
+
+    var features = string.IsNullOrWhiteSpace(Model.Features)
+        ? new List<string>()
+        : Model.Features.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(f => f.Trim())
+                        .ToList();
 }
 
-<section class="product-details-hero" style="background-image:url('@Model.ImageUrl')">
-    <div class="overlay"></div>
-    <div class="container pd-hero-inner">
-        <span class="pd-badge">@Model.Category</span>
-        <h1 class="pd-title">@Model.Name</h1>
-        <p class="pd-sub">@Model.Description</p>
+<section class="relative overflow-hidden bg-[#07142b]">
+    <div class="absolute inset-0">
+        <img src="@imageUrl"
+             alt="@Model.Name"
+             class="h-full w-full object-cover opacity-[0.10]"
+             onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#07142b]/95 via-[#0a1d3d]/90 to-[#07142b]/95"></div>
+    </div>
 
-        <div class="pd-actions">
-            <a asp-controller="Contact" asp-action="Index" class="pd-btn pd-btn-primary">اطلب المنتج</a>
-            <a asp-action="Index" class="pd-btn pd-btn-ghost">رجوع للمنتجات</a>
+    <div class="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28">
+        <div class="grid items-center gap-10 lg:grid-cols-2">
+
+            <div>
+                <span class="inline-flex rounded-full border border-[#8b6b2e] bg-[#b9973f]/10 px-4 py-2 text-sm font-bold text-[#ead9a3]">
+                    @Model.Category
+                </span>
+
+                <h1 class="mt-6 text-5xl font-black leading-tight text-white lg:text-6xl">
+                    @Model.Name
+                </h1>
+
+                <p class="mt-6 text-lg leading-9 text-slate-300">
+                    @Model.Description
+                </p>
+
+                <div class="mt-8 flex gap-4">
+                    <a asp-controller="Contact"
+                       asp-action="Index"
+                       class="rounded-xl bg-gradient-to-r from-[#8b6b2e] to-[#d4af37] px-6 py-3 text-sm font-bold text-white shadow-lg no-underline transition hover:scale-[1.02]">
+                        اطلب المنتج
+                    </a>
+
+                    <a asp-action="Index"
+                       class="rounded-xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-bold text-white no-underline backdrop-blur transition hover:bg-white/20">
+                        رجوع
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-[#d4af37]/20 blur-3xl"></div>
+
+                <div class="overflow-hidden rounded-[28px] border border-[#11294f] bg-white/5 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur">
+                    <img src="@imageUrl"
+                         alt="@Model.Name"
+                         class="h-[460px] w-full rounded-[22px] object-cover object-center"
+                         onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
-<section class="product-details">
-    <div class="container">
-        <div class="pd-grid">
+<section class="bg-[#f8fafc] py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-            <div class="pd-main">
-                <div class="pd-section-title">
-                    <h2>المميزات الرئيسية</h2>
-                    <p>أبرز ما يميز هذا المنتج</p>
-                </div>
+        <div class="grid gap-8 lg:grid-cols-3">
 
-                <div class="pd-features">
-                    @foreach (var f in Model.Features.Split(',', StringSplitOptions.RemoveEmptyEntries))
+            <div class="lg:col-span-2">
+                <div class="rounded-[28px] border border-[#11294f] bg-white p-8 shadow-[0_18px_50px_rgba(7,20,43,0.08)]">
+                    <div class="mb-8">
+                        <p class="text-sm font-bold tracking-[0.24em] text-[#8b6b2e]">
+                            PRODUCT OVERVIEW
+                        </p>
+
+                        <h2 class="mt-3 text-3xl font-black text-[#07142b]">
+                            تفاصيل المنتج
+                        </h2>
+                    </div>
+
+                    <p class="rounded-2xl border border-[#e7eef8] bg-gradient-to-r from-[#f8fafc] to-[#eef4ff] px-6 py-5 text-base leading-9 text-slate-600">
+                        @Model.Description
+                    </p>
+
+                    @if (features.Any())
                     {
-                        <div class="pd-feature">
-                            <div class="pd-check">✓</div>
-                            <div>@f</div>
+                        <div class="mt-10">
+                            <h3 class="mb-6 text-2xl font-black text-[#07142b]">
+                                المميزات الرئيسية
+                            </h3>
+
+                            <div class="grid gap-4 md:grid-cols-2">
+                                @foreach (var feature in features)
+                                {
+                                    <div class="rounded-2xl border border-[#d8e1ee] bg-white px-5 py-4 shadow-sm transition hover:border-[#8b6b2e]">
+                                        <div class="flex items-center gap-3">
+                                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#07142b] text-sm font-bold text-[#d4af37]">
+                                                ✓
+                                            </span>
+                                            <span class="text-sm font-medium text-slate-700">
+                                                @feature
+                                            </span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     }
                 </div>
             </div>
 
-            <aside class="pd-side">
-                <div class="pd-card">
-                    <div class="pd-card-media">
-                        <img src="@Model.ImageUrl" alt="@Model.Name" />
+            <aside>
+                <div class="rounded-[28px] border border-[#11294f] bg-white p-6 shadow-[0_18px_50px_rgba(7,20,43,0.08)]">
+                    <img src="@imageUrl"
+                         alt="@Model.Name"
+                         class="h-64 w-full rounded-2xl object-cover"
+                         onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
+
+                    <div class="mt-6 rounded-2xl bg-gradient-to-r from-[#07142b] to-[#0b2044] p-5 text-white">
+                        <p class="text-sm text-white/70">
+                            التصنيف
+                        </p>
+
+                        <h3 class="mt-2 text-xl font-black">
+                            @Model.Category
+                        </h3>
                     </div>
 
-                    <div class="pd-card-body">
-                        <div class="pd-mini">
-                            <div class="pd-mini-label">التصنيف</div>
-                            <div class="pd-mini-value">@Model.Category</div>
-                        </div>
-
-                        <a asp-controller="Contact" asp-action="Index" class="pd-btn pd-btn-primary pd-btn-block">
-                            اطلب المنتج
-                        </a>
-
-                        <a asp-action="Index" class="pd-btn pd-btn-block" style="background:#f3f4f6;color:#111827;">
-                            رجوع
-                        </a>
-                    </div>
+                    <a asp-controller="Contact"
+                       asp-action="Index"
+                       class="mt-6 block rounded-xl bg-gradient-to-r from-[#8b6b2e] to-[#d4af37] px-5 py-4 text-center text-sm font-bold text-white shadow-lg no-underline transition hover:scale-[1.02]">
+                        اطلب المنتج الآن
+                    </a>
                 </div>
             </aside>
 

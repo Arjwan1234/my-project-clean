@@ -1,45 +1,68 @@
 ﻿@model GAMA.CO5.Models.Product
 
-<h2>إضافة منتج</h2>
+@{
+    ViewData["Title"] = "إضافة منتج";
+}
 
-<form asp-action="Create" method="post">
+<h2 class="mb-4">إضافة منتج</h2>
 
-    <div>
-        <label>اسم المنتج</label>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>الوصف</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>رابط الصورة</label>
-        <input asp-for="ImageUrl" class="form-control" />
+    <div class="mb-3">
+        <label asp-for="ImageFile" class="form-label"></label>
+        <input asp-for="ImageFile" type="file" class="form-control" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>التصنيف</label>
+    <div class="mb-3">
+        <label asp-for="Category" class="form-label"></label>
         <input asp-for="Category" class="form-control" />
+        <span asp-validation-for="Category" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>نص البادج</label>
+    <div class="mb-3">
+        <label asp-for="BadgeText" class="form-label"></label>
         <input asp-for="BadgeText" class="form-control" />
+        <span asp-validation-for="BadgeText" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>المميزات</label>
-        <input asp-for="Features" class="form-control" />
+    <div class="mb-3">
+        <label asp-for="BadgeClass" class="form-label"></label>
+        <input asp-for="BadgeClass" class="form-control" />
+        <span asp-validation-for="BadgeClass" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>مميز</label>
-        <input asp-for="IsFeatured" type="checkbox" />
+    <div class="mb-3">
+        <label asp-for="Features" class="form-label"></label>
+        <textarea asp-for="Features" class="form-control" rows="3" placeholder="ميزة 1، ميزة 2، ميزة 3"></textarea>
+        <span asp-validation-for="Features" class="text-danger"></span>
     </div>
 
-    <br />
+    <div class="mb-3 form-check">
+        <input asp-for="IsFeatured" class="form-check-input" />
+        <label asp-for="IsFeatured" class="form-check-label">منتج مميز</label>
+        <span asp-validation-for="IsFeatured" class="text-danger"></span>
+    </div>
 
-    <button type="submit" class="btn btn-success">حفظ</button>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">حفظ</button>
+        <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+    </div>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

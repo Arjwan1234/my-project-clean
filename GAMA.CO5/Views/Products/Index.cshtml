@@ -1,151 +1,288 @@
-﻿@model List<GAMA.CO5.Models.Product>
+﻿@using System.Linq
+@model List<GAMA.CO5.Models.Product>
 
 @{
     ViewData["Title"] = "المنتجات";
+
     var selected = (string)(ViewBag.SelectedCategory ?? "الكل");
     var q = (string)(ViewBag.Query ?? "");
+
     var featuredProducts = ViewBag.FeaturedProducts as List<GAMA.CO5.Models.Product> ?? new List<GAMA.CO5.Models.Product>();
     var categories = ViewBag.Categories as List<string> ?? new List<string>();
     var products = Model ?? new List<GAMA.CO5.Models.Product>();
+
+    var filterCategories = new List<string> { "الكل", "مميزة" };
+
+    foreach (var c in categories)
+    {
+        if (!string.IsNullOrWhiteSpace(c) && !filterCategories.Contains(c))
+        {
+            filterCategories.Add(c);
+        }
+    }
+
+    var featuredList = featuredProducts.Take(3).ToList();
 }
 
-<section class="products-hero">
-    <div class="overlay"></div>
-    <div class="container hero-content">
-        <span class="hero-badge">المنتجات</span>
-        <h1>المنتجات</h1>
-        <p>حلول ومنتجات مبتكرة تلبي احتياجات التحول الرقمي لمؤسستك</p>
+<section class="relative overflow-hidden h-[420px] flex items-center">
+    <div class="absolute inset-0">
+        <img src="/images/services-bg.jpg"
+             alt="Products Background"
+             class="w-full h-full object-cover scale-105" />
+
+        <div class="absolute inset-0 bg-[#06152f]/82"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#06152f]/92 via-[#0b2247]/72 to-[#06152f]/92"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div class="max-w-4xl">
+            <span class="inline-flex items-center rounded-full border border-[#b8923b] bg-[#d4af37]/10 px-4 py-2 text-sm font-semibold tracking-[0.22em] text-[#ecd9a0]">
+                OUR PRODUCTS
+            </span>
+
+            <h1 class="mt-6 text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl">
+                المنتجات
+            </h1>
+
+            <p class="mt-6 max-w-2xl text-lg leading-9 text-slate-200">
+                حلول ومنتجات رقمية مصممة لدعم التحول الرقمي ورفع الكفاءة التشغيلية للجهات والمؤسسات.
+            </p>
+        </div>
     </div>
 </section>
 
-<section class="products-intro">
-    <div class="container text-center">
-        <span class="section-badge">منتجاتنا</span>
-        <h2>المنتجات</h2>
-        <p>نقدم حلولاً تقنية مبتكرة تخدم المجتمع وتلبي احتياجات العصر الرقمي</p>
-    </div>
-</section>
+<section class="bg-[linear-gradient(180deg,#f8fafc_0%,#f3f6fb_100%)] py-16 lg:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
-<section class="products-section">
-    <div class="container">
+        <div class="mb-12 text-center">
+            <p class="text-sm font-bold tracking-[0.24em] text-slate-500">
+                ENTERPRISE SOLUTIONS
+            </p>
 
-        <div class="featured-section">
-            <div class="featured-header">
-                <span class="featured-count">
-                    <span class="star">★</span>
-                    @featuredProducts.Count منتجات
-                </span>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-[#0f172a] lg:text-5xl">
+                منتجاتنا التقنية
+            </h2>
 
-                <h2>المنتجات المميزة</h2>
-            </div>
+            <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
+                باقة من المنتجات والحلول التقنية المبتكرة التي تساعد على تحسين الخدمات، رفع الكفاءة، وتقديم تجربة رقمية أكثر جودة.
+            </p>
+        </div>
 
-            @if (featuredProducts.Any())
-            {
-                <div class="featured-grid">
-                    @foreach (var p in featuredProducts)
+        @if (featuredList.Any())
+        {
+            <div class="mb-16">
+                <div class="mb-8 flex flex-col items-center justify-between gap-3 text-center lg:flex-row lg:text-right">
+                    <div>
+                        <p class="text-sm font-bold tracking-[0.24em] text-slate-500">
+                            FEATURED PRODUCTS
+                        </p>
+                        <h3 class="mt-2 text-2xl font-black text-[#0f172a] lg:text-4xl">
+                            المنتجات المميزة
+                        </h3>
+                    </div>
+
+                    <div class="rounded-full border border-[#dbe3ef] bg-white px-4 py-2 text-sm font-bold text-slate-600 shadow-sm">
+                        @featuredList.Count منتج
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    @foreach (var p in featuredList)
                     {
                         var imageUrl = string.IsNullOrWhiteSpace(p.ImageUrl)
                         ? "/images/products/placeholder.jpg"
                         : p.ImageUrl;
 
-                        <div class="featured-card">
-                            <div class="featured-bg" style="background-image:url('@imageUrl')"></div>
+                        <a asp-action="Details"
+                           asp-route-id="@p.Id"
+                           class="group overflow-hidden rounded-[24px] border border-[#e2e8f0] bg-white no-underline shadow-[0_10px_30px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-[#cbd5e1] hover:shadow-[0_18px_40px_rgba(15,23,42,0.12)]">
 
-                            <span class="featured-badge @p.BadgeClass">
-                                @p.BadgeText
-                            </span>
+                            <div class="relative h-[220px] overflow-hidden bg-slate-100">
+                                <img src="@imageUrl"
+                                     alt="@p.Name"
+                                     class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                                     onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
 
-                            <div class="featured-content">
-                                <h3>@p.Name</h3>
-                                <p>@p.Description</p>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/8 to-transparent"></div>
 
-                                <a asp-action="Details"
-                                   asp-route-id="@p.Id"
-                                   class="featured-link">
-                                    اكتشف المزيد ←
-                                </a>
+                                <div class="absolute right-4 top-4">
+                                    <span class="inline-flex items-center rounded-full bg-[#0f172a] px-3 py-1 text-[11px] font-bold text-white shadow-sm">
+                                        @(string.IsNullOrWhiteSpace(p.BadgeText) ? "مميز" : p.BadgeText)
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="p-5">
+                                <div class="mb-3 flex items-center justify-between gap-3">
+                                    <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-bold text-slate-600">
+                                        @(string.IsNullOrWhiteSpace(p.Category) ? "منتج" : p.Category)
+                                    </span>
+
+                                    <span class="text-[11px] font-black tracking-[0.18em] text-slate-400 transition duration-300 group-hover:text-slate-600">
+                                        VIEW
+                                    </span>
+                                </div>
+
+                                <h4 class="min-h-[56px] text-xl font-black leading-7 text-[#0f172a] transition duration-300 group-hover:translate-x-1">
+                                    @p.Name
+                                </h4>
+
+                                <p class="mt-3 min-h-[52px] text-sm leading-7 text-slate-600 line-clamp-2">
+                                    @p.Description
+                                </p>
+
+                                <div class="mt-5 relative overflow-hidden rounded-2xl">
+                                    <div class="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 via-[#f5d97b]/10 to-[#d4af37]/10 blur-xl"></div>
+                                    </div>
+
+                                    <div class="relative flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition duration-300 group-hover:border-[#d6dee8] group-hover:bg-white">
+                                        <span class="text-sm font-semibold text-[#0f172a] transition duration-300 group-hover:text-[#07142b]">
+                                            اكتشف المزيد
+                                        </span>
+
+                                        <span class="text-base font-bold text-slate-400 transition duration-300 group-hover:-translate-x-1 group-hover:text-[#a88432]">
+                                            ←
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     }
                 </div>
-            }
-            else
-            {
-                <div class="empty-products">
-                    لا توجد منتجات مميزة حالياً.
-                </div>
-            }
-        </div>
+            </div>
+        }
 
-        <div class="products-toolbar">
-            <div class="chips">
-                @foreach (var c in categories)
-                {
-                    var active = c == selected ? "chip active" : "chip";
+        <div class="mb-12 overflow-hidden rounded-[24px] border border-[#dbe3ef] bg-white p-5 shadow-sm lg:p-6">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
 
-                    <a class="@active"
-                       asp-action="Index"
-                       asp-route-category="@c"
-                       asp-route-q="@q">
+                <div class="flex flex-wrap gap-3">
+                    @foreach (var c in filterCategories)
+                    {
+                        var active = c == selected;
+
+                        <a asp-action="Index"
+                           asp-route-category="@c"
+                           asp-route-q="@q"
+                           class="inline-flex items-center rounded-full border px-4 py-2 text-sm font-bold no-underline transition @(active
+                                                           ? "border-[#0f172a] bg-[#0f172a] text-white shadow-sm"
+                                                           : "border-[#d8e1ee] bg-white text-[#0f172a] hover:border-[#b8923b] hover:text-[#b8923b]")">
                         @c
                     </a>
-                }
-            </div>
+                                        }
+                </div>
 
-            <form class="search" asp-action="Index" method="get">
-                <input type="hidden" name="category" value="@selected" />
-                <input type="text" name="q" value="@q" placeholder="ابحث عن منتج..." />
-                <button type="submit">بحث</button>
-            </form>
+                <form class="flex w-full max-w-md items-center gap-3" asp-action="Index" method="get">
+                    <input type="hidden" name="category" value="@selected" />
+
+                    <input type="text"
+                           name="q"
+                           value="@q"
+                           placeholder="ابحث عن منتج..."
+                           class="h-12 w-full rounded-xl border border-[#d8e1ee] bg-white px-4 text-sm text-slate-700 outline-none transition focus:border-[#b8923b]" />
+
+                    <button type="submit"
+                            class="inline-flex h-12 items-center justify-center rounded-xl bg-[#0f172a] px-5 text-sm font-bold text-white transition hover:bg-[#111c34]">
+                        بحث
+                    </button>
+                </form>
+            </div>
         </div>
 
-        <div class="products-count">
-            عرض @products.Count من @products.Count منتج
+        <div class="mb-8 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+                <p class="text-sm font-bold tracking-[0.24em] text-slate-500">
+                    ALL PRODUCTS
+                </p>
+
+                <h3 class="mt-2 text-2xl font-black text-[#0f172a] lg:text-4xl">
+                    جميع المنتجات
+                </h3>
+            </div>
+
+            <div class="text-sm font-medium text-slate-500">
+                عرض @products.Count منتج
+            </div>
         </div>
 
         @if (products.Any())
         {
-            <div class="figma-grid">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
                 @foreach (var p in products)
                 {
                     var imageUrl = string.IsNullOrWhiteSpace(p.ImageUrl)
                     ? "/images/products/placeholder.jpg"
                     : p.ImageUrl;
 
-                    <div class="figma-card">
-                        <div class="figma-media" style="background-image:url('@imageUrl')">
-                            <span class="figma-badge @p.BadgeClass">
-                                @p.BadgeText
-                            </span>
+                    <a asp-action="Details"
+                       asp-route-id="@p.Id"
+                       class="group relative overflow-hidden rounded-[20px] border border-[#e5e7eb] bg-white no-underline shadow-[0_6px_20px_rgba(15,23,42,0.06)] transition-all duration-500 hover:-translate-y-2 hover:border-[#d4dbe5] hover:shadow-[0_18px_38px_rgba(15,23,42,0.12)]">
+
+                        <!-- glow -->
+                        <div class="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 pointer-events-none">
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#d4af37]/6 via-transparent to-[#0f172a]/4"></div>
                         </div>
 
-                        <div class="figma-body">
-                            <h3>@p.Name</h3>
-                            <p>@p.Description</p>
+                        <div class="relative z-10">
+                            <div class="relative overflow-hidden bg-[#f3f4f6]">
+                                <img src="@imageUrl"
+                                     alt="@p.Name"
+                                     class="h-[190px] w-full object-cover transition duration-700 ease-out group-hover:scale-[1.06]"
+                                     onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
 
-                            <a asp-action="Details"
-                               asp-route-id="@p.Id"
-                               class="figma-link">
-                                عرض ←
-                            </a>
+                                <div class="absolute right-3 top-3">
+                                    <span class="rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold text-[#0f172a] shadow-sm">
+                                        @(string.IsNullOrWhiteSpace(p.BadgeText) ? "منتج" : p.BadgeText)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="p-4">
+                                <div class="mb-3 flex items-center justify-between gap-2">
+                                    <span class="rounded-full bg-[#f8fafc] px-3 py-1 text-[10px] font-bold text-slate-500">
+                                        @(string.IsNullOrWhiteSpace(p.Category) ? "عام" : p.Category)
+                                    </span>
+
+                                    <span class="text-[10px] font-black tracking-[0.15em] text-slate-400 transition duration-300 group-hover:text-slate-600">
+                                        VIEW
+                                    </span>
+                                </div>
+
+                                <h3 class="min-h-[48px] text-[17px] font-black leading-6 text-[#0f172a] transition duration-300 group-hover:translate-x-1">
+                                    @p.Name
+                                </h3>
+
+                                <p class="mt-2 min-h-[44px] text-sm leading-6 text-slate-500 line-clamp-2">
+                                    @p.Description
+                                </p>
+
+                                <div class="mt-5 relative overflow-hidden rounded-xl">
+                                    <div class="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-[#d4af37]/15 via-[#f5d97b]/12 to-[#d4af37]/15 blur-xl"></div>
+                                    </div>
+
+                                    <div class="relative flex items-center justify-between rounded-xl border border-[#e5e7eb] bg-[#f8fafc] px-4 py-3 transition-all duration-300 group-hover:border-[#d6dee8] group-hover:bg-white">
+                                        <span class="text-sm font-semibold text-[#0f172a] transition duration-300 group-hover:text-[#07142b]">
+                                            عرض المنتج
+                                        </span>
+
+                                        <span class="text-base font-semibold text-slate-400 transition duration-300 group-hover:-translate-x-1 group-hover:text-[#a88432]">
+                                            ←
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 }
             </div>
         }
         else
         {
-            <div class="empty-products">
+            <div class="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-16 text-center text-slate-500">
                 لا توجد منتجات مطابقة للبحث أو التصنيف المحدد.
             </div>
         }
 
     </div>
 </section>
-<div class="hero-section">
-    <h1>Welcome to GAMA IT Solutions</h1>
-    <p>Professional IT Services & Digital Solutions</p>
-</div>
-<div class="mx-auto mt-10 max-w-4xl rounded-2xl bg-slate-900 p-10 text-center text-white">
-    Tailwind شغال 🔥
-</div>

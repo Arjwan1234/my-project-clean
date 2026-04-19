@@ -1,3 +1,12 @@
 ﻿@{
-    Layout = "_Layout";
+    var path = Context.Request.Path.Value ?? "";
+
+    if (path.StartsWith("/Admin", StringComparison.OrdinalIgnoreCase))
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }

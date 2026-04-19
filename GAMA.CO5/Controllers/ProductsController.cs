@@ -1,7 +1,6 @@
 ﻿using GAMA.CO5.Data;
 using GAMA.CO5.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace GAMA_ASP_MVC_CLEAN.Controllers
 {
@@ -16,34 +15,61 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         public IActionResult Index(string category = "الكل", string q = "")
         {
-            var query = _context.Products.AsQueryable();
+            category = string.IsNullOrWhiteSpace(category) ? "الكل" : category;
+            q = q?.Trim() ?? "";
 
-            if (!string.IsNullOrWhiteSpace(category) && category != "الكل")
-            {
-                query = query.Where(p => p.Category == category);
-            }
+            var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(q))
             {
-                q = q.Trim();
                 query = query.Where(p =>
                     p.Name.Contains(q) ||
                     p.Description.Contains(q) ||
                     p.Category.Contains(q));
             }
 
-            var products = query.ToList();
+            if (!string.IsNullOrWhiteSpace(category) && category != "الكل" && category != "مميزة")
+            {
+                query = query.Where(p => p.Category == category);
+            }
+
+            List<Product> products;
+
+            if (category == "مميزة")
+            {
+                products = _context.Products
+                    .Where(p => p.IsFeatured)
+                    .OrderByDescending(p => p.Id)
+                    .ToList();
+            }
+            else
+            {
+                products = query
+                    .OrderByDescending(p => p.Id)
+                    .ToList();
+            }
 
             var featuredProducts = _context.Products
                 .Where(p => p.IsFeatured)
+                .OrderByDescending(p => p.Id)
+                .Take(3)
                 .ToList();
 
-            var categories = new List<string> { "الكل" };
-            categories.AddRange(_context.Products
+            var categories = new List<string> { "الكل", "مميزة" };
+
+            var dbCategories = _context.Products
                 .Select(p => p.Category)
                 .Where(c => !string.IsNullOrWhiteSpace(c))
                 .Distinct()
-                .ToList());
+                .ToList();
+
+            foreach (var c in dbCategories)
+            {
+                if (!categories.Contains(c))
+                {
+                    categories.Add(c);
+                }
+            }
 
             ViewBag.PageTitle = "منتجاتنا";
             ViewBag.SelectedCategory = category;

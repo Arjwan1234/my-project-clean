@@ -1,37 +1,100 @@
 ﻿@model List<GAMA.CO5.Models.Product>
 
-<h2>إدارة المنتجات</h2>
+@{
+    var featuredTop3Ids = Model
+        .Where(x => x.IsFeatured)
+        .Take(3)
+        .Select(x => x.Id)
+        .ToList();
+}
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">إضافة منتج</a>
-</p>
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">إدارة المنتجات</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>الصورة</th>
-            <th>الاسم</th>
-            <th>التصنيف</th>
-            <th>مميز</th>
-            <th>إجراءات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model)
-        {
-            <tr>
-                <td>
-                    <img src="@product.ImageUrl"
-                         style="width:80px;height:60px;object-fit:cover;border-radius:10px;" />
-                </td>
-                <td>@product.Name</td>
-                <td>@product.Category</td>
-                <td>@(product.IsFeatured ? "نعم" : "لا")</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@product.Id">تعديل</a> |
-                    <a asp-action="Delete" asp-route-id="@product.Id">حذف</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <a asp-action="Create" class="btn btn-primary">
+            + إضافة منتج
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle text-center">
+            <thead class="table-light">
+                <tr>
+                    <th>الصورة</th>
+                    <th>الاسم</th>
+                    <th>التصنيف</th>
+                    <th>مميز</th>
+                    <th>ضمن أول 3</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    var isTop3 = featuredTop3Ids.Contains(product.Id);
+
+                    <tr class="@(isTop3 ? "table-warning" : "")">
+                        <td>
+                            <img src="@product.ImageUrl"
+                                 style="width:90px;height:65px;object-fit:cover;border-radius:10px;" />
+                        </td>
+
+                        <td class="fw-semibold">
+                            @product.Name
+                        </td>
+
+                        <td>
+                            <span class="badge bg-secondary">
+                                @product.Category
+                            </span>
+                        </td>
+
+                        <td>
+                            @if (product.IsFeatured)
+                            {
+                                <span class="badge bg-success">
+                                    نعم
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">
+                                    لا
+                                </span>
+                            }
+                        </td>
+
+                        <td>
+                            @if (isTop3)
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    يظهر بالأعلى
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">—</span>
+                            }
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit"
+                               asp-route-id="@product.Id"
+                               class="btn btn-sm btn-outline-primary">
+                                تعديل
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@product.Id"
+                               class="btn btn-sm btn-outline-danger">
+                                حذف
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
