@@ -29,16 +29,20 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Partner model, IFormFile? imageFile)
+        public async Task<IActionResult> Create(Partner model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            if (imageFile != null && imageFile.Length > 0)
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
-                model.LogoUrl = await SaveImageAsync(imageFile);
+                model.LogoUrl = await SaveImageAsync(model.ImageFile);
+            }
+            else
+            {
+                model.LogoUrl = "/images/partners/placeholder.png";
             }
 
             _context.Partners.Add(model);
@@ -62,7 +66,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Partner model, IFormFile? imageFile)
+        public async Task<IActionResult> Edit(int id, Partner model)
         {
             if (id != model.Id)
             {
@@ -85,10 +89,10 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             partner.Description = model.Description;
             partner.WebsiteUrl = model.WebsiteUrl;
 
-            if (imageFile != null && imageFile.Length > 0)
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
                 DeleteImage(partner.LogoUrl);
-                partner.LogoUrl = await SaveImageAsync(imageFile);
+                partner.LogoUrl = await SaveImageAsync(model.ImageFile);
             }
 
             await _context.SaveChangesAsync();
@@ -131,15 +135,15 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         private async Task<string> SaveImageAsync(IFormFile imageFile)
         {
-            string folderPath = Path.Combine(_environment.WebRootPath, "images", "partners");
+            var folderPath = Path.Combine(_environment.WebRootPath, "images", "partners");
 
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
 
-            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-            string filePath = Path.Combine(folderPath, fileName);
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+            var filePath = Path.Combine(folderPath, fileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
@@ -151,10 +155,13 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
         private void DeleteImage(string? imagePath)
         {
-            if (string.IsNullOrWhiteSpace(imagePath))
+            if (string.IsNullOrWhiteSpace(imagePath) || imagePath == "/images/partners/placeholder.png")
                 return;
 
-            string fullPath = Path.Combine(_environment.WebRootPath, imagePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString()));
+            var fullPath = Path.Combine(
+                _environment.WebRootPath,
+                imagePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString())
+            );
 
             if (System.IO.File.Exists(fullPath))
             {

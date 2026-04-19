@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GAMA.CO5.Models
 {
@@ -21,5 +22,8 @@ namespace GAMA.CO5.Models
         public string BadgeColor { get; set; } = "";
 
         public string Features { get; set; } = "";
+
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
     }
 }

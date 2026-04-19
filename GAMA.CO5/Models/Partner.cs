@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace GAMA.CO5.Models
 {
@@ -15,6 +17,7 @@ namespace GAMA.CO5.Models
 
         public string WebsiteUrl { get; set; } = "";
 
-
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
     }
 }

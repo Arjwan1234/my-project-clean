@@ -4,42 +4,46 @@
     ViewData["Title"] = "تعديل الشريك";
 }
 
-<h2>تعديل الشريك</h2>
+<h2 class="mb-4">تعديل الشريك</h2>
 
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Id" />
-    <input type="hidden" asp-for="LogoUrl" />
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="LogoUrl" type="hidden" />
 
-    <div>
-        <label asp-for="Name">اسم الشريك</label>
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">اسم الشريك</label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="Description">الوصف</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">الوصف</label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="WebsiteUrl">رابط الموقع</label>
+    <div class="mb-3">
+        <label asp-for="WebsiteUrl" class="form-label">رابط الموقع</label>
         <input asp-for="WebsiteUrl" class="form-control" />
+        <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>الصورة الحالية</label><br />
-        @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
-        {
-            <img src="@Model.LogoUrl" alt="@Model.Name" style="width:90px;height:90px;border-radius:50%;object-fit:cover;" />
-        }
+    @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
+    {
+        <div class="mb-3">
+            <label class="form-label">الصورة الحالية</label><br />
+            <img src="@Model.LogoUrl" alt="@Model.Name" style="width:100px;height:100px;border-radius:50%;object-fit:cover;" />
+        </div>
+    }
+
+    <div class="mb-3">
+        <label asp-for="ImageFile" class="form-label">تغيير الصورة</label>
+        <input asp-for="ImageFile" type="file" class="form-control" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
     </div>
 
-    <div style="margin-top:10px;">
-        <label>تغيير الصورة</label>
-        <input type="file" name="imageFile" class="form-control" />
-    </div>
-
-    <br />
     <button type="submit" class="btn btn-success">حفظ التعديلات</button>
     <a asp-action="Index" class="btn btn-secondary">رجوع</a>
 </form>

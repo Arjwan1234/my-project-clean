@@ -26,6 +26,9 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
                 return NotFound();
 
             return View("~/Views/Services/Details.cshtml", service);
+
+
+
         }
     }
 }

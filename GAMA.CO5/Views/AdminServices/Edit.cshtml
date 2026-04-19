@@ -6,8 +6,9 @@
 
 <h2>تعديل الخدمة</h2>
 
-<form asp-action="Edit" method="post">
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ImageUrl" />
 
     <div>
         <label asp-for="Title"></label>
@@ -24,26 +25,31 @@
     <div>
         <label asp-for="Icon"></label>
         <input asp-for="Icon" class="form-control" />
+        <span asp-validation-for="Icon" class="text-danger"></span>
     </div>
 
     <div>
-        <label asp-for="ImageUrl"></label>
-        <input asp-for="ImageUrl" class="form-control" />
+        <label asp-for="ImageFile">صورة الخدمة</label>
+        <input asp-for="ImageFile" type="file" class="form-control" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
     </div>
 
     <div>
         <label asp-for="BadgeText"></label>
         <input asp-for="BadgeText" class="form-control" />
+        <span asp-validation-for="BadgeText" class="text-danger"></span>
     </div>
 
     <div>
         <label asp-for="BadgeColor"></label>
         <input asp-for="BadgeColor" class="form-control" />
+        <span asp-validation-for="BadgeColor" class="text-danger"></span>
     </div>
 
     <div>
         <label asp-for="Features">المميزات</label>
         <input asp-for="Features" class="form-control" placeholder="ميزة 1,ميزة 2,ميزة 3" />
+        <span asp-validation-for="Features" class="text-danger"></span>
     </div>
 
     <br />
