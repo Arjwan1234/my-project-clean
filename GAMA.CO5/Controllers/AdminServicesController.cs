@@ -32,6 +32,12 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var e in errors)
+                {
+                    Console.WriteLine(e.ErrorMessage);
+                }
+
                 return View(model);
             }
 
@@ -44,9 +50,15 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
                 model.ImageUrl = "/images/services/placeholder.jpg";
             }
 
+            if (model.VideoFile != null && model.VideoFile.Length > 0)
+            {
+                model.VideoUrl = await SaveVideoAsync(model.VideoFile);
+            }
+
             _context.Services.Add(model);
             await _context.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "تمت إضافة الخدمة بنجاح";
             return RedirectToAction("Index");
         }
 
@@ -68,6 +80,12 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var e in errors)
+                {
+                    Console.WriteLine(e.ErrorMessage);
+                }
+
                 return View(model);
             }
 
@@ -87,11 +105,28 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
             if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
+                if (!string.IsNullOrWhiteSpace(service.ImageUrl) &&
+                    service.ImageUrl != "/images/services/placeholder.jpg")
+                {
+                    DeleteFile(service.ImageUrl);
+                }
+
                 service.ImageUrl = await SaveImageAsync(model.ImageFile);
             }
 
-            _context.SaveChanges();
+            if (model.VideoFile != null && model.VideoFile.Length > 0)
+            {
+                if (!string.IsNullOrWhiteSpace(service.VideoUrl))
+                {
+                    DeleteFile(service.VideoUrl);
+                }
 
+                service.VideoUrl = await SaveVideoAsync(model.VideoFile);
+            }
+
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "تم حفظ التعديلات بنجاح";
             return RedirectToAction("Index");
         }
 
@@ -121,20 +156,18 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             if (!string.IsNullOrWhiteSpace(service.ImageUrl) &&
                 service.ImageUrl != "/images/services/placeholder.jpg")
             {
-                var oldImagePath = Path.Combine(
-                    _environment.WebRootPath,
-                    service.ImageUrl.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString())
-                );
+                DeleteFile(service.ImageUrl);
+            }
 
-                if (System.IO.File.Exists(oldImagePath))
-                {
-                    System.IO.File.Delete(oldImagePath);
-                }
+            if (!string.IsNullOrWhiteSpace(service.VideoUrl))
+            {
+                DeleteFile(service.VideoUrl);
             }
 
             _context.Services.Remove(service);
             _context.SaveChanges();
 
+            TempData["SuccessMessage"] = "تم حذف الخدمة بنجاح";
             return RedirectToAction("Index");
         }
 
@@ -147,7 +180,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+            var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
             var filePath = Path.Combine(uploadsFolder, fileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
@@ -156,6 +189,39 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             }
 
             return "/images/services/" + fileName;
+        }
+
+        private async Task<string> SaveVideoAsync(IFormFile videoFile)
+        {
+            var uploadsFolder = Path.Combine(_environment.WebRootPath, "videos", "services");
+
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            var fileName = Guid.NewGuid() + Path.GetExtension(videoFile.FileName);
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await videoFile.CopyToAsync(stream);
+            }
+
+            return "/videos/services/" + fileName;
+        }
+
+        private void DeleteFile(string relativePath)
+        {
+            var fullPath = Path.Combine(
+                _environment.WebRootPath,
+                relativePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString())
+            );
+
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
         }
     }
 }

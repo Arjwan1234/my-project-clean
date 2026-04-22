@@ -4,57 +4,85 @@
     ViewData["Title"] = "تعديل الخدمة";
 }
 
-<h2>تعديل الخدمة</h2>
+<h2 class="mb-4">تعديل الخدمة</h2>
 
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="Id" />
-    <input type="hidden" asp-for="ImageUrl" />
+    @Html.AntiForgeryToken()
 
-    <div>
-        <label asp-for="Title"></label>
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="ImageUrl" type="hidden" />
+    <input asp-for="VideoUrl" type="hidden" />
+
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
         <input asp-for="Title" class="form-control" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="5"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="Icon"></label>
+    <div class="mb-3">
+        <label asp-for="Icon" class="form-label"></label>
         <input asp-for="Icon" class="form-control" />
         <span asp-validation-for="Icon" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="ImageFile">صورة الخدمة</label>
+    <div class="mb-3">
+        <label asp-for="ImageFile" class="form-label">صورة الخدمة</label>
         <input asp-for="ImageFile" type="file" class="form-control" />
         <span asp-validation-for="ImageFile" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="BadgeText"></label>
+    @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+    {
+        <div class="mb-3">
+            <label class="form-label">الصورة الحالية</label><br />
+            <img src="@Model.ImageUrl" alt="@Model.Title" style="max-width:220px; border-radius:12px; border:1px solid #ddd; padding:4px;" />
+        </div>
+    }
+
+    <div class="mb-3">
+        <label asp-for="VideoFile" class="form-label">تغيير فيديو الخدمة</label>
+        <input asp-for="VideoFile" type="file" class="form-control" accept="video/*" />
+        <span asp-validation-for="VideoFile" class="text-danger"></span>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.VideoUrl))
+    {
+        <div class="mb-3">
+            <label class="form-label">الفيديو الحالي</label><br />
+            <video src="@Model.VideoUrl" controls style="max-width:320px; border-radius:12px; border:1px solid #ddd; padding:4px;"></video>
+        </div>
+    }
+
+    <div class="mb-3">
+        <label asp-for="BadgeText" class="form-label"></label>
         <input asp-for="BadgeText" class="form-control" />
         <span asp-validation-for="BadgeText" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="BadgeColor"></label>
+    <div class="mb-3">
+        <label asp-for="BadgeColor" class="form-label"></label>
         <input asp-for="BadgeColor" class="form-control" />
         <span asp-validation-for="BadgeColor" class="text-danger"></span>
     </div>
 
-    <div>
-        <label asp-for="Features">المميزات</label>
+    <div class="mb-3">
+        <label asp-for="Features" class="form-label">المميزات</label>
         <input asp-for="Features" class="form-control" placeholder="ميزة 1,ميزة 2,ميزة 3" />
         <span asp-validation-for="Features" class="text-danger"></span>
     </div>
 
-    <br />
-    <button type="submit" class="btn btn-success">حفظ التعديلات</button>
-    <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+        <a asp-action="Index" class="btn btn-secondary">رجوع</a>
+    </div>
 </form>
 
 @section Scripts {

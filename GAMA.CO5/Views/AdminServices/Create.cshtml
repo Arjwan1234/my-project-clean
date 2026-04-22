@@ -1,12 +1,18 @@
 ﻿@model GAMA.CO5.Models.Service
 
 @{
-    ViewData["Title"] = "إضافة خدمة";
+    ViewData["Title"] = "تعديل الخدمة";
 }
 
-<h2>إضافة خدمة</h2>
+<h2>تعديل الخدمة</h2>
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ImageUrl" />
+    <input type="hidden" asp-for="VideoUrl" />
+
     <div>
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control" />
@@ -32,6 +38,12 @@
     </div>
 
     <div>
+        <label asp-for="VideoFile">تغيير فيديو الخدمة</label>
+        <input asp-for="VideoFile" type="file" class="form-control" accept="video/*" />
+        <span asp-validation-for="VideoFile" class="text-danger"></span>
+    </div>
+
+    <div>
         <label asp-for="BadgeText"></label>
         <input asp-for="BadgeText" class="form-control" />
         <span asp-validation-for="BadgeText" class="text-danger"></span>
@@ -50,7 +62,7 @@
     </div>
 
     <br />
-    <button type="submit" class="btn btn-success">حفظ</button>
+    <button type="submit" class="btn btn-success">حفظ التعديلات</button>
     <a asp-action="Index" class="btn btn-secondary">رجوع</a>
 </form>
 
