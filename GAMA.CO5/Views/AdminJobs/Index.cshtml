@@ -7,7 +7,17 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>إدارة الوظائف</h2>
-        <a asp-action="Create" class="btn btn-primary">إضافة وظيفة جديدة</a>
+
+        <div class="d-flex gap-2">
+            <a href="/AdminJobApplications" class="btn btn-success">
+                <i class="fa-solid fa-file-lines"></i>
+                طلبات التوظيف
+            </a>
+
+            <a asp-action="Create" class="btn btn-primary">
+                إضافة وظيفة جديدة
+            </a>
+        </div>
     </div>
 
     <table class="table table-bordered table-striped">
@@ -21,6 +31,7 @@
                 <th>العمليات</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach (var job in Model)
             {

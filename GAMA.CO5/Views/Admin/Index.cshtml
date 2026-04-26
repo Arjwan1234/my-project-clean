@@ -1,45 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "إدارة الشركاء";
+    ViewData["Title"] = "لوحة التحكم";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var partners = Model ?? new List<GAMA.CO5.Models.Partner>();
 }
 
-    <div class="row g-4">
-        <div class="col-md-4">
-            <a asp-controller="AdminJobs" asp-action="Index" class="btn btn-primary w-100 p-4">
-                إدارة الوظائف
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a asp-controller="AdminServices" asp-action="Index" class="btn btn-success w-100 p-4">
-                إدارة الخدمات
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a asp-controller="AdminProducts" asp-action="Index" class="btn btn-warning w-100 p-4">
-                إدارة المنتجات
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a asp-controller="AdminPartners" asp-action="Index" class="btn btn-info w-100 p-4">
-                إدارة الشركاء
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <a asp-controller="AdminContactMessages" asp-action="Index" class="btn btn-dark w-100 p-4">
-                رسائل التواصل
-            </a>
-        </div>
-
-
-        <div class="col-md-4">
-            <a asp-controller="AdminUsers" asp-action="Index" class="btn btn-secondary w-100 p-4">
-                إدارة المستخدمين
-            </a>
-        </div>
-    </div>
+<div class="admin-home-card">
+    <h2>مرحبًا بك في لوحة التحكم</h2>
+    <p>اختَر من القائمة اليمنى القسم الذي تريد إدارته.</p>
 </div>
+
+<style>
+    .admin-home-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+        .admin-home-card h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .admin-home-card p {
+            color: #475569;
+            margin: 0;
+            line-height: 1.9;
+        }
+</style>
