@@ -4,75 +4,174 @@
     ViewData["Title"] = Model.PageTitle;
 }
 
-<section class="relative overflow-hidden bg-[#07142b]">
+<section class="relative overflow-hidden bg-[#07162f]">
     <div class="absolute inset-0">
         <img src="/images/dti/dti-benefits.jpg"
-             class="h-full w-full object-cover opacity-10"
+             class="h-full w-full object-cover opacity-[0.08]"
              alt="التحول الرقمي" />
-        <div class="absolute inset-0 bg-gradient-to-br from-[#07142b] via-[#0a1d3d] to-[#07142b]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,22,47,0.98)_0%,rgba(8,27,58,0.95)_45%,rgba(12,43,92,0.92)_100%)]"></div>
     </div>
 
-    <div class="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28">
-        <div class="max-w-4xl">
-            <span class="inline-flex items-center rounded-full border border-[#1d3d75] bg-[#102347] px-4 py-2 text-sm font-semibold tracking-[0.18em] text-slate-200">
-                رؤية المملكة 2030
-            </span>
+    <div class="absolute top-0 right-0 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl"></div>
 
-            <h1 class="mt-6 text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl">
-                مؤشر قياس التحول الرقمي
-            </h1>
+    <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div class="grid items-center gap-10 lg:grid-cols-2">
 
-            <p class="mt-6 text-lg leading-9 text-slate-300">
-                هو مؤشر يهدف لقياس التزام الجهات الحكومية الأساسية بالتحول الرقمي، ومساعدتها على تشخيص وضعها
-                الراهن وبناء خطط تطوير ترسخ التحول الرقمي في جميع المجالات والخدمات والمعايير بما يسهم في تحقيق
-                مستهدفات رؤية المملكة 2030.
-            </p>
+            <div class="order-2 lg:order-1">
+                <span class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-extrabold tracking-[0.16em] text-slate-200 backdrop-blur sm:text-sm">
+                    رؤية المملكة 2030
+                </span>
 
-            <a asp-controller="Contact"
-               asp-action="Index"
-               class="mt-8 inline-flex items-center justify-center rounded-xl bg-white px-6 py-4 font-bold text-[#07142b] no-underline transition hover:bg-slate-100">
-                تواصل معنا الآن ←
-            </a>
+                <h1 class="mt-5 max-w-3xl text-4xl font-black leading-[1.1] text-white sm:text-5xl lg:text-6xl">
+                    مؤشر قياس
+                    <span class="block text-[#8fb9ff]">
+                        التحول الرقمي
+                    </span>
+                </h1>
+
+                <p class="mt-5 max-w-2xl text-sm leading-8 text-slate-300 sm:text-base lg:text-lg lg:leading-9">
+                    أداة استراتيجية متقدمة لقياس التزام الجهات الحكومية بالتحول الرقمي، وتشخيص الوضع الراهن،
+                    وبناء خطط تطوير عملية تعزز النضج الرقمي وترسخ التميز المؤسسي بما ينسجم مع مستهدفات رؤية المملكة 2030.
+                </p>
+
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <a asp-controller="Contact"
+                       asp-action="Index"
+                       class="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-sm font-black text-[#07142b] no-underline transition duration-300 hover:-translate-y-0.5 hover:bg-slate-100">
+                        تواصل معنا الآن
+                    </a>
+
+                    <a href="#features"
+                       class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-sm font-bold text-white no-underline transition duration-300 hover:bg-white/10">
+                        استعرض المميزات
+                    </a>
+                </div>
+
+                <div class="mt-8 grid gap-3 sm:grid-cols-3">
+                    <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur">
+                        <div class="text-2xl font-black text-white">360°</div>
+                        <div class="mt-1 text-xs font-semibold text-slate-300 sm:text-sm">قياس شامل ومتكامل</div>
+                    </div>
+
+                    <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur">
+                        <div class="text-2xl font-black text-white">2030</div>
+                        <div class="mt-1 text-xs font-semibold text-slate-300 sm:text-sm">مواءمة مع الرؤية</div>
+                    </div>
+
+                    <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur">
+                        <div class="text-2xl font-black text-white">+100%</div>
+                        <div class="mt-1 text-xs font-semibold text-slate-300 sm:text-sm">تحسين وضوح القرار</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-1 lg:order-2">
+                <div class="relative mx-auto max-w-xl">
+                    <div class="absolute inset-0 rounded-[32px] bg-gradient-to-br from-blue-500/20 via-sky-400/10 to-transparent blur-2xl"></div>
+
+                    <div class="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-3 shadow-[0_30px_90px_rgba(2,6,23,0.38)] backdrop-blur">
+                        <div class="overflow-hidden rounded-[22px] border border-white/10">
+                            <img src="/images/dti/dti-benefits.jpg"
+                                 class="h-[240px] w-full object-cover sm:h-[320px] lg:h-[400px]"
+                                 alt="مؤشر التحول الرقمي" />
+                        </div>
+
+                        <div class="mt-3 grid grid-cols-3 gap-2">
+                            <div class="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-[11px] font-bold text-slate-300 sm:text-sm">
+                                النضج الرقمي
+                            </div>
+                            <div class="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-[11px] font-bold text-slate-300 sm:text-sm">
+                                الامتثال
+                            </div>
+                            <div class="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-center text-[11px] font-bold text-slate-300 sm:text-sm">
+                                الأثر المؤسسي
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
-<section class="bg-[#f8fafc] py-20 lg:py-24">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<section class="bg-[#f8fbff] py-16 lg:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        <div class="grid gap-10 lg:grid-cols-2">
-            <div class="relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-8 shadow-[0_10px_25px_rgba(2,6,23,0.04)] lg:p-10">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+        <div class="mb-12 text-center">
+            <span class="text-xs font-extrabold tracking-[0.2em] text-slate-500 sm:text-sm">
+                نظرة تنفيذية
+            </span>
 
-                <span class="text-sm font-bold tracking-[0.2em] text-slate-500">
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-[#07142b] sm:text-4xl lg:text-5xl">
+                لماذا هذا المؤشر مهم؟
+            </h2>
+
+            <p class="mx-auto mt-4 max-w-3xl text-sm leading-8 text-slate-600 sm:text-base">
+                لأنه يحوّل التحول الرقمي من مبادرات متفرقة إلى إطار قياس واضح يدعم الحوكمة والامتثال والنتائج القابلة للتحسين.
+            </p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8">
+            <div class="relative overflow-hidden rounded-[28px] border border-[#dbe6f5] bg-white p-6 shadow-[0_18px_45px_rgba(2,6,23,0.05)] sm:p-8 lg:p-10">
+                <div class="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-[#07142b] via-[#1d4ed8] to-[#60a5fa]"></div>
+
+                <span class="text-xs font-extrabold tracking-[0.18em] text-slate-500 sm:text-sm">
                     ما هو المؤشر؟
                 </span>
 
-                <h2 class="mt-3 text-3xl font-black tracking-tight text-[#07142b]">
+                <h3 class="mt-3 text-2xl font-black tracking-tight text-[#07142b] sm:text-3xl">
                     أداة شاملة لقياس التحول الرقمي
-                </h2>
+                </h3>
 
-                <p class="mt-6 text-lg leading-9 text-slate-600">
-                    مؤشر قياس التحول الرقمي هو أداة شاملة ومتطورة تم تصميمها خصيصًا لقياس ومتابعة التزام الجهات
-                    الحكومية الأساسية بالتحول الرقمي. يعتمد المؤشر على منهجية علمية دقيقة تشمل مجموعة من المعايير
-                    والمؤشرات الفرعية التي تغطي جميع جوانب التحول الرقمي.
+                <p class="mt-5 text-sm leading-8 text-slate-600 sm:text-base lg:text-lg lg:leading-9">
+                    مؤشر قياس التحول الرقمي هو أداة شاملة ومتطورة صُممت خصيصًا لقياس ومتابعة التزام الجهات الحكومية
+                    الأساسية بالتحول الرقمي، بالاعتماد على منهجية دقيقة تغطي المحاور التنظيمية والتقنية والتشغيلية
+                    وتجربة المستفيد.
                 </p>
+
+                <div class="mt-7 grid gap-4 md:grid-cols-2">
+                    <div class="rounded-2xl border border-[#d9e4f3] bg-[#f8fbff] p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(2,6,23,0.06)]">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0f172a] to-[#2563eb] text-xl text-white shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m5 14V9m5 10V13m5 6V7" />
+                            </svg>
+                        </div>
+                        <h4 class="mt-4 text-lg font-black text-[#07142b]">تشخيص الوضع الراهن</h4>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">
+                            قراءة دقيقة لمستوى التقدم وتحديد فجوات التحسين.
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-[#d9e4f3] bg-[#f8fbff] p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(2,6,23,0.06)]">
+                        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-xl text-white shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2l3 6 6 .9-4.5 4.3 1.1 6.1L12 16.8 6.4 19.3l1.1-6.1L3 8.9 9 8l3-6z" />
+                            </svg>
+                        </div>
+                        <h4 class="mt-4 text-lg font-black text-[#07142b]">توجيه خطط التطوير</h4>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">
+                            تحويل النتائج إلى أولويات واضحة قابلة للتنفيذ.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <div class="relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white shadow-[0_10px_25px_rgba(2,6,23,0.04)]">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
-                <img src="/images/dti/dti-card.png"
+            <div class="overflow-hidden rounded-[28px] border border-[#dbe6f5] bg-white shadow-[0_18px_45px_rgba(2,6,23,0.05)]">
+                <img src="/images/dti/dti-benefits.jpg"
                      class="h-full w-full object-cover"
                      alt="مؤشر التحول الرقمي" />
             </div>
         </div>
 
-        <div class="mt-10 relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-8 shadow-[0_10px_25px_rgba(2,6,23,0.04)]">
-            <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
-
+        <div class="mt-6 overflow-hidden rounded-[28px] border border-[#dbe6f5] bg-white p-6 shadow-[0_18px_45px_rgba(2,6,23,0.05)] sm:p-8">
             <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">
-                    🛡
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0f172a] to-[#1d4ed8] text-2xl text-white shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                    </svg>
                 </div>
 
                 <div>
@@ -80,8 +179,9 @@
                         يساهم في تحقيق رؤية المملكة 2030
                     </h3>
 
-                    <p class="mt-3 text-base leading-8 text-slate-600">
-                        يعد المؤشر أحد الأدوات الرئيسية لتحقيق أهداف رؤية المملكة 2030 في مجال التحول الرقمي الحكومي.
+                    <p class="mt-3 text-sm leading-8 text-slate-600 sm:text-base">
+                        يُعد المؤشر أحد الأدوات الرئيسية لرفع مستوى النضج الرقمي في الجهات الحكومية وتحفيز التطوير المؤسسي
+                        المستند إلى المعايير والبيانات والامتثال المستمر.
                     </p>
                 </div>
             </div>
@@ -90,86 +190,194 @@
     </div>
 </section>
 
-<section class="bg-white py-20 lg:py-24">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<section id="features" class="bg-white py-16 lg:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <div class="mb-12 text-center">
-            <span class="text-sm font-bold tracking-[0.2em] text-slate-500">
+            <span class="text-xs font-extrabold tracking-[0.2em] text-slate-500 sm:text-sm">
                 المميزات الرئيسية
             </span>
 
-            <h2 class="mt-3 text-4xl font-black tracking-tight text-[#07142b]">
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-[#07142b] sm:text-4xl lg:text-5xl">
                 المميزات الرئيسية
             </h2>
 
-            <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-slate-600">
-                نوفر لك مجموعة شاملة من المميزات التي تساعدك على قياس وتحسين التحول الرقمي.
+            <p class="mx-auto mt-4 max-w-3xl text-sm leading-8 text-slate-600 sm:text-base">
+                إطار احترافي يساعد الجهات على القياس والتحليل والتطوير المستمر بثقة أكبر ووضوح أعلى.
             </p>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">📊</div>
+
+            <div class="group relative overflow-hidden rounded-[26px] border border-[#dbe6f5] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(7,20,43,0.12)]">
+                <div class="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-[#07142b] via-[#1d4ed8] to-[#60a5fa]"></div>
+
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0f172a] to-[#2563eb] text-white shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 17l4-4 4 4 8-8" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 9h6v6" />
+                    </svg>
+                </div>
+
                 <h3 class="mt-5 text-xl font-black text-[#07142b]">تشخيص الوضع الحالي</h3>
-                <p class="mt-3 text-sm leading-8 text-slate-600">تحديد نقاط القوة والضعف في رحلة التحول الرقمي</p>
+                <p class="mt-3 text-sm leading-8 text-slate-600">تحليل شامل لمستوى الجاهزية الرقمية وتحديد نقاط القوة والفجوات بدقة عالية.</p>
             </div>
 
-            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">🎯</div>
+            <div class="group relative overflow-hidden rounded-[26px] border border-[#dbe6f5] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(7,20,43,0.12)]">
+                <div class="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-[#07142b] via-[#1d4ed8] to-[#60a5fa]"></div>
+
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-white shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9">
+                        <circle cx="12" cy="12" r="7"></circle>
+                        <circle cx="12" cy="12" r="2.5"></circle>
+                        <path stroke-linecap="round" d="M12 5V3M12 21v-2M19 12h2M3 12h2" />
+                    </svg>
+                </div>
+
                 <h3 class="mt-5 text-xl font-black text-[#07142b]">قياس دقيق</h3>
-                <p class="mt-3 text-sm leading-8 text-slate-600">قياس شامل لمستوى التحول الرقمي في الجهات الحكومية</p>
+                <p class="mt-3 text-sm leading-8 text-slate-600">منهجية قياس احترافية تقدم قراءة واضحة وقابلة للمقارنة لمستوى التحول الرقمي.</p>
             </div>
 
-            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">⏱</div>
-                <h3 class="mt-5 text-xl font-black text-[#07142b]">أفضل الممارسات</h3>
-                <p class="mt-3 text-sm leading-8 text-slate-600">مبني على أفضل الممارسات والمعايير العالمية</p>
+            <div class="group relative overflow-hidden rounded-[26px] border border-[#dbe6f5] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(7,20,43,0.12)]">
+                <div class="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-[#07142b] via-[#1d4ed8] to-[#60a5fa]"></div>
+
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#0f766e] to-[#14b8a6] text-white shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v5c0 5-3.5 8-7 9-3.5-1-7-4-7-9V7l7-4z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                    </svg>
+                </div>
+
+                <h3 class="mt-5 text-xl font-black text-[#07142b]">حوكمة ومعايير</h3>
+                <p class="mt-3 text-sm leading-8 text-slate-600">مبني على أفضل الممارسات والمعايير العالمية لضمان الجودة والامتثال والاستدامة.</p>
             </div>
 
-            <div class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
-                <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-2xl text-[#07142b]">📈</div>
+            <div class="group relative overflow-hidden rounded-[26px] border border-[#dbe6f5] bg-white p-7 shadow-[0_10px_25px_rgba(2,6,23,0.04)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(7,20,43,0.12)]">
+                <div class="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-[#07142b] via-[#1d4ed8] to-[#60a5fa]"></div>
+
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7c3aed] to-[#2563eb] text-white shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.9">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4-4 3 3 5-6 4 4" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16" />
+                    </svg>
+                </div>
+
                 <h3 class="mt-5 text-xl font-black text-[#07142b]">متابعة التطور</h3>
-                <p class="mt-3 text-sm leading-8 text-slate-600">رصد ومتابعة التقدم المحرز بشكل دوري ومستمر</p>
+                <p class="mt-3 text-sm leading-8 text-slate-600">متابعة مستمرة للتقدم المحرز مع مؤشرات تساعد على اتخاذ قرارات تطوير أكثر فاعلية.</p>
             </div>
-        </div>
 
+        </div>
     </div>
 </section>
 
-<section class="bg-[#f8fafc] py-20 lg:py-24">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<section class="bg-[#f8fbff] py-16 lg:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        <div class="grid gap-10 lg:grid-cols-2">
+        <div class="grid gap-8 lg:grid-cols-2 lg:gap-10">
             <div>
-                <span class="text-sm font-bold tracking-[0.2em] text-slate-500">
+                <span class="text-xs font-extrabold tracking-[0.2em] text-slate-500 sm:text-sm">
                     فوائد المؤشر
                 </span>
 
-                <h2 class="mt-3 text-4xl font-black tracking-tight text-[#07142b]">
-                    فوائد المؤشر
+                <h2 class="mt-3 text-3xl font-black tracking-tight text-[#07142b] sm:text-4xl lg:text-5xl">
+                    الأثر المؤسسي للمؤشر
                 </h2>
 
-                <div class="mt-8 space-y-4">
-                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ تحسين جودة الخدمات الحكومية المقدمة للمواطنين والمقيمين</div>
-                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ رفع كفاءة العمليات الحكومية وتقليل التكاليف التشغيلية</div>
-                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ تعزيز الشفافية والمساءلة في القطاع الحكومي</div>
-                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ دعم اتخاذ القرارات الاستراتيجية المبنية على البيانات</div>
-                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ تسريع وتيرة التطور الرقمي في القطاع الحكومي</div>
-                    <div class="rounded-xl border border-[#d8e1ee] bg-white px-5 py-4 text-slate-700 shadow-sm">✓ المساهمة في تحقيق مستهدفات رؤية المملكة 2030</div>
+                <div class="mt-8 grid gap-4">
+                    <div class="flex items-start gap-3 rounded-2xl border border-[#dde7f2] bg-white px-5 py-4 shadow-sm">
+                        <span class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-xs text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <span class="text-sm font-semibold leading-8 text-slate-700">تحسين جودة الخدمات الحكومية المقدمة للمواطنين والمقيمين</span>
+                    </div>
+
+                    <div class="flex items-start gap-3 rounded-2xl border border-[#dde7f2] bg-white px-5 py-4 shadow-sm">
+                        <span class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-xs text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <span class="text-sm font-semibold leading-8 text-slate-700">رفع كفاءة العمليات الحكومية وتقليل التكاليف التشغيلية</span>
+                    </div>
+
+                    <div class="flex items-start gap-3 rounded-2xl border border-[#dde7f2] bg-white px-5 py-4 shadow-sm">
+                        <span class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-xs text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <span class="text-sm font-semibold leading-8 text-slate-700">تعزيز الشفافية والمساءلة في القطاع الحكومي</span>
+                    </div>
+
+                    <div class="flex items-start gap-3 rounded-2xl border border-[#dde7f2] bg-white px-5 py-4 shadow-sm">
+                        <span class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-xs text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <span class="text-sm font-semibold leading-8 text-slate-700">دعم اتخاذ القرارات الاستراتيجية المبنية على البيانات</span>
+                    </div>
+
+                    <div class="flex items-start gap-3 rounded-2xl border border-[#dde7f2] bg-white px-5 py-4 shadow-sm">
+                        <span class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-xs text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <span class="text-sm font-semibold leading-8 text-slate-700">تسريع وتيرة التطور الرقمي في القطاع الحكومي</span>
+                    </div>
+
+                    <div class="flex items-start gap-3 rounded-2xl border border-[#dde7f2] bg-white px-5 py-4 shadow-sm">
+                        <span class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#1d4ed8] to-[#38bdf8] text-xs text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </span>
+                        <span class="text-sm font-semibold leading-8 text-slate-700">المساهمة في تحقيق مستهدفات رؤية المملكة 2030</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white shadow-[0_10px_25px_rgba(2,6,23,0.04)]">
-                <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
+            <div class="overflow-hidden rounded-[28px] border border-[#dbe6f5] bg-white shadow-[0_18px_45px_rgba(2,6,23,0.05)]">
                 <img src="/images/dti/dti-benefits.jpg"
                      class="h-full w-full object-cover"
                      alt="فوائد المؤشر" />
             </div>
         </div>
 
+    </div>
+</section>
+
+<section class="bg-[#061225] py-16 lg:py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="overflow-hidden rounded-[30px] border border-white/10 bg-gradient-to-r from-[#0b1730] via-[#102347] to-[#0b1730] px-6 py-10 text-center shadow-[0_30px_70px_rgba(2,6,23,0.35)] sm:px-8 sm:py-12">
+            <span class="text-xs font-extrabold tracking-[0.2em] text-slate-300 sm:text-sm">
+                جاهزون لتمكينكم
+            </span>
+
+            <h2 class="mt-4 text-3xl font-black text-white sm:text-4xl lg:text-5xl">
+                ابدأ رحلة قياس التحول الرقمي بثقة
+            </h2>
+
+            <p class="mx-auto mt-4 max-w-3xl text-sm leading-8 text-slate-300 sm:text-base">
+                نساعدكم في بناء رؤية أوضح، وقياس أدق، وخطة تطوير أكثر فاعلية لرفع مستوى النضج الرقمي وتحقيق الأثر المؤسسي المستدام.
+            </p>
+
+            <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+                <a asp-controller="Contact"
+                   asp-action="Index"
+                   class="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-4 text-sm font-black text-[#07142b] no-underline transition duration-300 hover:bg-slate-100">
+                    احجز استشارة الآن
+                </a>
+
+                <a asp-controller="Services"
+                   asp-action="Index"
+                   class="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-sm font-bold text-white no-underline transition duration-300 hover:bg-white/10">
+                    استعرض خدماتنا
+                </a>
+            </div>
+        </div>
     </div>
 </section>
