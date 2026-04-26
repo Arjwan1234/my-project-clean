@@ -1,4 +1,5 @@
-﻿@model GAMA.CO5.Models.Product
+﻿@using System.Linq
+@model GAMA.CO5.Models.Product
 
 @{
     ViewData["Title"] = Model.Name;
@@ -11,219 +12,304 @@
         ? new List<string>()
         : Model.Features.Split(',', StringSplitOptions.RemoveEmptyEntries)
                         .Select(f => f.Trim())
+                        .Where(f => !string.IsNullOrWhiteSpace(f))
                         .ToList();
+
+    var badgeText = string.IsNullOrWhiteSpace(Model.BadgeText) ? "منتج" : Model.BadgeText;
+    var categoryText = string.IsNullOrWhiteSpace(Model.Category) ? "منتج" : Model.Category;
 
     var appStoreUrl = "https://apps.apple.com/sa/app/%D9%85%D8%AF%D8%A7%D8%B1/id6449373358?l=ar";
     var webDemoUrl = "https://www.google.com/";
+
+    Func<string?, string> badgeClass = (badge) =>
+    {
+        var key = (badge ?? "").Trim().ToLower();
+
+        return key switch
+        {
+            "success" => "bg-emerald-500 text-white",
+            "green" => "bg-emerald-500 text-white",
+            "warning" => "bg-amber-500 text-white",
+            "yellow" => "bg-amber-500 text-white",
+            "danger" => "bg-rose-500 text-white",
+            "red" => "bg-rose-500 text-white",
+            "info" => "bg-sky-500 text-white",
+            "blue" => "bg-blue-500 text-white",
+            "primary" => "bg-violet-600 text-white",
+            "purple" => "bg-violet-600 text-white",
+            "dark" => "bg-slate-900 text-white",
+            _ => "bg-violet-600 text-white"
+        };
+    };
 }
 
-<section class="py-5 py-lg-6" style="background: linear-gradient(180deg, #061225 0%, #0b1f3a 45%, #eef4fb 100%);">
-    <div class="container">
+<section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="@imageUrl"
+             alt="@Model.Name"
+             class="h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-slate-950/80"></div>
+        <div class="absolute inset-0 bg-gradient-to-l from-slate-950/90 via-slate-900/75 to-sky-900/45"></div>
+    </div>
 
-        <!-- Header -->
-        <div class="text-center mx-auto" style="max-width: 850px;">
-            <span class="d-inline-flex align-items-center px-3 py-2 rounded-pill fw-bold small"
-                  style="background: rgba(59,130,246,.12); color:#93c5fd; border:1px solid rgba(147,197,253,.25); letter-spacing:.12em;">
-                EXECUTIVE DIGITAL EXPERIENCE
-            </span>
+    <div class="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
 
-            <h1 class="mt-4 fw-bold" style="color:#ffffff; font-size: clamp(2rem, 4vw, 4rem);">
-                جرّب @Model.Name الآن
-            </h1>
+            <div class="max-w-2xl">
+                <a asp-action="Index"
+                   class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white/90 no-underline backdrop-blur transition hover:bg-white/15">
+                    <span>→</span>
+                    العودة للمنتجات
+                </a>
 
-            <p class="mt-3 mx-auto" style="max-width: 700px; color:#cbd5e1; font-size:1.05rem; line-height:1.9;">
-                تجربة قوية وواضحة تمنح المنتج حضورًا احترافيًا وتبرز قيمته بأسلوب تنفيذي عصري.
-            </p>
-        </div>
-
-        <!-- Main Image -->
-        <div class="mx-auto mt-5" style="max-width: 920px;">
-            <div class="p-2 rounded-4 shadow-lg" style="background: rgba(8,20,41,.85); border:1px solid rgba(96,165,250,.20);">
-                <div class="rounded-4 overflow-hidden" style="border:1px solid rgba(59,130,246,.25); background:#08111f;">
-                    <img src="@imageUrl"
-                         alt="@Model.Name"
-                         class="w-100"
-                         style="height: clamp(220px, 42vw, 420px); object-fit: cover; object-position: center;"
-                         onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
-                </div>
-            </div>
-        </div>
-
-        <!-- Intro -->
-        <div class="text-center mt-5">
-            <h2 class="fw-bold" style="color:#0f172a; font-size: clamp(1.6rem, 2vw, 2.2rem);">
-                اختر طريقة التجربة
-            </h2>
-
-            <p class="mt-2" style="color:#64748b; font-size:1rem;">
-                جرّب المنتج عبر الويب أو على الجوال بتجربة بصرية أوضح وأقوى.
-            </p>
-        </div>
-
-        <!-- Cards -->
-        <div class="row g-4 mt-2">
-
-            <!-- WEB CARD -->
-            <div class="col-lg-6">
-                <div class="h-100 rounded-4 p-4 p-lg-5 shadow-lg"
-                     style="background: linear-gradient(180deg, #0b1b33 0%, #10284b 100%); border:1px solid rgba(96,165,250,.22); color:#fff;">
-
-                    <div class="text-center">
-                        <div class="mx-auto d-flex align-items-center justify-content-center rounded-4 shadow"
-                             style="width:110px; height:150px; background:#ffffff;">
-                            <img src="@imageUrl"
-                                 alt="@Model.Name"
-                                 style="width:86px; height:126px; object-fit:cover; border-radius:16px;"
-                                 onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
-                        </div>
-
-                        <span class="d-inline-block mt-4 px-3 py-2 rounded-pill fw-bold small"
-                              style="background: rgba(14,165,233,.12); color:#7dd3fc; border:1px solid rgba(125,211,252,.18);">
-                            🌐 تطبيق ويب
-                        </span>
-
-                        <h3 class="mt-4 fw-bold" style="font-size: 2rem; color:#ffffff;">
-                            جرّب التطبيق على المتصفح
-                        </h3>
-
-                        <p class="mt-3 mb-0" style="color:#dbeafe; font-size:1rem; line-height:1.9;">
-                            تجربة فورية وواضحة تمنحك وصولًا مباشرًا للخدمات والمحتوى بأسلوب احترافي سريع وسلس.
-                        </p>
-
-                        <p class="mt-3" style="color:#93a9c4; font-size:.95rem;">
-                            يعمل بكفاءة على جميع المتصفحات الحديثة
-                        </p>
-
-                        <a href="@webDemoUrl"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn mt-3 px-4 py-3 rounded-pill fw-bold"
-                           style="background: linear-gradient(90deg, #0ea5e9 0%, #2563eb 100%); color:#fff; border:none; min-width:190px;">
-                            جرّب الآن
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MOBILE CARD -->
-            <div class="col-lg-6">
-                <div class="h-100 rounded-4 p-4 p-lg-5 shadow-lg"
-                     style="background: linear-gradient(180deg, #07162b 0%, #12345c 100%); border:1px solid rgba(147,197,253,.22); color:#fff;">
-
-                    <div class="text-center">
-                        <div class="mx-auto d-flex align-items-center justify-content-center rounded-4 shadow"
-                             style="width:110px; height:150px; background:#ffffff;">
-                            <img src="@imageUrl"
-                                 alt="@Model.Name"
-                                 style="width:86px; height:126px; object-fit:cover; border-radius:16px;"
-                                 onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
-                        </div>
-
-                        <span class="d-inline-block mt-4 px-3 py-2 rounded-pill fw-bold small"
-                              style="background: rgba(96,165,250,.14); color:#bfdbfe; border:1px solid rgba(191,219,254,.18);">
-                            📱 تطبيق الجوال
-                        </span>
-
-                        <h3 class="mt-4 fw-bold" style="font-size: 2rem; color:#ffffff;">
-                            جرّب التطبيق على الهاتف المحمول
-                        </h3>
-
-                        <p class="mt-3 mb-0" style="color:#dbeafe; font-size:1rem; line-height:1.9;">
-                            تجربة أكثر مرونة على الجوال مع وصول سريع للمنتج ومميزاته من أي مكان وفي أي وقت.
-                        </p>
-
-                        <p class="mt-3" style="color:#93a9c4; font-size:.95rem;">
-                            متاح على App Store ويمكن إضافة Google Play لاحقًا
-                        </p>
-
-                        <div class="d-flex flex-column align-items-center gap-3 mt-4">
-                            <a href="@appStoreUrl"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="btn px-4 py-3 rounded-4 fw-bold"
-                               style="background:#000; color:#fff; min-width:190px; border:none;">
-                                App Store
-                            </a>
-
-                            <a href="#"
-                               class="btn px-4 py-3 rounded-4 fw-bold"
-                               style="background: transparent; color:#fff; min-width:190px; border:1px solid rgba(255,255,255,.22);">
-                                Google Play
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Overview -->
-        <div class="mt-5 rounded-4 p-4 p-lg-5 shadow-sm"
-             style="background: rgba(255,255,255,.97); border:1px solid #d7e3f4;">
-
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-8">
-                    <span class="d-inline-flex px-3 py-2 rounded-pill fw-bold small"
-                          style="background:#eff6ff; color:#1d4ed8; letter-spacing:.12em;">
-                        PRODUCT OVERVIEW
+                <div class="mt-6 flex flex-wrap items-center gap-3">
+                    <span class="rounded-full px-3 py-1 text-xs font-bold shadow @badgeClass(Model.BadgeClass)">
+                        @badgeText
                     </span>
 
-                    <h2 class="mt-4 fw-bold" style="color:#1e293b; font-size:2rem;">
-                        نبذة عن المنتج
-                    </h2>
+                    <span class="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
+                        @categoryText
+                    </span>
 
-                    <p class="mt-4 mb-0" style="color:#475569; font-size:1.02rem; line-height:2;">
+                    @if (Model.IsFeatured)
+                    {
+                        <span class="rounded-full border border-violet-300/20 bg-violet-400/15 px-3 py-1 text-xs font-bold text-violet-100">
+                            منتج مميز
+                        </span>
+                    }
+                </div>
+
+                <h1 class="mt-6 text-4xl font-black leading-tight text-white lg:text-6xl">
+                    @Model.Name
+                </h1>
+
+                <p class="mt-5 max-w-2xl text-base leading-8 text-white/75 lg:text-lg">
+                    @Model.Description
+                </p>
+
+                <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <a href="@webDemoUrl"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center rounded-full bg-violet-600 px-6 py-3 text-sm font-bold text-white no-underline shadow-sm transition hover:bg-violet-700">
+                        جرّب على الويب
+                    </a>
+
+                    <a href="@appStoreUrl"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-6 py-3 text-sm font-bold text-white no-underline backdrop-blur transition hover:bg-white/15">
+                        App Store
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:justify-self-end">
+                <div class="overflow-hidden rounded-[32px] border border-white/10 bg-white/10 p-3 shadow-[0_20px_60px_rgba(2,6,23,0.35)] backdrop-blur">
+                    <div class="overflow-hidden rounded-[24px] bg-slate-950">
+                        <img src="@imageUrl"
+                             alt="@Model.Name"
+                             class="h-[260px] w-full object-cover sm:h-[340px] lg:h-[420px]"
+                             onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="bg-[linear-gradient(180deg,#f8fafc_0%,#f3f6fb_100%)] py-16 lg:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+
+            <div class="lg:col-span-2">
+                <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+                    <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                            <span class="inline-flex rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-700">
+                                PRODUCT OVERVIEW
+                            </span>
+                            <h2 class="mt-4 text-2xl font-black text-slate-900 lg:text-3xl">
+                                نبذة عن المنتج
+                            </h2>
+                        </div>
+
+                        <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
+                            @categoryText
+                        </span>
+                    </div>
+
+                    <p class="text-sm leading-8 text-slate-600 lg:text-base">
                         @Model.Description
                     </p>
                 </div>
+            </div>
 
-                <div class="col-lg-4">
-                    <div class="rounded-4 p-4" style="background:#f8fbff; border:1px solid #dbe6f5;">
-                        <p class="mb-2" style="color:#64748b;">التصنيف</p>
-                        <h3 class="mb-0 fw-bold" style="color:#1e293b; font-size:1.6rem;">
-                            @(string.IsNullOrWhiteSpace(Model.Category) ? "منتج" : Model.Category)
-                        </h3>
+            <div>
+                <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm lg:p-7">
+                    <h3 class="text-xl font-black text-slate-900">
+                        معلومات سريعة
+                    </h3>
+
+                    <div class="mt-6 space-y-4">
+                        <div class="rounded-2xl bg-slate-50 p-4">
+                            <p class="text-xs font-bold tracking-[0.18em] text-slate-400">
+                                التصنيف
+                            </p>
+                            <p class="mt-2 text-lg font-bold text-slate-900">
+                                @categoryText
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl bg-slate-50 p-4">
+                            <p class="text-xs font-bold tracking-[0.18em] text-slate-400">
+                                الشارة
+                            </p>
+                            <div class="mt-2">
+                                <span class="rounded-full px-3 py-1 text-xs font-bold shadow @badgeClass(Model.BadgeClass)">
+                                    @badgeText
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="rounded-2xl bg-slate-50 p-4">
+                            <p class="text-xs font-bold tracking-[0.18em] text-slate-400">
+                                الحالة
+                            </p>
+                            <p class="mt-2 text-lg font-bold text-slate-900">
+                                @(Model.IsFeatured ? "مميز" : "منتج عادي")
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            @if (features.Any())
-            {
-                <div class="mt-5">
-                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
-                        <h3 class="fw-bold mb-0" style="color:#1e293b; font-size:1.8rem;">
-                            المميزات الرئيسية
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+
+            <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+                <div class="mb-6">
+                    <span class="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-bold text-sky-700">
+                        تجربة المنتج
+                    </span>
+
+                    <h2 class="mt-4 text-2xl font-black text-slate-900">
+                        اختر طريقة التجربة
+                    </h2>
+
+                    <p class="mt-3 text-sm leading-7 text-slate-500">
+                        جرّب المنتج عبر الويب أو من خلال تطبيق الجوال بحسب القناة المناسبة لك.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <a href="@webDemoUrl"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="group rounded-[24px] border border-slate-200 bg-slate-50 p-5 no-underline transition hover:-translate-y-1 hover:border-violet-200 hover:bg-white hover:shadow-md">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-100 text-violet-700">
+                            🌐
+                        </div>
+
+                        <h3 class="mt-4 text-lg font-extrabold text-slate-900">
+                            تطبيق الويب
                         </h3>
 
-                        <span class="px-3 py-2 rounded-pill fw-bold small"
-                              style="background:#dbeafe; color:#2563eb;">
-                            @features.Count ميزة
+                        <p class="mt-2 text-sm leading-7 text-slate-500">
+                            تشغيل مباشر عبر المتصفح بتجربة سريعة وواضحة.
+                        </p>
+
+                        <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet-600">
+                            جرّب الآن
+                            <span>←</span>
                         </span>
-                    </div>
+                    </a>
 
-                    <div class="row g-3">
-                        @foreach (var feature in features)
-                        {
-                            <div class="col-md-6 col-lg-4">
-                                <div class="h-100 rounded-4 px-4 py-3"
-                                     style="background:#fbfdff; border:1px solid #dbe6f5;">
-                                    <div class="d-flex gap-3 align-items-start">
-                                        <span class="d-flex align-items-center justify-content-center rounded-circle fw-bold"
-                                              style="width:36px; height:36px; background: linear-gradient(90deg,#2563eb 0%,#0ea5e9 100%); color:#fff; flex:0 0 auto;">
-                                            ✓
-                                        </span>
+                    <a href="@appStoreUrl"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="group rounded-[24px] border border-slate-200 bg-slate-50 p-5 no-underline transition hover:-translate-y-1 hover:border-violet-200 hover:bg-white hover:shadow-md">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 text-white">
+                            📱
+                        </div>
 
-                                        <p class="mb-0" style="color:#334155; line-height:1.9; font-weight:500;">
-                                            @feature
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
+                        <h3 class="mt-4 text-lg font-extrabold text-slate-900">
+                            تطبيق الجوال
+                        </h3>
+
+                        <p class="mt-2 text-sm leading-7 text-slate-500">
+                            تجربة مرنة على الهاتف للوصول السريع إلى المنتج والخدمات.
+                        </p>
+
+                        <span class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet-600">
+                            فتح المتجر
+                            <span>←</span>
+                        </span>
+                    </a>
                 </div>
-            }
+            </div>
+
+            <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+                <div class="mb-6">
+                    <span class="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700">
+                        الصورة الرئيسية
+                    </span>
+
+                    <h2 class="mt-4 text-2xl font-black text-slate-900">
+                        عرض بصري للمنتج
+                    </h2>
+                </div>
+
+                <div class="overflow-hidden rounded-[24px] border border-slate-200 bg-slate-50">
+                    <img src="@imageUrl"
+                         alt="@Model.Name"
+                         class="h-[280px] w-full object-cover"
+                         onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
+                </div>
+            </div>
+
         </div>
+
+        @if (features.Any())
+        {
+            <div class="mt-8 rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm lg:p-8">
+                <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <span class="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">
+                            FEATURES
+                        </span>
+
+                        <h2 class="mt-4 text-2xl font-black text-slate-900 lg:text-3xl">
+                            المميزات الرئيسية
+                        </h2>
+                    </div>
+
+                    <span class="rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-600">
+                        @features.Count ميزة
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    @foreach (var feature in features)
+                    {
+                        <div class="rounded-[22px] border border-slate-200 bg-slate-50 p-5 transition hover:border-violet-200 hover:bg-white hover:shadow-sm">
+                            <div class="flex items-start gap-4">
+                                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-violet-600 text-sm font-bold text-white">
+                                    ✓
+                                </span>
+
+                                <p class="m-0 text-sm font-medium leading-7 text-slate-700">
+                                    @feature
+                                </p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
 
     </div>
 </section>

@@ -1,100 +1,130 @@
 ﻿@model List<GAMA.CO5.Models.Product>
 
 @{
-    var featuredTop3Ids = Model
+    ViewData["Title"] = "إدارة المنتجات";
+
+    var featuredTop3Ids = Model?
         .Where(x => x.IsFeatured)
         .Take(3)
         .Select(x => x.Id)
-        .ToList();
+        .ToList() ?? new List<int>();
 }
 
 <div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold">إدارة المنتجات</h2>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">إدارة المنتجات</h2>
+            <p class="text-muted mb-0">إدارة جميع المنتجات التي تظهر في صفحة المنتجات العامة.</p>
+        </div>
 
         <a asp-action="Create" class="btn btn-primary">
             + إضافة منتج
         </a>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover align-middle text-center">
-            <thead class="table-light">
-                <tr>
-                    <th>الصورة</th>
-                    <th>الاسم</th>
-                    <th>التصنيف</th>
-                    <th>مميز</th>
-                    <th>ضمن أول 3</th>
-                    <th>إجراءات</th>
-                </tr>
-            </thead>
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table align-middle text-center mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="py-3">الصورة</th>
+                            <th class="py-3">الاسم</th>
+                            <th class="py-3">التصنيف</th>
+                            <th class="py-3">الشارة</th>
+                            <th class="py-3">مميز</th>
+                            <th class="py-3">ضمن أول 3</th>
+                            <th class="py-3">إجراءات</th>
+                        </tr>
+                    </thead>
 
-            <tbody>
-                @foreach (var product in Model)
-                {
-                    var isTop3 = featuredTop3Ids.Contains(product.Id);
-
-                    <tr class="@(isTop3 ? "table-warning" : "")">
-                        <td>
-                            <img src="@product.ImageUrl"
-                                 style="width:90px;height:65px;object-fit:cover;border-radius:10px;" />
-                        </td>
-
-                        <td class="fw-semibold">
-                            @product.Name
-                        </td>
-
-                        <td>
-                            <span class="badge bg-secondary">
-                                @product.Category
-                            </span>
-                        </td>
-
-                        <td>
-                            @if (product.IsFeatured)
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var product in Model)
                             {
-                                <span class="badge bg-success">
-                                    نعم
-                                </span>
-                            }
-                            else
-                            {
-                                <span class="badge bg-danger">
-                                    لا
-                                </span>
-                            }
-                        </td>
+                                var isTop3 = featuredTop3Ids.Contains(product.Id);
+                                var imageUrl = string.IsNullOrWhiteSpace(product.ImageUrl)
+                                ? "/images/products/placeholder.jpg"
+                                : product.ImageUrl;
 
-                        <td>
-                            @if (isTop3)
-                            {
-                                <span class="badge bg-warning text-dark">
-                                    يظهر بالأعلى
-                                </span>
-                            }
-                            else
-                            {
-                                <span class="text-muted">—</span>
-                            }
-                        </td>
+                                <tr class="@(isTop3 ? "table-warning" : "")">
+                                    <td>
+                                        <img src="@imageUrl"
+                                             alt="@product.Name"
+                                             onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';"
+                                             style="width:90px;height:65px;object-fit:cover;border-radius:12px;" />
+                                    </td>
 
-                        <td>
-                            <a asp-action="Edit"
-                               asp-route-id="@product.Id"
-                               class="btn btn-sm btn-outline-primary">
-                                تعديل
-                            </a>
+                                    <td class="fw-semibold">
+                                        @product.Name
+                                    </td>
 
-                            <a asp-action="Delete"
-                               asp-route-id="@product.Id"
-                               class="btn btn-sm btn-outline-danger">
-                                حذف
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                                    <td>
+                                        <span class="badge bg-secondary">
+                                            @(string.IsNullOrWhiteSpace(product.Category) ? "غير محدد" : product.Category)
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-dark">
+                                            @(string.IsNullOrWhiteSpace(product.BadgeText) ? "—" : product.BadgeText)
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        @if (product.IsFeatured)
+                                        {
+                                            <span class="badge bg-success">نعم</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">لا</span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        @if (isTop3)
+                                        {
+                                            <span class="badge bg-warning text-dark">
+                                                يظهر بالأعلى
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">—</span>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                            <a asp-action="Edit"
+                                               asp-route-id="@product.Id"
+                                               class="btn btn-sm btn-outline-primary">
+                                                تعديل
+                                            </a>
+
+                                            <a asp-action="Delete"
+                                               asp-route-id="@product.Id"
+                                               class="btn btn-sm btn-outline-danger">
+                                                حذف
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="7" class="py-5 text-muted">
+                                    لا توجد منتجات حالياً.
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>

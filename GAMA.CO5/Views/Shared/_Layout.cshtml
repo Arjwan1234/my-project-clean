@@ -6,17 +6,18 @@
     <title>@ViewData["Title"] - GAMA.CO5</title>
 
     <link href="~/css/output.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
-<body class="bg-slate-50 font-[Cairo] text-slate-900">
+<body class="bg-slate-50 text-slate-900">
 
     <nav class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
@@ -37,7 +38,7 @@
         </div>
     </nav>
 
-    <main>
+    <main class="min-h-screen bg-slate-50">
         @RenderBody()
     </main>
 

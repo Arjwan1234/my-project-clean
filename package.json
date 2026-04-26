@@ -1,8 +1,16 @@
 {
+  "name": "new-gama",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./GAMA.CO5/wwwroot/css/app.css -o ./GAMA.CO5/wwwroot/css/output.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.4"
   },
   "dependencies": {
-    "@tailwindcss/cli": "^4.2.2"
+    "@tailwindcss/cli": "^4.2.4"
   }
 }
