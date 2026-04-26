@@ -1,145 +1,121 @@
 ﻿@model List<GAMA.CO5.Models.Service>
+
 @{
     ViewData["Title"] = "الخدمات";
-    var services = Model ?? new List<GAMA.CO5.Models.Service>();
 }
 
+<!-- HERO -->
 <section class="relative overflow-hidden bg-[#07142b]">
     <div class="absolute inset-0">
         <img src="@Url.Content("~/images/services-bg.jpg")"
-             alt="الخدمات"
-             class="h-full w-full object-cover opacity-10" />
-        <div class="absolute inset-0 bg-gradient-to-br from-[#07142b] via-[#0a1d3d] to-[#07142b]"></div>
+             class="h-full w-full object-cover opacity-80 scale-105" />
+
+        <div class="absolute inset-0 bg-gradient-to-br from-[#07142b]/60 via-[#0a1d3d]/50 to-[#020617]/70"></div>
     </div>
 
-    <div class="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-28">
-        <div class="max-w-3xl">
-            <span class="inline-flex items-center rounded-full border border-[#1d3d75] bg-[#102347] px-4 py-2 text-sm font-semibold tracking-[0.18em] text-slate-200">
-                OUR SERVICES
-            </span>
-
-            <h1 class="mt-6 text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl">
-                الخدمات
-            </h1>
-
-            <p class="mt-6 text-lg leading-9 text-slate-300">
-                حلول تقنية متكاملة لتحقيق التحول الرقمي ودعم نمو أعمالك
-            </p>
-        </div>
+    <div class="relative mx-auto max-w-7xl px-6 py-24">
+        <h1 class="text-5xl font-black text-white">
+            الخدمات
+        </h1>
     </div>
 </section>
 
-<section class="bg-[#f8fafc] py-20 lg:py-24">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<!-- SERVICES -->
+<section class="relative overflow-hidden bg-[#eef4ff] py-24">
 
-        <div class="mb-14 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-                <p class="text-sm font-bold tracking-[0.2em] text-slate-500">
-                    ENTERPRISE TECHNOLOGY
-                </p>
+    <!-- 🤖 ROBOT -->
+    <img src="@Url.Content("~/images/services/photo_2026-04-22_16-21-52-removebg-preview.png")"
+         class="pointer-events-none absolute top-[80px] right-[-60px] hidden w-[520px] object-contain opacity-95 xl:block z-0" />
 
-                <h2 class="mt-3 text-3xl font-black tracking-tight text-[#07142b] lg:text-4xl">
-                    خدمات تقنية احترافية
-                </h2>
-            </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-6">
 
-            <p class="max-w-2xl text-base leading-8 text-slate-600">
-                جميع الخدمات المضافة من لوحة الإدارة تظهر هنا تلقائيًا بشكل منظم واحترافي.
-            </p>
-        </div>
+        <h2 class="mb-14 text-3xl font-black text-[#020617]">
+            خدمات تقنية احترافية
+        </h2>
 
-        @if (services.Any())
+        @if (Model != null && Model.Any())
         {
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                @foreach (var service in services)
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
+
+                @foreach (var service in Model)
                 {
                     <a asp-action="Details"
                        asp-route-id="@service.Id"
-                       class="group relative overflow-hidden rounded-[22px] border border-[#11294f] bg-white p-5 shadow-[0_10px_25px_rgba(2,6,23,0.04)] no-underline transition duration-300 hover:-translate-y-1 hover:border-[#0a1d3d] hover:shadow-[0_20px_45px_rgba(7,20,43,0.15)]">
+                       class="group block rounded-[26px]
+                                      bg-[#f8fbff]
+                                      border border-[#b6c2d2]
+                                      p-4
+                                      transition duration-500 hover:-translate-y-1">
 
-                        <div class="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#07142b] via-[#16386e] to-[#07142b]"></div>
-                        <div class="absolute -top-10 -left-10 h-24 w-24 rounded-full bg-[#dbeafe] blur-2xl opacity-0 transition duration-500 group-hover:opacity-100"></div>
-
-                        <div class="mb-5 flex items-start justify-between">
-                            <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#d4deed] bg-[#f8fbff] text-xl text-[#07142b] transition duration-300 group-hover:border-[#07142b] group-hover:bg-[#07142b] group-hover:text-white">
-                                @if (!string.IsNullOrWhiteSpace(service.Icon) && service.Icon.Contains("fa-"))
-                                {
-                                    <i class="@service.Icon"></i>
-                                }
-                                else
-                                {
-                                    @service.Icon
-                                }
-                            </div>
-
-                            <span class="text-sm font-bold tracking-[0.18em] text-[#16386e] transition duration-300 group-hover:text-[#07142b]">
-                                DETAILS
-                            </span>
-                        </div>
-
-                        <div class="space-y-5">
-                            <div class="overflow-hidden rounded-[18px] border border-[#d8e1ee] bg-slate-100">
-                                @if (!string.IsNullOrWhiteSpace(service.ImageUrl))
-                                {
-                                    <img src="@service.ImageUrl"
-                                         alt="@service.Title"
-                                         class="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
-                                }
-                                else
-                                {
-                                    <div class="flex h-52 w-full items-center justify-center bg-[linear-gradient(135deg,#eef4ff,#f8fbff)] text-sm font-bold tracking-[0.18em] text-slate-400">
-                                        NO IMAGE
-                                    </div>
-                                }
-                            </div>
-
-                            <h3 class="text-right text-2xl font-black leading-10 tracking-tight text-[#07142b]">
-                                @service.Title
-                            </h3>
-
-                            @if (!string.IsNullOrWhiteSpace(service.Description))
+                        <!-- IMAGE -->
+                        <div class="mb-4 overflow-hidden rounded-[18px] bg-[#f1f5ff]">
+                            @if (!string.IsNullOrWhiteSpace(service.ImageUrl))
                             {
-                                <p class="text-right text-sm leading-8 text-slate-600">
-                                    @(service.Description.Length > 140
-                                                            ? service.Description.Substring(0, 140) + "..."
-                                                            : service.Description)
+                                <img src="@service.ImageUrl"
+                                     class="h-[200px] w-full object-cover transition duration-700 group-hover:scale-105" />
+                            }
+                            else
+                            {
+                                <div class="flex h-[200px] items-center justify-center text-slate-400 text-sm">
+                                    NO IMAGE
+                                </div>
+                            }
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="px-1 pb-2 text-right">
+
+                        <h3 class="text-[24px] font-black text-[#020617] transition">
+                            @service.Title
+                        </h3>
+
+                        <p class="mt-2 text-sm text-slate-700 leading-6 min-h-[60px]">
+                            @(service.Description != null && service.Description.Length > 90
+                                                    ? service.Description.Substring(0, 90) + "..."
+                                                    : service.Description)
                     </p>
-                                        }
-                        </div>
 
-                        <div class="mt-8 flex items-center justify-between border-t border-[#e3eaf5] pt-5">
-                            <span class="text-sm font-medium text-slate-500">
-                                عرض المزيد
-                            </span>
+                            <!-- BUTTON -->
+                            <div class="mt-5 flex items-center justify-between border-t border-[#e6edf5] pt-4">
 
-                            <span class="text-xl font-semibold text-[#07142b] transition duration-300 group-hover:-translate-x-1">
-                                ←
-                            </span>
+                                <div class="flex h-10 w-10 items-center justify-center rounded-full
+                                                    bg-[#eef4ff] text-[#2563eb]
+                                                    border border-[#dbe5f0]
+                                                    group-hover:bg-[#e0edff]
+                                                    group-hover:text-[#1d4ed8]
+                                                    transition">
+                                    ←
+                                </div>
+
+                                <div class="text-right">
+                                    <div class="text-[10px] tracking-[0.2em] text-slate-500">
+                                        EXPLORE
+                                    </div>
+
+                                    <div class="mt-1 inline-flex items-center gap-2
+                                                        px-4 py-2 rounded-xl
+                                                        bg-[#1e293b] text-white text-sm font-bold
+                                                        transition group-hover:bg-[#334155]">
+
+                                        عرض التفاصيل
+                                        <span>←</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </a>
-                }
+                        }
+
             </div>
         }
         else
         {
-            <div class="rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-16 text-center text-slate-500">
-                لا توجد خدمات متاحة حاليًا.
+            <div class="py-16 text-center text-slate-500">
+                لا توجد خدمات حالياً
             </div>
         }
-
-        <div class="mt-14 rounded-[22px] border border-[#d8e1ee] bg-white px-8 py-8 shadow-sm">
-            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <p class="max-w-2xl text-base leading-8 text-slate-600">
-                    اضغط على أي خدمة لمعرفة المزيد من التفاصيل ومشاهدة الفيديو التعريفي.
-                </p>
-
-                <a asp-controller="Contact"
-                   asp-action="Index"
-                   class="inline-flex items-center justify-center rounded-xl bg-[#07142b] px-8 py-4 text-sm font-bold tracking-[0.12em] text-white no-underline transition hover:bg-[#0a1d3d]">
-                    تواصل معنا
-                </a>
-            </div>
-        </div>
 
     </div>
 </section>
