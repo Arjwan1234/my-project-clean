@@ -1,6 +1,7 @@
 ﻿using GAMA.CO5.Data;
 using GAMA.CO5.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GAMA_ASP_MVC_CLEAN.Controllers
 {
@@ -34,6 +35,17 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             ViewBag.Success = true;
 
             return View("Index", new ContactMessage());
+        }
+
+        [HttpGet]
+        [Route("AdminContactMessages")]
+        public IActionResult AdminContactMessages()
+        {
+            var messages = _context.ContactMessages
+                .OrderByDescending(m => m.Id)
+                .ToList();
+
+            return View(messages);
         }
     }
 }

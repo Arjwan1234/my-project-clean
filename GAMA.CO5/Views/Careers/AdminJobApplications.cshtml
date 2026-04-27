@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GAMA.CO5.Models.JobApplication>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "طلبات التوظيف";
+}
+
+<div class="container-fluid">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white">
+            <h3 class="mb-0 fw-bold">طلبات التوظيف</h3>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-hover text-center align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>الاسم</th>
+                        <th>الإيميل</th>
+                        <th>الوظيفة</th>
+                        <th>نبذة</th>
+                        <th>السيرة الذاتية</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FullName</td>
+                            <td>@item.Email</td>
+                            <td>@item.JobTitle</td>
+                            <td>@item.AboutMe</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.CVFileName))
+                                {
+                                    <a href="/uploads/cv/@item.CVFileName"
+                                       target="_blank"
+                                       class="btn btn-primary btn-sm">
+                                        عرض
+                                    </a>
+
+                                    <a href="/uploads/cv/@item.CVFileName"
+                                       download
+                                       class="btn btn-success btn-sm">
+                                        تحميل
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-danger fw-bold">لا يوجد CV</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -8,17 +8,13 @@
     <div class="contact-luxury-hero-overlay"></div>
 
     <div class="container contact-luxury-hero-content">
-        <span class="contact-top-badge">
-            <i class="fa-regular fa-envelope"></i>
-            تواصل معنا
-        </span>
         <h1>تواصل معنا</h1>
         <p>نسعد بخدمتكم والإجابة على استفساراتكم</p>
     </div>
 </section>
 
 <section class="contact-page">
-    <div class="container contact-wrapper">
+    <div class="contact-wrapper">
 
         @if (ViewBag.Success != null)
         {
@@ -31,45 +27,36 @@
 
             <!-- معلومات التواصل -->
             <div class="contact-info-card">
-                <div class="box-top-line"></div>
-
                 <h2>معلومات التواصل</h2>
                 <p class="box-subtitle">
                     يسعدنا استقبال جميع استفساراتكم ومقترحاتكم على مدار الساعة.
                 </p>
 
-                <div class="info-item navy-box">
-                    <div class="info-icon">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </div>
-                    <div class="info-content">
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
                         <span>الموقع</span>
                         <strong>جدة - حي النهضة - شارع عبدالرحمن الداخل</strong>
                     </div>
                 </div>
 
-                <div class="info-item navy-box">
-                    <div class="info-icon">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <div class="info-content">
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                    <div>
                         <span>رقم الهاتف</span>
                         <strong dir="ltr">+966 XX XXX XXXX</strong>
                     </div>
                 </div>
 
-                <div class="info-item navy-box">
-                    <div class="info-icon">
-                        <i class="fa-regular fa-envelope"></i>
-                    </div>
-                    <div class="info-content">
+                <div class="info-item">
+                    <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
+                    <div>
                         <span>البريد الإلكتروني</span>
                         <strong>info@gama-ksa.com</strong>
                     </div>
                 </div>
 
-                <!-- الخريطة -->
-                <div class="map-box real-map-box">
+                <div class="map-box">
                     <iframe src="https://www.google.com/maps?q=21.6186859,39.1320377&z=16&output=embed"
                             allowfullscreen=""
                             loading="lazy">
@@ -86,8 +73,6 @@
 
             <!-- الفورم -->
             <div class="contact-form-card">
-                <div class="box-top-line"></div>
-
                 <h2>أرسل لنا رسالة</h2>
                 <p class="box-subtitle">
                     فريقنا جاهز لخدمتكم والرد على جميع الطلبات بسرعة واحترافية.
@@ -96,40 +81,34 @@
                 <form asp-action="Submit" asp-controller="Contact" method="post">
                     @Html.AntiForgeryToken()
 
-                    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+                    <div asp-validation-summary="ModelOnly"></div>
 
                     <div class="form-group">
                         <label asp-for="Name">الاسم الكامل</label>
-                        <input asp-for="Name" class="form-control" placeholder="أدخل اسمك الكامل" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <input asp-for="Name" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Email">البريد الإلكتروني</label>
-                        <input asp-for="Email" class="form-control" placeholder="example@email.com" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <input asp-for="Email" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Phone">رقم الهاتف</label>
-                        <input asp-for="Phone" class="form-control" placeholder="+966 XX XXX XXXX" />
-                        <span asp-validation-for="Phone" class="text-danger"></span>
+                        <input asp-for="Phone" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Subject">الموضوع</label>
-                        <input asp-for="Subject" class="form-control" placeholder="موضوع الرسالة" />
-                        <span asp-validation-for="Subject" class="text-danger"></span>
+                        <input asp-for="Subject" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label asp-for="Message">الرسالة</label>
-                        <textarea asp-for="Message" class="form-control textarea" placeholder="اكتب رسالتك هنا..."></textarea>
-                        <span asp-validation-for="Message" class="text-danger"></span>
+                        <textarea asp-for="Message" class="form-control textarea"></textarea>
                     </div>
 
                     <button type="submit" class="btn-send">
-                        <i class="fa-regular fa-paper-plane"></i>
                         إرسال الرسالة
                     </button>
                 </form>
@@ -141,15 +120,6 @@
 
 @section Styles {
     <style>
-        :root {
-            --primary: #0f3d75;
-            --primary-soft: #1d4f91;
-            --dark: #0f172a;
-            --text: #64748b;
-            --card: rgba(255,255,255,.97);
-            --line: #e7edf5;
-            --navy: #103b72;
-        }
 
         .contact-luxury-hero {
             position: relative;
@@ -158,56 +128,50 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(8,34,66,.58), rgba(13,52,97,.48)), url('/images/services-bg.jpg') center center / cover no-repeat;
-        }
-
-        .contact-luxury-hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 20% 25%, rgba(56,189,248,.10), transparent 28%), radial-gradient(circle at 80% 68%, rgba(15,61,117,.08), transparent 30%);
+            /* 🔥 فقط التغميق */
+            background: linear-gradient(135deg, rgba(8,34,66,.75), rgba(13,52,97,.65)), url('/images/services-bg.jpg') center center / cover no-repeat;
         }
 
         .contact-luxury-hero-content {
-            position: relative;
-            z-index: 2;
             color: white;
         }
 
+            /* 🔥 رجعنا حجم الخط مثل أول */
             .contact-luxury-hero-content h1 {
                 font-size: 56px;
                 font-weight: 900;
             }
 
         .contact-page {
-            background: #f5f8fc;
-            padding: 80px 0;
+            background: #eef4ff;
+            padding: 80px 24px;
+        }
+
+        .contact-wrapper {
+            max-width: 1180px;
+            margin: auto;
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 28px;
         }
 
         .contact-info-card,
         .contact-form-card {
-            background: white;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-        }
-
-        .box-top-line {
-            height: 4px;
-            margin: -30px -30px 20px;
-            background: linear-gradient(90deg,#0f3d75,#1d4f91);
+            background: #fff;
+            border-radius: 28px;
+            padding: 34px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+            border-top: 5px solid #0f3d75;
         }
 
         .info-item {
             display: flex;
+            flex-direction: row-reverse;
             gap: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
         }
 
         .info-icon {
@@ -223,26 +187,24 @@
 
         .map-box {
             margin-top: 20px;
-            height: 230px;
-            border-radius: 20px;
+            height: 240px;
+            border-radius: 16px;
             overflow: hidden;
         }
 
-        .real-map-box iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+            .map-box iframe {
+                width: 100%;
+                height: 100%;
+            }
 
         .map-link-btn {
-            margin-top: 12px;
             display: block;
-            text-align: center;
+            margin-top: 10px;
             padding: 12px;
             background: #0f3d75;
             color: white;
+            text-align: center;
             border-radius: 12px;
-            text-decoration: none;
         }
 
         .form-control {
@@ -264,6 +226,7 @@
             color: white;
             border: none;
             border-radius: 12px;
+            font-weight: bold;
         }
 
         @@media(max-width:900px) {
@@ -271,6 +234,7 @@
                 grid-template-columns: 1fr;
             }
         }
+
     </style>
 }
 

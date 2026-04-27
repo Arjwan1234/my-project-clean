@@ -1,149 +1,177 @@
 ﻿@model GAMA.CO5.Models.CareersViewModel
+
 @{
     ViewData["Title"] = Model.PageTitle;
 }
-<section class="hero-section">
-    <div class="overlay"></div>
 
-    <div class="container hero-content">
-        <span class="hero-badge">الوظائف ✦</span>
-        <h1>@Model.PageTitle</h1>
-        <p>
+<!-- HERO -->
+<section class="relative overflow-hidden">
+
+    <div class="absolute inset-0">
+        <img src="@Url.Content("~/images/services-bg.jpg")"
+             alt="الوظائف"
+             class="h-full w-full object-cover scale-105" />
+
+        <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <div class="relative mx-auto max-w-7xl px-6 py-24">
+
+        <h1 class="text-5xl font-black text-white text-right">
+            @Model.PageTitle
+        </h1>
+
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-white/90 text-right">
             انضم إلى فريقنا وكن جزءًا من رحلة الابتكار والتحول الرقمي
         </p>
+
     </div>
+
 </section>
-<section class="careers-section">
-    <div class="container">
-        <div class="careers-header">
-            <h2>الفرص الوظيفية</h2>
-            <p>اكتشف الوظائف المتاحة لدينا وابدأ رحلتك المهنية معنا</p>
+
+<!-- CAREERS -->
+<section class="relative overflow-hidden bg-[#eef4ff] py-24">
+    <div class="relative mx-auto max-w-7xl px-6">
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="mb-8 rounded-xl bg-green-100 px-5 py-4 text-right font-bold text-green-800">
+                @TempData["Success"]
+            </div>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="mb-8 rounded-xl bg-red-100 px-5 py-4 text-right font-bold text-red-800">
+                @TempData["Error"]
+            </div>
+        }
+
+        <div class="mb-14 text-right">
+            <h2 class="text-3xl font-black text-[#020617]">
+                الفرص الوظيفية
+            </h2>
+
+            <p class="mt-3 text-slate-700">
+                اكتشف الوظائف المتاحة لدينا وابدأ رحلتك المهنية معنا
+            </p>
         </div>
 
-        <div class="jobs-grid">
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
+
             @foreach (var job in Model.Jobs)
             {
-                <div class="job-card">
-                    <div class="job-type">@job.Type</div>
+                <div class="group relative overflow-hidden rounded-[30px] border-2 border-[#07142b]/30 bg-white p-6 shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition duration-500 hover:-translate-y-2 hover:border-[#07142b] hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)]">
 
-                    <h3>@job.Title</h3>
-                    <p class="job-location">📍 @job.Location</p>
-                    <p class="job-desc">@job.Description</p>
+                    <!-- Header -->
+                    <div class="mb-6 flex items-center justify-between">
 
-                    <a href="#" class="apply-btn">قدّم الآن</a>
+                        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#07142b] text-white shadow-lg">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <span class="rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-xs font-black text-[#07142b]">
+                            @job.Type
+                        </span>
+
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="text-right text-2xl font-black text-[#07142b]">
+                        @job.Title
+                    </h3>
+
+                    <!-- Location -->
+                    <div class="mt-4 flex justify-end gap-2 text-sm font-bold text-slate-600">
+                        <span>@job.Location</span>
+                        <span>📍</span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="mt-5 min-h-[95px] text-right text-sm leading-8 text-slate-700">
+                        @job.Description
+                    </p>
+
+                    <!-- Divider -->
+                    <div class="mt-6 h-px bg-slate-200"></div>
+
+                    <!-- Button -->
+                    <button type="button"
+                            onclick="openApplyModal('@job.Title')"
+                            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#07142b] px-5 py-3 text-sm font-black text-white shadow-lg transition hover:bg-[#0a1d3d] hover:shadow-xl">
+                        قدّم الآن
+                        <span>←</span>
+                    </button>
+
                 </div>
             }
+
         </div>
     </div>
 </section>
 
-@section Styles {
-    <style>
-        .careers-section {
-            background: #f7f8fc;
-            padding: 70px 0;
-        }
+<!-- MODAL -->
+<div id="applyModal"
+     class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4">
 
-        .careers-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    <div class="w-full max-w-xl rounded-[26px] bg-white p-7 shadow-2xl">
 
-            .careers-header h2 {
-                font-size: 2rem;
-                font-weight: 800;
-                color: #0f172a;
-                margin-bottom: 10px;
-            }
+        <div class="mb-6 flex items-center justify-between border-b border-slate-200 pb-4">
+            <button type="button"
+                    onclick="closeApplyModal()"
+                    class="rounded-full bg-slate-100 px-3 py-1 text-lg font-black text-slate-700 hover:bg-slate-200">
+                ×
+            </button>
 
-            .careers-header p {
-                color: #6b7280;
-                margin: 0;
-            }
+            <div class="text-right">
+                <h2 class="text-2xl font-black text-[#020617]">
+                    نموذج التقديم
+                </h2>
+                <p id="selectedJobTitle" class="mt-1 text-sm font-bold text-slate-600"></p>
+            </div>
+        </div>
 
-        .jobs-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
+        <form asp-controller="Careers"
+              asp-action="Apply"
+              method="post"
+              enctype="multipart/form-data"
+              class="space-y-5">
 
-        .job-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-            border: 1px solid #e5e7eb;
-            transition: .25s ease;
-        }
+            @Html.AntiForgeryToken()
 
-            .job-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 16px 36px rgba(15, 23, 42, 0.10);
-            }
+            <input type="hidden" id="JobTitleInput" name="JobTitle" />
 
-        .job-type {
-            display: inline-block;
-            margin-bottom: 14px;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: rgba(37, 150, 190, 0.12);
-            color: #2596be;
-            font-size: .85rem;
-            font-weight: 700;
-        }
+            <input name="FullName" placeholder="الاسم الكامل" required
+                   class="w-full rounded-xl border border-slate-300 px-4 py-3 text-right" />
 
-        .job-card h3 {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 10px;
-        }
+            <input name="Email" type="email" placeholder="الإيميل" required
+                   class="w-full rounded-xl border border-slate-300 px-4 py-3 text-right" />
 
-        .job-location {
-            color: #475569;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
+            <textarea name="AboutMe" placeholder="نبذة عنك" required
+                      class="w-full rounded-xl border border-slate-300 px-4 py-3 text-right"></textarea>
 
-        .job-desc {
-            color: #64748b;
-            line-height: 1.8;
-            margin-bottom: 18px;
-        }
+            <input name="CVFile" type="file" required
+                   class="w-full rounded-xl border border-slate-300 px-4 py-3 text-right" />
 
-        .apply-btn {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            padding: 12px 16px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #2596be, #1d4ed8);
-            color: #fff;
-            font-weight: 800;
-            text-decoration: none;
-            transition: .25s ease;
-        }
+            <button type="submit"
+                    class="w-full rounded-xl bg-[#07142b] px-5 py-4 font-black text-white hover:bg-[#0a1d3d]">
+                إرسال الطلب
+            </button>
+        </form>
+    </div>
+</div>
 
-            .apply-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 12px 24px rgba(37, 150, 190, 0.22);
-                color: #fff;
-            }
+<script>
+    function openApplyModal(jobTitle) {
+        document.getElementById("applyModal").classList.remove("hidden");
+        document.getElementById("applyModal").classList.add("flex");
 
-        @@media (max-width: 991px) {
-            .jobs-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+        document.getElementById("selectedJobTitle").innerText = "التقديم على: " + jobTitle;
+        document.getElementById("JobTitleInput").value = jobTitle;
+    }
 
-        @@media (max-width: 576px) {
-            .jobs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .careers-section {
-                padding: 40px 0;
-            }
-        }
-    </style>
-}
+    function closeApplyModal() {
+        document.getElementById("applyModal").classList.add("hidden");
+        document.getElementById("applyModal").classList.remove("flex");
+    }
+</script>
