@@ -1,4 +1,43 @@
 ﻿@import "tailwindcss";
+
 @source "../../Views/**/*.cshtml";
 @source "../../**/*.html";
 @source "../../**/*.js";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Tajawal", "Cairo", Arial, sans-serif;
+    background: linear-gradient(180deg, #071225 0%, #0b1730 45%, #10233f 100%);
+}
+
+/* GRID */
+.page-grid {
+    background-image: linear-gradient(rgba(59,130,246,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.12) 1px, transparent 1px);
+    background-size: 44px 44px;
+}
+
+/* ANIMATION */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+
+    .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.parallax {
+    will-change: transform;
+}
+
+/* GLASS */
+.glass {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+}
