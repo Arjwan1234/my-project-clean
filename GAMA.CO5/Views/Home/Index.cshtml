@@ -1,512 +1,330 @@
-﻿<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>شريكك في التحول الرقمي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+﻿<div class="relative min-h-screen text-white overflow-x-hidden"
+     style="background: linear-gradient(180deg, #071225 0%, #0b1730 45%, #10233f 100%);">
 
-        body {
-            font-family: "Tajawal", "Cairo", Arial, sans-serif;
-            background: linear-gradient(180deg, #071225 0%, #0b1730 45%, #10233f 100%);
-        }
-
-        .page-grid {
-            background-image: linear-gradient(rgba(59,130,246,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.12) 1px, transparent 1px);
-            background-size: 44px 44px;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.9s ease, transform 0.9s ease;
-            will-change: transform, opacity;
-        }
-
-            .reveal.show {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-        .parallax {
-            will-change: transform;
-        }
-
-        @@keyframes floatY {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .float-soft {
-            animation: floatY 5s ease-in-out infinite;
-        }
-
-        .float-soft-delay {
-            animation: floatY 6.5s ease-in-out infinite;
-        }
-
-        .glass-card {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.10);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
-        .glass-strong {
-            background: rgba(255,255,255,0.10);
-            border: 1px solid rgba(255,255,255,0.16);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-    </style>
-</head>
-
-<body class="text-white overflow-x-hidden">
-
-    <!-- خلفية موحدة للصفحة كلها -->
-    <div class="fixed inset-0 -z-50">
-        <div class="absolute inset-0 bg-[linear-gradient(180deg,_#071225_0%,_#0b1730_45%,_#10233f_100%)]"></div>
+    <!-- BACKGROUND -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0" style="background: linear-gradient(180deg, #071225 0%, #0b1730 45%, #10233f 100%);"></div>
         <div class="absolute inset-0 page-grid opacity-60"></div>
-
         <div class="parallax absolute left-[6%] top-[8%] h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" data-speed="0.08"></div>
         <div class="parallax absolute right-[8%] top-[14%] h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" data-speed="0.12"></div>
         <div class="parallax absolute left-[15%] top-[38%] h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" data-speed="0.06"></div>
         <div class="parallax absolute right-[12%] top-[62%] h-80 w-80 rounded-full bg-fuchsia-400/10 blur-3xl" data-speed="0.09"></div>
-        <div class="parallax absolute left-[12%] bottom-[10%] h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" data-speed="0.07"></div>
     </div>
 
-    <!-- فيديو البداية -->
-    <div class="relative w-full h-screen overflow-hidden">
-        <video class="absolute inset-0 w-full h-full object-cover"
-               autoplay
-               muted
-               loop
-               playsinline>
-            <source src="/Videos/hero.mp4" type="video/mp4">
-        </video>
+    <div class="relative z-10">
 
-        <div class="absolute inset-0 bg-black/45"></div>
+        <!-- VIDEO -->
+        <section class="relative h-screen w-full overflow-hidden">
+            <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline>
+                <source src="/Videos/hero.mp4" type="video/mp4">
+            </video>
 
-        <div class="relative z-10 h-full flex items-center justify-center text-center px-6">
-            <div class="reveal">
-                <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-sm text-white mb-6">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                    فيديو تعريفي
-                </span>
+            <div class="absolute inset-0 bg-black/55"></div>
 
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.2] drop-shadow-lg">
-                    نبتكر حلولًا رقمية
-                    <br />
-                    تصنع الأثر
-                </h1>
+            <div class="relative z-10 h-full flex items-center justify-center text-center px-6">
+                <div class="reveal">
+                    <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-5 py-2 text-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                        فيديو تعريفي
+                    </span>
 
-                <p class="mt-6 text-lg md:text-2xl text-white/90">
-                    حلول تقنية متقدمة تدعم الجهات الحكومية والمؤسسات
-                </p>
-            </div>
-        </div>
-    </div>
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.2]">
+                        نبتكر حلولًا رقمية
+                        <br />
+                        تصنع الأثر
+                    </h1>
 
-    <!-- المحتوى الكامل كصفحة واحدة -->
-    <main class="relative -mt-8 md:-mt-12 lg:-mt-16 z-10">
-
-        <!-- HERO -->
-        <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <div class="relative z-10 w-full max-w-[1400px] px-6 lg:px-12">
-                <div class="grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
-
-                    <!-- Right content -->
-                    <div class="max-w-[620px] mr-auto text-right order-1 reveal">
-
-                        <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-sm text-white mb-6">
-                            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                            <span>شركتك الموثوق</span>
-                        </div>
-
-                        <h1 class="text-white text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15] tracking-tight drop-shadow-lg">
-                            شريكك في التحول
-                            <br />
-                            الرقمي
-                        </h1>
-
-                        <div class="w-24 h-1.5 bg-gradient-to-l from-cyan-400 to-blue-500 rounded-full mt-5 mr-0 ml-auto"></div>
-
-                        <p class="mt-8 text-xl md:text-2xl text-white leading-loose">
-                            نقدم حلول تقنية متطورة للجهات الحكومية والمؤسسات
-                            لتحقيق رؤية المملكة 2030
-                        </p>
-
-                        <div class="mt-10 space-y-7">
-                            <div class="group flex flex-row-reverse items-start gap-4 text-right rounded-2xl px-2 py-2 transition duration-300 hover:bg-white/5 reveal">
-                                <div class="w-12 h-12 shrink-0 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                                    <span class="text-lg">🚀</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-white text-2xl font-extrabold">ابتكار مستمر</h3>
-                                    <p class="text-white text-lg mt-1">
-                                        حلول تقنية مبتكرة ومتوافقة مع رؤية المملكة 2030
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="group flex flex-row-reverse items-start gap-4 text-right rounded-2xl px-2 py-2 transition duration-300 hover:bg-white/5 reveal">
-                                <div class="w-12 h-12 shrink-0 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                                    <span class="text-lg">👥</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-white text-2xl font-extrabold">فريق الخبراء</h3>
-                                    <p class="text-white text-lg mt-1">
-                                        فريق من الخبراء والمتخصصين في جميع المجالات التقنية
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="group flex flex-row-reverse items-start gap-4 text-right rounded-2xl px-2 py-2 transition duration-300 hover:bg-white/5 reveal">
-                                <div class="w-12 h-12 shrink-0 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20">
-                                    <span class="text-lg">🛡️</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-white text-2xl font-extrabold">دعم متواصل</h3>
-                                    <p class="text-white text-lg mt-1">
-                                        دعم فني متواصل وصيانة مستمرة لضمان استمرارية العمل
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button class="mt-10 inline-flex items-center gap-3 rounded-2xl bg-gradient-to-l from-blue-500 to-cyan-400 px-8 py-4 text-lg font-bold text-white shadow-[0_0_30px_rgba(34,211,238,0.35)] transition duration-300 hover:scale-[1.02]">
-                            <span>ابدأ رحلتك الرقمية</span>
-                            <span>←</span>
-                        </button>
-                    </div>
-
-                    <!-- Left stats cards -->
-                    <div class="relative order-2">
-                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div class="h-40 w-40 rounded-full bg-blue-500/20 blur-2xl"></div>
-                        </div>
-
-                        <div class="relative space-y-5 max-w-[500px] mx-auto">
-                            <div class="float-soft reveal rounded-[24px] glass-strong px-5 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1">
-                                <div class="flex items-center justify-between">
-                                    <div class="text-right">
-                                        <div class="text-white text-5xl font-black leading-none">+30</div>
-                                        <div class="text-white text-lg mt-2">عامًا من الخبرة</div>
-                                    </div>
-                                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                                        <span class="text-xl text-white">↗</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="float-soft-delay reveal rounded-[24px] glass-strong px-5 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1">
-                                <div class="flex items-center justify-between">
-                                    <div class="text-right">
-                                        <div class="text-white text-5xl font-black leading-none">+500</div>
-                                        <div class="text-white text-lg mt-2">مشروع ناجح</div>
-                                    </div>
-                                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                                        <span class="text-xl text-white">◎</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="float-soft reveal rounded-[24px] glass-strong px-5 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1">
-                                <div class="flex items-center justify-between">
-                                    <div class="text-right">
-                                        <div class="text-white text-5xl font-black leading-none">100%</div>
-                                        <div class="text-white text-lg mt-2">نسبة رضا العملاء</div>
-                                    </div>
-                                    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                                        <span class="text-xl text-white">🏅</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <p class="mt-6 text-lg md:text-2xl text-white/85">
+                        حلول تقنية متقدمة تدعم الجهات الحكومية والمؤسسات
+                    </p>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- DIGITAL PARTNER -->
+        <section class="relative min-h-screen flex items-center justify-center py-24 px-6">
+            <div class="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
+
+                <!-- TEXT -->
+                <div class="max-w-[620px] mr-auto text-right reveal">
+                    <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                        شركتك الموثوق
+                    </div>
+
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15]">
+                        شريكك في التحول
+                        <br />
+                        الرقمي
+                    </h1>
+
+                    <div class="w-24 h-1.5 bg-gradient-to-l from-cyan-400 to-blue-500 rounded-full mt-5 mr-0 ml-auto"></div>
+
+                    <p class="mt-8 text-xl md:text-2xl leading-loose">
+                        نقدم حلول تقنية متطورة للجهات الحكومية والمؤسسات
+                        لتحقيق رؤية المملكة 2030
+                    </p>
+
+                    <div class="mt-10 space-y-7">
+                        <div class="flex flex-row-reverse items-start gap-4 reveal">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">🚀</div>
+                            <div>
+                                <h3 class="text-2xl font-extrabold">ابتكار مستمر</h3>
+                                <p class="text-lg mt-1">حلول تقنية مبتكرة ومتوافقة مع رؤية المملكة 2030</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row-reverse items-start gap-4 reveal">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">👥</div>
+                            <div>
+                                <h3 class="text-2xl font-extrabold">فريق الخبراء</h3>
+                                <p class="text-lg mt-1">فريق من الخبراء والمتخصصين في جميع المجالات التقنية</p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row-reverse items-start gap-4 reveal">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">🛡️</div>
+                            <div>
+                                <h3 class="text-2xl font-extrabold">دعم متواصل</h3>
+                                <p class="text-lg mt-1">دعم فني متواصل وصيانة مستمرة لضمان استمرارية العمل</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="mt-10 rounded-2xl bg-gradient-to-l from-blue-500 to-cyan-400 px-8 py-4 text-lg font-bold shadow-[0_0_30px_rgba(34,211,238,0.35)]">
+                        ابدأ رحلتك الرقمية ←
+                    </button>
+                </div>
+
+                <!-- STATS -->
+                <div class="relative space-y-5 max-w-[500px] mx-auto w-full">
+                    <div class="float-soft reveal rounded-[24px] glass-strong px-5 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+                        <div class="flex items-center justify-between">
+                            <div class="text-right">
+                                <div class="text-5xl font-black">+30</div>
+                                <div class="text-lg mt-2">عامًا من الخبرة</div>
+                            </div>
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">↗</div>
+                        </div>
+                    </div>
+
+                    <div class="float-soft-delay reveal rounded-[24px] glass-strong px-5 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+                        <div class="flex items-center justify-between">
+                            <div class="text-right">
+                                <div class="text-5xl font-black">+500</div>
+                                <div class="text-lg mt-2">مشروع ناجح</div>
+                            </div>
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">◎</div>
+                        </div>
+                    </div>
+
+                    <div class="float-soft reveal rounded-[24px] glass-strong px-5 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+                        <div class="flex items-center justify-between">
+                            <div class="text-right">
+                                <div class="text-5xl font-black">100%</div>
+                                <div class="text-lg mt-2">نسبة رضا العملاء</div>
+                            </div>
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">🏅</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
 
         <!-- SERVICES -->
-        <div class="relative py-24 overflow-hidden">
-            <div class="absolute left-[-60px] top-20 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl"></div>
-            <div class="absolute right-[-60px] bottom-10 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl"></div>
-
-            <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+        <section class="relative py-24 px-6">
+            <div class="max-w-[1400px] mx-auto">
                 <div class="text-center mb-16 reveal">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-200 text-sm backdrop-blur-sm">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-200 text-sm">
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
                         خدماتنا
                     </span>
 
-                    <h2 class="mt-5 text-white text-4xl md:text-5xl font-black">
-                        حلولنا التقنية
-                    </h2>
+                    <h2 class="mt-5 text-4xl md:text-5xl font-black">حلولنا التقنية</h2>
 
                     <p class="mt-4 text-white/80 text-lg max-w-2xl mx-auto leading-8">
-                        نقدم مجموعة متكاملة من الخدمات التقنية التي تدعم التحول الرقمي
-                        للجهات الحكومية والمؤسسات بأعلى جودة واحترافية
+                        نقدم مجموعة متكاملة من الخدمات التقنية التي تدعم التحول الرقمي للجهات الحكومية والمؤسسات
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                    <div class="group reveal rounded-3xl glass-card p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-300/25">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-cyan-500/20">💻</div>
-                        <h3 class="text-white text-2xl font-bold mb-3">تطوير الأنظمة</h3>
-                        <p class="text-white/80 leading-8">تصميم وتطوير أنظمة مخصصة، بوابات إلكترونية، ولوحات تحكم متقدمة تلبي احتياجات الجهات المختلفة.</p>
+                    <div class="reveal rounded-3xl glass-card p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">💻</div>
+                        <h3 class="text-2xl font-bold mb-3">تطوير الأنظمة</h3>
+                        <p class="text-white/80 leading-8">تصميم وتطوير أنظمة مخصصة وبوابات إلكترونية ولوحات تحكم متقدمة.</p>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-300/25">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-cyan-500/20">☁️</div>
-                        <h3 class="text-white text-2xl font-bold mb-3">الحلول السحابية</h3>
-                        <p class="text-white/80 leading-8">بنية تحتية سحابية حديثة وآمنة تساعد في رفع الأداء وضمان استمرارية الأعمال.</p>
+                    <div class="reveal rounded-3xl glass-card p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">☁️</div>
+                        <h3 class="text-2xl font-bold mb-3">الحلول السحابية</h3>
+                        <p class="text-white/80 leading-8">بنية تحتية سحابية حديثة وآمنة تساعد في رفع الأداء.</p>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-300/25">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-cyan-500/20">🔒</div>
-                        <h3 class="text-white text-2xl font-bold mb-3">الأمن السيبراني</h3>
-                        <p class="text-white/80 leading-8">حماية الأنظمة والبيانات من التهديدات الرقمية عبر حلول أمنية متقدمة وفعالة.</p>
+                    <div class="reveal rounded-3xl glass-card p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">🔒</div>
+                        <h3 class="text-2xl font-bold mb-3">الأمن السيبراني</h3>
+                        <p class="text-white/80 leading-8">حماية الأنظمة والبيانات من التهديدات الرقمية.</p>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-300/25">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-cyan-500/20">📊</div>
-                        <h3 class="text-white text-2xl font-bold mb-3">تحليل البيانات</h3>
-                        <p class="text-white/80 leading-8">لوحات بيانات وتقارير ذكية تساعد في اتخاذ القرار وتحسين الأداء المؤسسي.</p>
+                    <div class="reveal rounded-3xl glass-card p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">📊</div>
+                        <h3 class="text-2xl font-bold mb-3">تحليل البيانات</h3>
+                        <p class="text-white/80 leading-8">لوحات بيانات وتقارير ذكية تساعد في اتخاذ القرار.</p>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-300/25">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-cyan-500/20">🤖</div>
-                        <h3 class="text-white text-2xl font-bold mb-3">الذكاء الاصطناعي</h3>
-                        <p class="text-white/80 leading-8">حلول ذكية مدعومة بالذكاء الاصطناعي لتحسين الكفاءة وأتمتة العمليات.</p>
+                    <div class="reveal rounded-3xl glass-card p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">🤖</div>
+                        <h3 class="text-2xl font-bold mb-3">الذكاء الاصطناعي</h3>
+                        <p class="text-white/80 leading-8">حلول ذكية لتحسين الكفاءة وأتمتة العمليات.</p>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-2 hover:bg-white/10 hover:border-cyan-300/25">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-cyan-500/20">🛠️</div>
-                        <h3 class="text-white text-2xl font-bold mb-3">الدعم والصيانة</h3>
-                        <p class="text-white/80 leading-8">خدمات دعم فني وصيانة مستمرة لضمان استقرار الأنظمة على مدار الساعة.</p>
+                    <div class="reveal rounded-3xl glass-card p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">🛠️</div>
+                        <h3 class="text-2xl font-bold mb-3">الدعم والصيانة</h3>
+                        <p class="text-white/80 leading-8">دعم فني وصيانة مستمرة لضمان استقرار الأنظمة.</p>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- PARTNERS -->
-        <div class="relative py-24 overflow-hidden">
-            <div class="absolute left-[-40px] top-10 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl"></div>
-            <div class="absolute right-[-40px] bottom-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"></div>
-
-            <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+        <section class="relative py-24 px-6">
+            <div class="max-w-[1400px] mx-auto">
                 <div class="text-center mb-16 reveal">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-200 text-sm backdrop-blur-sm">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-200 text-sm">
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
                         شركاء النجاح
                     </span>
 
-                    <h2 class="mt-5 text-white text-4xl md:text-5xl font-black">
-                        شركاؤنا
-                    </h2>
-
-                    <p class="mt-4 text-white/85 text-lg max-w-2xl mx-auto leading-8">
-                        نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متميزة
-                        تدعم التحول الرقمي والابتكار المستدام.
-                    </p>
+                    <h2 class="mt-5 text-4xl md:text-5xl font-black">شركاؤنا</h2>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-
-                    <div class="group reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15">
-                        <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg mb-4">
-                            <img src="images/Microsoft.png" alt="Microsoft" class="max-h-12 object-contain">
-                        </div>
-                        <h3 class="text-white font-bold text-lg">Microsoft</h3>
+                    <div class="reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center">
+                        <img src="/images/Microsoft.png" class="max-h-12 object-contain">
+                        <h3 class="font-bold text-lg mt-4">Microsoft</h3>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15">
-                        <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg mb-4">
-                            <img src="images/hp.png" alt="HP" class="max-h-12 object-contain">
-                        </div>
-                        <h3 class="text-white font-bold text-lg">HP</h3>
+                    <div class="reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center">
+                        <img src="/images/hp.png" class="max-h-12 object-contain">
+                        <h3 class="font-bold text-lg mt-4">HP</h3>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15">
-                        <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg mb-4">
-                            <img src="images/cisco.png" alt="Cisco" class="max-h-12 object-contain">
-                        </div>
-                        <h3 class="text-white font-bold text-lg">Cisco</h3>
+                    <div class="reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center">
+                        <img src="/images/cisco.png" class="max-h-12 object-contain">
+                        <h3 class="font-bold text-lg mt-4">Cisco</h3>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15">
-                        <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg mb-4">
-                            <img src="images/paloalto.png" alt="Palo Alto" class="max-h-12 object-contain">
-                        </div>
-                        <h3 class="text-white font-bold text-lg">Palo Alto</h3>
+                    <div class="reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center">
+                        <img src="/images/paloalto.png" class="max-h-12 object-contain">
+                        <h3 class="font-bold text-lg mt-4">Palo Alto</h3>
                     </div>
 
-                    <div class="group reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15">
-                        <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg mb-4">
-                            <img src="images/superema.png" alt="Suprema" class="max-h-12 object-contain">
-                        </div>
-                        <h3 class="text-white font-bold text-lg">Suprema</h3>
+                    <div class="reveal rounded-3xl glass-card p-6 min-h-[170px] flex flex-col items-center justify-center">
+                        <img src="/images/superema.png" class="max-h-12 object-contain">
+                        <h3 class="font-bold text-lg mt-4">Suprema</h3>
                     </div>
-
                 </div>
-
-                <p class="text-center text-white/70 mt-12 text-lg reveal">
-                    نفخر بشراكاتنا الاستراتيجية مع كبرى الشركات التقنية العالمية
-                </p>
             </div>
-        </div>
+        </section>
 
         <!-- CLIENTS -->
-        <div class="relative py-24 overflow-hidden">
-            <div class="absolute left-[10%] top-[20%] h-72 w-72 rounded-full bg-fuchsia-400/10 blur-3xl"></div>
-            <div class="absolute right-[10%] bottom-[10%] h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"></div>
-
-            <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+        <section class="relative py-24 px-6">
+            <div class="max-w-[1400px] mx-auto">
                 <div class="text-center mb-16 reveal">
-                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-300/25 text-fuchsia-200 text-sm backdrop-blur-sm">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-300/25 text-fuchsia-200 text-sm">
                         <span class="w-2 h-2 rounded-full bg-fuchsia-400"></span>
                         نحن نفخر
                     </span>
 
-                    <h2 class="mt-5 text-white text-4xl md:text-5xl font-black">
-                        عملاؤنا
-                    </h2>
-
-                    <p class="mt-4 text-white/85 text-lg max-w-2xl mx-auto leading-8">
-                        نفخر بشراكتنا مع كبرى المؤسسات الحكومية والخاصة في المملكة
-                        وتقديم حلول تقنية تساهم في رفع الكفاءة وتحقيق الأثر.
-                    </p>
+                    <h2 class="mt-5 text-4xl md:text-5xl font-black">عملاؤنا</h2>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6">
-
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/الاتصالات_السعودية.png" alt="الاتصالات السعودية" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">الاتصالات السعودية</h3>
-                        </div>
+                    <div class="reveal rounded-3xl glass-card p-5 min-h-[190px] flex flex-col items-center justify-center">
+                        <img src="/images/الاتصالات_السعودية.png" class="max-h-14 object-contain">
+                        <h3 class="font-bold mt-4">الاتصالات السعودية</h3>
                     </div>
 
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/الدرعية.png" alt="الدرعية" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">الدرعية</h3>
-                        </div>
+                    <div class="reveal rounded-3xl glass-card p-5 min-h-[190px] flex flex-col items-center justify-center">
+                        <img src="/images/الدرعية.png" class="max-h-14 object-contain">
+                        <h3 class="font-bold mt-4">الدرعية</h3>
                     </div>
 
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/تبوك.png" alt="تبوك" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">تبوك</h3>
-                        </div>
+                    <div class="reveal rounded-3xl glass-card p-5 min-h-[190px] flex flex-col items-center justify-center">
+                        <img src="/images/تبوك.png" class="max-h-14 object-contain">
+                        <h3 class="font-bold mt-4">تبوك</h3>
                     </div>
 
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/ديوان_المظالم.png" alt="ديوان المظالم" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">ديوان المظالم</h3>
-                        </div>
+                    <div class="reveal rounded-3xl glass-card p-5 min-h-[190px] flex flex-col items-center justify-center">
+                        <img src="/images/ديوان_المظالم.png" class="max-h-14 object-contain">
+                        <h3 class="font-bold mt-4">ديوان المظالم</h3>
                     </div>
 
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/كاوست.png" alt="كاوست" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">كاوست</h3>
-                        </div>
+                    <div class="reveal rounded-3xl glass-card p-5 min-h-[190px] flex flex-col items-center justify-center">
+                        <img src="/images/وزارة_التعليم.png" class="max-h-14 object-contain">
+                        <h3 class="font-bold mt-4">وزارة التعليم</h3>
                     </div>
 
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/مركز_الأعمال(2).png" alt="مركز الأعمال" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">مركز الأعمال</h3>
-                        </div>
+                    <div class="reveal rounded-3xl glass-card p-5 min-h-[190px] flex flex-col items-center justify-center">
+                        <img src="/images/وزارة_الصحة.png" class="max-h-14 object-contain">
+                        <h3 class="font-bold mt-4">وزارة الصحة</h3>
                     </div>
-
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/مصرف_الراجحي.png" alt="مصرف الراجحي" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">مصرف الراجحي</h3>
-                        </div>
-                    </div>
-
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/نسما_وشركاهم.png" alt="نسما وشركاهم" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">نسما وشركاهم</h3>
-                        </div>
-                    </div>
-
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/هيئة_الزكاة.png" alt="هيئة الزكاة" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">هيئة الزكاة</h3>
-                        </div>
-                    </div>
-
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/وزارة_التعليم.png" alt="وزارة التعليم" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">وزارة التعليم</h3>
-                        </div>
-                    </div>
-
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/وزارة_الحج_والعمرة-.png" alt="وزارة الحج والعمرة" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">وزارة الحج والعمرة</h3>
-                        </div>
-                    </div>
-
-                    <div class="group reveal">
-                        <div class="rounded-3xl glass-card p-5 text-center shadow-[0_10px_40px_rgba(0,0,0,0.20)] transition duration-300 hover:-translate-y-2 hover:bg-white/15 min-h-[210px] flex flex-col items-center justify-center">
-                            <div class="w-24 h-24 bg-white rounded-2xl shadow-md flex items-center justify-center mb-4">
-                                <img src="images/وزارة_الصحة.png" alt="وزارة الصحة" class="max-h-14 object-contain">
-                            </div>
-                            <h3 class="text-white text-base font-bold leading-7">وزارة الصحة</h3>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-        </div>
+        </section>
 
-    </main>
+        <!-- NEWS -->
+        <section class="relative py-24 px-6">
+            <div class="max-w-[1200px] mx-auto">
+                <div class="text-center mb-14 reveal">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-400/15 border border-cyan-400/30 text-cyan-200 text-sm">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                        الأخبار
+                    </span>
+
+                    <h2 class="mt-4 text-4xl md:text-5xl font-black">أخبار وتحديثات</h2>
+
+                    <p class="mt-4 text-white/70 text-lg">
+                        تابع آخر أخبارنا ومستجداتنا في عالم التقنية والتحول الرقمي
+                    </p>
+                </div>
+
+                <div class="rounded-[34px] bg-white/5 border border-white/10 overflow-hidden reveal">
+                    <div class="grid grid-cols-1 lg:grid-cols-2">
+                        <div class="relative min-h-[360px]">
+                            <img src="/images/news-saudi.png" class="absolute inset-0 w-full h-full object-cover grayscale opacity-90">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#071225] via-transparent to-transparent"></div>
+                        </div>
+
+                        <div class="p-8 md:p-12 text-right flex flex-col justify-center">
+                            <div class="text-cyan-300 mb-6">📅 فبراير 10 2026</div>
+
+                            <h3 class="text-3xl md:text-4xl font-black leading-snug">
+                                مشاركتنا في المنتدى السعودي
+                                <br>
+                                للتقنية والابتكار 2026
+                            </h3>
+
+                            <p class="mt-6 text-white/75 text-lg leading-9">
+                                شاركت الشركة في أحد أبرز الأحداث التقنية في المملكة، حيث عرضت أحدث حلولها وابتكاراتها التقنية.
+                            </p>
+
+                            <a href="#" class="mt-8 inline-flex w-fit rounded-2xl bg-gradient-to-l from-blue-500 to-cyan-400 px-7 py-3 font-bold">
+                                اقرأ المزيد ←
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
 
     <script>
         const revealItems = document.querySelectorAll('.reveal');
+
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -534,5 +352,4 @@
         window.addEventListener('scroll', updateParallax, { passive: true });
     </script>
 
-</body>
-</html>
+</div>
