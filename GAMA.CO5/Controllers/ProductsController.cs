@@ -87,6 +87,8 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             if (product == null)
                 return NotFound();
 
+            ViewBag.PageTitle = product.Name;
+
             return View(product);
         }
     }
