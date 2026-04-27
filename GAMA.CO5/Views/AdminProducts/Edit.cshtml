@@ -2,119 +2,279 @@
 
 @{
     ViewData["Title"] = "تعديل منتج";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
     var imageUrl = string.IsNullOrWhiteSpace(Model.ImageUrl)
         ? "/images/products/placeholder.jpg"
         : Model.ImageUrl;
 }
 
-<div class="container py-4">
-    <div class="mb-4">
-        <h2 class="fw-bold mb-1">تعديل منتج</h2>
-        <p class="text-muted mb-0">حدّث بيانات المنتج الظاهرة في الموقع.</p>
+<div class="admin-product-form-page">
+
+    <!-- HERO -->
+    <div class="product-form-hero">
+        <div>
+            <span class="hero-badge">GAMA Products</span>
+            <h2>تعديل منتج</h2>
+            <p>حدّث بيانات المنتج الظاهرة في الموقع.</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            <i class="fa-solid fa-arrow-right"></i>
+            رجوع
+        </a>
     </div>
 
-    <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body p-4">
-            <form asp-action="Edit" method="post" enctype="multipart/form-data">
-                <input asp-for="Id" type="hidden" />
-                <input asp-for="ImageUrl" type="hidden" />
+    <!-- CARD -->
+    <div class="product-form-card">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="ImageUrl" type="hidden" />
 
-                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-                <div class="row g-4">
-                    <div class="col-lg-4">
-                        <label class="form-label fw-semibold">الصورة الحالية</label>
-                        <div class="border rounded-4 p-3 bg-light text-center">
-                            <img src="@imageUrl"
-                                 alt="@Model.Name"
-                                 onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';"
-                                 class="img-fluid rounded-4"
-                                 style="max-height:260px; object-fit:cover;" />
-                        </div>
-                    </div>
+            <div class="form-main-grid">
 
-                    <div class="col-lg-8">
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <label asp-for="Name" class="form-label fw-semibold">اسم المنتج</label>
-                                <input asp-for="Name" class="form-control form-control-lg" />
-                                <span asp-validation-for="Name" class="text-danger small"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label asp-for="Category" class="form-label fw-semibold">التصنيف</label>
-                                <input asp-for="Category" class="form-control form-control-lg" />
-                                <span asp-validation-for="Category" class="text-danger small"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label asp-for="BadgeText" class="form-label fw-semibold">نص الشارة</label>
-                                <input asp-for="BadgeText" class="form-control form-control-lg" />
-                                <span asp-validation-for="BadgeText" class="text-danger small"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label asp-for="BadgeClass" class="form-label fw-semibold">لون الشارة</label>
-                                <select asp-for="BadgeClass" class="form-select form-select-lg">
-                                    <option value="">افتراضي</option>
-                                    <option value="primary">Primary</option>
-                                    <option value="purple">Purple</option>
-                                    <option value="success">Success</option>
-                                    <option value="green">Green</option>
-                                    <option value="warning">Warning</option>
-                                    <option value="yellow">Yellow</option>
-                                    <option value="danger">Danger</option>
-                                    <option value="red">Red</option>
-                                    <option value="info">Info</option>
-                                    <option value="blue">Blue</option>
-                                    <option value="dark">Dark</option>
-                                </select>
-                                <span asp-validation-for="BadgeClass" class="text-danger small"></span>
-                            </div>
-
-                            <div class="col-12">
-                                <label asp-for="Description" class="form-label fw-semibold">الوصف</label>
-                                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-                                <span asp-validation-for="Description" class="text-danger small"></span>
-                            </div>
-
-                            <div class="col-12">
-                                <label asp-for="Features" class="form-label fw-semibold">المميزات</label>
-                                <textarea asp-for="Features" class="form-control" rows="3"></textarea>
-                                <span asp-validation-for="Features" class="text-danger small"></span>
-                                <div class="form-text">افصل بين المميزات بفاصلة.</div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label asp-for="ImageFile" class="form-label fw-semibold">تغيير الصورة</label>
-                                <input asp-for="ImageFile" type="file" class="form-control" />
-                                <span asp-validation-for="ImageFile" class="text-danger small"></span>
-                            </div>
-
-                            <div class="col-md-6 d-flex align-items-end">
-                                <div class="form-check form-switch fs-5">
-                                    <input asp-for="IsFeatured" class="form-check-input" />
-                                    <label asp-for="IsFeatured" class="form-check-label fw-semibold">
-                                        منتج مميز
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                <!-- IMAGE -->
+                <div class="image-box">
+                    <label>الصورة الحالية</label>
+                    <div class="image-preview">
+                        <img src="@imageUrl"
+                             onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
                     </div>
                 </div>
 
-                <div class="d-flex gap-2 mt-4">
-                    <button type="submit" class="btn btn-primary px-4">
-                        تحديث
-                    </button>
-                    <a asp-action="Index" class="btn btn-secondary px-4">
-                        رجوع
-                    </a>
+                <!-- FORM -->
+                <div>
+                    <div class="form-grid">
+
+                        <div class="field">
+                            <label asp-for="Name">اسم المنتج</label>
+                            <input asp-for="Name" />
+                        </div>
+
+                        <div class="field">
+                            <label asp-for="Category">التصنيف</label>
+                            <input asp-for="Category" />
+                        </div>
+
+                        <div class="field">
+                            <label asp-for="BadgeText">نص الشارة</label>
+                            <input asp-for="BadgeText" />
+                        </div>
+
+                        <div class="field">
+                            <label asp-for="BadgeClass">لون الشارة</label>
+                            <select asp-for="BadgeClass">
+                                <option value="">افتراضي</option>
+                                <option value="primary">Primary</option>
+                                <option value="purple">Purple</option>
+                                <option value="success">Success</option>
+                                <option value="green">Green</option>
+                                <option value="warning">Warning</option>
+                                <option value="yellow">Yellow</option>
+                                <option value="danger">Danger</option>
+                                <option value="red">Red</option>
+                                <option value="info">Info</option>
+                                <option value="blue">Blue</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="field mt-4">
+                        <label asp-for="Description">الوصف</label>
+                        <textarea asp-for="Description" rows="5"></textarea>
+                    </div>
+
+                    <div class="field mt-4">
+                        <label asp-for="Features">المميزات</label>
+                        <textarea asp-for="Features" rows="3"></textarea>
+                        <small class="hint">افصل بين المميزات بفاصلة.</small>
+                    </div>
+
+                    <div class="form-grid mt-4">
+
+                        <div class="field">
+                            <label asp-for="ImageFile">تغيير الصورة</label>
+                            <input asp-for="ImageFile" type="file" />
+                        </div>
+
+                        <div class="featured-box">
+                            <input asp-for="IsFeatured" />
+                            <label asp-for="IsFeatured">منتج مميز</label>
+                        </div>
+
+                    </div>
+
                 </div>
-            </form>
-        </div>
+
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    تحديث
+                </button>
+
+                <a asp-action="Index" class="btn-cancel">
+                    إلغاء
+                </a>
+            </div>
+        </form>
     </div>
 </div>
+
+@section Styles {
+    <style>
+
+        .admin-product-form-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29,78,216,.16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        /* HERO */
+        .product-form-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-badge {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .product-form-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .product-form-hero p {
+            margin-top: 8px;
+            color: #cbd5f5;
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,.12);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 18px;
+            text-decoration: none;
+        }
+
+            .btn-back:hover {
+                color: white;
+            }
+
+        /* CARD */
+        .product-form-card {
+            border-radius: 30px;
+            background: white;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.08);
+        }
+
+        /* GRID */
+        .form-main-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px;
+        }
+
+        /* IMAGE */
+        .image-box label {
+            font-weight: 900;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .image-preview {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+            .image-preview img {
+                width: 100%;
+                height: 240px;
+                object-fit: cover;
+            }
+
+        /* FORM */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .field {
+            text-align: right;
+        }
+
+            .field label {
+                font-weight: 900;
+                margin-bottom: 6px;
+                display: block;
+            }
+
+            .field input,
+            .field textarea,
+            .field select {
+                width: 100%;
+                padding: 12px;
+                border-radius: 14px;
+                border: 1px solid #dbe6f5;
+                background: #f8fbff;
+            }
+
+        .hint {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* FEATURED */
+        .featured-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ACTIONS */
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 16px;
+            border: none;
+        }
+
+        .btn-cancel {
+            background: #e2e8f0;
+            padding: 12px 22px;
+            border-radius: 16px;
+            text-decoration: none;
+        }
+
+    </style>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

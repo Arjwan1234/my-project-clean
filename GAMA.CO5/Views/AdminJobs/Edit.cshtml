@@ -2,54 +2,281 @@
 
 @{
     ViewData["Title"] = "تعديل وظيفة";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container py-5">
-    <h2 class="mb-4">تعديل وظيفة</h2>
+<div class="admin-job-form-page">
 
-    <form asp-action="Edit" method="post">
-        <input type="hidden" asp-for="Id" />
-        <input type="hidden" asp-for="CreatedAt" />
-
-        <div class="mb-3">
-            <label asp-for="Title" class="form-label">اسم الوظيفة</label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
+    <div class="form-hero">
+        <div>
+            <span class="hero-badge">GAMA HR</span>
+            <h2>تعديل وظيفة</h2>
+            <p>عدّلي بيانات الوظيفة واحفظي التغييرات بسهولة.</p>
         </div>
 
-        <div class="mb-3">
-            <label asp-for="Department" class="form-label">القسم</label>
-            <input asp-for="Department" class="form-control" />
-            <span asp-validation-for="Department" class="text-danger"></span>
-        </div>
+        <a asp-action="Index" class="btn-back">
+            <i class="fa-solid fa-arrow-right"></i>
+            رجوع
+        </a>
+    </div>
 
-        <div class="mb-3">
-            <label asp-for="Location" class="form-label">المدينة</label>
-            <input asp-for="Location" class="form-control" />
-            <span asp-validation-for="Location" class="text-danger"></span>
-        </div>
+    <div class="form-card">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedAt" />
 
-        <div class="mb-3">
-            <label asp-for="Type" class="form-label">نوع الوظيفة</label>
-            <input asp-for="Type" class="form-control" />
-            <span asp-validation-for="Type" class="text-danger"></span>
-        </div>
+            <div class="form-grid">
+                <div class="field">
+                    <label asp-for="Title">اسم الوظيفة</label>
+                    <input asp-for="Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
 
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label">الوصف</label>
-            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+                <div class="field">
+                    <label asp-for="Department">القسم</label>
+                    <input asp-for="Department" />
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
 
-        <div class="form-check mb-3">
-            <input asp-for="IsActive" class="form-check-input" />
-            <label asp-for="IsActive" class="form-check-label">الوظيفة مفعلة</label>
-        </div>
+                <div class="field">
+                    <label asp-for="Location">المدينة</label>
+                    <input asp-for="Location" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
 
-        <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
-        <a asp-action="Index" class="btn btn-secondary">رجوع</a>
-    </form>
+                <div class="field">
+                    <label asp-for="Type">نوع الوظيفة</label>
+                    <input asp-for="Type" />
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="field mt-4">
+                <label asp-for="Description">الوصف</label>
+                <textarea asp-for="Description" rows="6"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="active-box">
+                <input asp-for="IsActive" />
+                <label asp-for="IsActive">الوظيفة مفعلة</label>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    حفظ التعديلات
+                </button>
+
+                <a asp-action="Index" class="btn-cancel">
+                    إلغاء
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
+
+@section Styles {
+    <style>
+        .admin-job-form-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29, 78, 216, .16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .form-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7, 20, 43, .22);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 12px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.18);
+            font-weight: 900;
+            font-size: 12px;
+            color: #dbeafe;
+        }
+
+        .form-hero h2 {
+            margin: 0;
+            font-size: 34px;
+            font-weight: 900;
+        }
+
+        .form-hero p {
+            margin: 10px 0 0;
+            color: #dbeafe;
+            font-weight: 600;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 900;
+            color: white;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.18);
+            transition: .25s;
+            white-space: nowrap;
+        }
+
+            .btn-back:hover {
+                color: white;
+                background: rgba(255,255,255,.18);
+                transform: translateY(-2px);
+            }
+
+        .form-card {
+            border-radius: 30px;
+            background: rgba(255,255,255,.95);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 24px 60px rgba(15,23,42,.10);
+            padding: 32px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .field {
+            text-align: right;
+        }
+
+            .field label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 900;
+                color: #07142b;
+            }
+
+            .field input,
+            .field textarea {
+                width: 100%;
+                border: 1px solid #d6e0ee;
+                border-radius: 16px;
+                padding: 13px 15px;
+                outline: none;
+                background: #f8fbff;
+                color: #0f172a;
+                font-weight: 700;
+                transition: .2s;
+            }
+
+                .field input:focus,
+                .field textarea:focus {
+                    border-color: #0f3d75;
+                    box-shadow: 0 0 0 4px rgba(15, 61, 117, .10);
+                    background: white;
+                }
+
+        .active-box {
+            margin-top: 22px;
+            padding: 16px;
+            border-radius: 18px;
+            background: #f8fbff;
+            border: 1px solid #dbe6f5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-start;
+            flex-direction: row-reverse;
+        }
+
+            .active-box input {
+                width: 18px;
+                height: 18px;
+                accent-color: #0f3d75;
+            }
+
+            .active-box label {
+                margin: 0;
+                font-weight: 900;
+                color: #07142b;
+            }
+
+        .form-actions {
+            margin-top: 28px;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-start;
+        }
+
+        .btn-save,
+        .btn-cancel {
+            border: none;
+            border-radius: 18px;
+            padding: 13px 22px;
+            font-weight: 900;
+            text-decoration: none;
+            transition: .25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 14px 30px rgba(7, 20, 43, .22);
+        }
+
+            .btn-save:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 18px 38px rgba(7, 20, 43, .30);
+            }
+
+        .btn-cancel {
+            background: #eef2f7;
+            color: #334155;
+        }
+
+            .btn-cancel:hover {
+                color: #334155;
+                background: #e2e8f0;
+                transform: translateY(-2px);
+            }
+
+        @@media(max-width: 768px) {
+            .form-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-back,
+            .btn-save,
+            .btn-cancel {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

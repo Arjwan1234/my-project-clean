@@ -2,35 +2,238 @@
 
 @{
     ViewData["Title"] = "إدارة الخدمات";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>إدارة الخدمات</h2>
+<div class="admin-services-page">
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">إضافة خدمة جديدة</a>
-</p>
+    <div class="services-hero">
+        <div>
+            <span class="hero-badge">GAMA Services</span>
+            <h2>إدارة الخدمات</h2>
+            <p>إدارة الخدمات التي تظهر في صفحة الخدمات العامة.</p>
+        </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>العنوان</th>
-            <th>الوصف</th>
-            <th>الأيقونة</th>
-            <th>الإجراءات</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var service in Model)
-        {
-            <tr>
-                <td>@service.Title</td>
-                <td>@service.Description</td>
-                <td>@service.Icon</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@service.Id">تعديل</a> |
-                    <a asp-action="Delete" asp-route-id="@service.Id">حذف</a>
-                </td>
-            </tr>
+        <a asp-action="Create" class="btn-add">
+            <i class="fa-solid fa-plus"></i>
+            إضافة خدمة
+        </a>
+    </div>
+
+    <div class="services-card">
+        <table class="services-table">
+            <thead>
+                <tr>
+                    <th>العنوان</th>
+                    <th>الوصف</th>
+                    <th>الأيقونة</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var service in Model)
+                {
+                    <tr>
+                        <td class="service-title">@service.Title</td>
+                        <td class="service-desc">@service.Description</td>
+                        <td>
+                            <span class="icon-pill">@service.Icon</span>
+                        </td>
+                        <td>
+                            <div class="actions">
+                                <a asp-action="Edit" asp-route-id="@service.Id" class="btn-edit">
+                                    تعديل
+                                </a>
+
+                                <a asp-action="Delete" asp-route-id="@service.Id" class="btn-delete">
+                                    حذف
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .admin-services-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29, 78, 216, .16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
         }
-    </tbody>
-</table>
+
+        .services-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7,20,43,.22);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.2);
+            font-size: 12px;
+            font-weight: 900;
+            color: #dbeafe;
+        }
+
+        .services-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .services-hero p {
+            margin-top: 8px;
+            color: #cbd5f5;
+            font-weight: 600;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #d4af37, #f6d76b);
+            color: #07142b;
+            padding: 12px 22px;
+            border-radius: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: .25s;
+            white-space: nowrap;
+        }
+
+            .btn-add:hover {
+                color: #07142b;
+                transform: translateY(-2px);
+                box-shadow: 0 14px 30px rgba(212,175,55,.28);
+            }
+
+        .services-card {
+            border-radius: 28px;
+            overflow-x: auto;
+            background: rgba(255,255,255,.95);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 24px 60px rgba(15,23,42,.1);
+        }
+
+        .services-table {
+            width: 100%;
+            min-width: 850px;
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+            .services-table thead {
+                background: linear-gradient(135deg, #07142b, #0f3d75);
+                color: white;
+            }
+
+            .services-table th {
+                padding: 18px;
+                font-size: 14px;
+                font-weight: 900;
+                white-space: nowrap;
+            }
+
+            .services-table td {
+                padding: 18px;
+                border-bottom: 1px solid #e5edf7;
+                color: #334155;
+                font-weight: 700;
+                vertical-align: middle;
+            }
+
+            .services-table tbody tr {
+                transition: .2s;
+            }
+
+                .services-table tbody tr:hover {
+                    background: #f1f6ff;
+                }
+
+        .service-title {
+            color: #07142b !important;
+            font-weight: 900 !important;
+            white-space: nowrap;
+        }
+
+        .service-desc {
+            max-width: 520px;
+            line-height: 1.8;
+        }
+
+        .icon-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 48px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #eef4ff;
+            color: #0f3d75;
+            font-weight: 900;
+            border: 1px solid #dbe6f5;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            transition: .2s;
+            white-space: nowrap;
+        }
+
+        .btn-edit {
+            background: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+        }
+
+        .btn-delete {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+            .btn-edit:hover,
+            .btn-delete:hover {
+                transform: translateY(-1px);
+            }
+
+        @@media(max-width: 768px) {
+            .services-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn-add {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+}

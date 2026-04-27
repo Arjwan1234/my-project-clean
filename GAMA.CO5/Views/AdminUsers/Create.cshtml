@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "إضافة مستخدم";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <h2 class="fw-bold mb-4">إضافة مستخدم</h2>
+
+    <div class="card shadow-sm border-0 p-4">
+        <form action="/AdminUsers/Create" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="All" class="alert alert-danger"></div>
+
+            <div class="mb-3">
+                <label class="form-label">الإيميل</label>
+                <input name="email"
+                       type="email"
+                       class="form-control"
+                       required
+                       placeholder="hr@gama.com" />
+
+                <small class="text-muted">
+                    يجب أن ينتهي بـ @@gama.com
+                </small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">رقم الجوال</label>
+                <input name="phoneNumber"
+                       class="form-control"
+                       placeholder="+9665XXXXXXXX" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">كلمة المرور</label>
+                <input name="password"
+                       type="password"
+                       class="form-control"
+                       required
+                       placeholder="Admin@123456" />
+
+                <small class="text-muted">
+                    لازم تحتوي حرف كبير + رقم + رمز
+                </small>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mb-2">
+                حفظ
+            </button>
+
+            <a href="/AdminUsers" class="btn btn-secondary w-100">
+                رجوع
+            </a>
+        </form>
+    </div>
+</div>
