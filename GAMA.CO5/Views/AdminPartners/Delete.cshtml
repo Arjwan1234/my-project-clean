@@ -2,34 +2,288 @@
 
 @{
     ViewData["Title"] = "حذف الشريك";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>حذف الشريك</h2>
+<div class="admin-delete-page">
 
-<h4>هل أنت متأكد من حذف هذا الشريك؟</h4>
+    <div class="delete-hero">
+        <div>
+            <span class="hero-badge">GAMA Partners</span>
+            <h2>حذف الشريك</h2>
+            <p>تأكدي من بيانات الشريك قبل تنفيذ عملية الحذف.</p>
+        </div>
 
-<div>
-    <hr />
+        <a asp-action="Index" class="btn-back">
+            <i class="fa-solid fa-arrow-right"></i>
+            رجوع
+        </a>
+    </div>
 
-    @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
-    {
-        <img src="@Model.LogoUrl" alt="@Model.Name" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin-bottom:15px;" />
-    }
+    <div class="delete-card">
+        <div class="warning-box">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+                <h3>هل أنت متأكد من حذف هذا الشريك؟</h3>
+                <p>لا يمكن التراجع عن هذه العملية بعد تأكيد الحذف.</p>
+            </div>
+        </div>
 
-    <dl class="row">
-        <dt class="col-sm-2">الاسم</dt>
-        <dd class="col-sm-10">@Model.Name</dd>
+        <div class="partner-summary">
+            @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
+            {
+                <div class="logo-preview">
+                    <img src="@Model.LogoUrl" alt="@Model.Name" />
+                </div>
+            }
 
-        <dt class="col-sm-2">الوصف</dt>
-        <dd class="col-sm-10">@Model.Description</dd>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span>الاسم</span>
+                    <strong>@Model.Name</strong>
+                </div>
 
-        <dt class="col-sm-2">رابط الموقع</dt>
-        <dd class="col-sm-10">@Model.WebsiteUrl</dd>
-    </dl>
+                <div class="detail-item">
+                    <span>الوصف</span>
+                    <strong>@Model.Description</strong>
+                </div>
 
-    <form asp-action="Delete" method="post">
-        <input type="hidden" asp-for="Id" />
-        <button type="submit" class="btn btn-danger">تأكيد الحذف</button>
-        <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
-    </form>
+                <div class="detail-item">
+                    <span>رابط الموقع</span>
+                    <strong>@Model.WebsiteUrl</strong>
+                </div>
+            </div>
+        </div>
+
+        <form asp-action="Delete" method="post" class="delete-actions">
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn-delete-confirm">
+                <i class="fa-solid fa-trash"></i>
+                تأكيد الحذف
+            </button>
+
+            <a asp-action="Index" class="btn-cancel">
+                إلغاء
+            </a>
+        </form>
+    </div>
 </div>
+
+@section Styles {
+    <style>
+        .admin-delete-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(220,38,38,.12), transparent 26%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .delete-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7,20,43,.22);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.2);
+            font-size: 12px;
+            font-weight: 900;
+            color: #dbeafe;
+        }
+
+        .delete-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .delete-hero p {
+            margin: 8px 0 0;
+            color: #cbd5f5;
+            font-weight: 600;
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,.12);
+            color: white;
+            border: 1px solid rgba(255,255,255,.18);
+            padding: 12px 22px;
+            border-radius: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .25s;
+            white-space: nowrap;
+        }
+
+            .btn-back:hover {
+                color: white;
+                background: rgba(255,255,255,.18);
+                transform: translateY(-2px);
+            }
+
+        .delete-card {
+            border-radius: 30px;
+            background: rgba(255,255,255,.95);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 24px 60px rgba(15,23,42,.10);
+            padding: 32px;
+        }
+
+        .warning-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px;
+            border-radius: 22px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            margin-bottom: 24px;
+        }
+
+            .warning-box i {
+                font-size: 30px;
+            }
+
+            .warning-box h3 {
+                margin: 0;
+                font-size: 20px;
+                font-weight: 900;
+            }
+
+            .warning-box p {
+                margin: 6px 0 0;
+                font-weight: 700;
+            }
+
+        .partner-summary {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .logo-preview {
+            border-radius: 24px;
+            background: #f8fbff;
+            border: 1px solid #dbe6f5;
+            padding: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .logo-preview img {
+                width: 120px;
+                height: 120px;
+                object-fit: contain;
+                border-radius: 18px;
+                background: white;
+            }
+
+        .details-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .detail-item {
+            padding: 16px;
+            border-radius: 18px;
+            background: #f8fbff;
+            border: 1px solid #e2eaf5;
+            text-align: right;
+        }
+
+            .detail-item span {
+                display: block;
+                color: #64748b;
+                font-size: 13px;
+                font-weight: 900;
+                margin-bottom: 5px;
+            }
+
+            .detail-item strong {
+                color: #07142b;
+                font-weight: 900;
+            }
+
+        .delete-actions {
+            margin-top: 28px;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-start;
+        }
+
+        .btn-delete-confirm,
+        .btn-cancel {
+            border: none;
+            border-radius: 18px;
+            padding: 13px 22px;
+            font-weight: 900;
+            text-decoration: none;
+            transition: .25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-delete-confirm {
+            background: linear-gradient(135deg, #991b1b, #dc2626);
+            color: white;
+            box-shadow: 0 14px 30px rgba(220,38,38,.22);
+        }
+
+            .btn-delete-confirm:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 18px 38px rgba(220,38,38,.30);
+            }
+
+        .btn-cancel {
+            background: #eef2f7;
+            color: #334155;
+        }
+
+            .btn-cancel:hover {
+                color: #334155;
+                background: #e2e8f0;
+                transform: translateY(-2px);
+            }
+
+        @@media(max-width: 768px) {
+            .delete-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .partner-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-back,
+            .btn-delete-confirm,
+            .btn-cancel {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .delete-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+}

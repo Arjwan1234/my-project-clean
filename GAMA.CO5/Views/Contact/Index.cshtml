@@ -5,8 +5,6 @@
 }
 
 <section class="contact-luxury-hero">
-    <div class="contact-luxury-hero-overlay"></div>
-
     <div class="container contact-luxury-hero-content">
         <h1>تواصل معنا</h1>
         <p>نسعد بخدمتكم والإجابة على استفساراتكم</p>
@@ -25,7 +23,6 @@
 
         <div class="contact-grid">
 
-            <!-- معلومات التواصل -->
             <div class="contact-info-card">
                 <h2>معلومات التواصل</h2>
                 <p class="box-subtitle">
@@ -34,7 +31,7 @@
 
                 <div class="info-item">
                     <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div>
+                    <div class="info-content">
                         <span>الموقع</span>
                         <strong>جدة - حي النهضة - شارع عبدالرحمن الداخل</strong>
                     </div>
@@ -42,7 +39,7 @@
 
                 <div class="info-item">
                     <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
-                    <div>
+                    <div class="info-content">
                         <span>رقم الهاتف</span>
                         <strong dir="ltr">+966 XX XXX XXXX</strong>
                     </div>
@@ -50,7 +47,7 @@
 
                 <div class="info-item">
                     <div class="info-icon"><i class="fa-regular fa-envelope"></i></div>
-                    <div>
+                    <div class="info-content">
                         <span>البريد الإلكتروني</span>
                         <strong>info@gama-ksa.com</strong>
                     </div>
@@ -59,8 +56,7 @@
                 <div class="map-box">
                     <iframe src="https://www.google.com/maps?q=21.6186859,39.1320377&z=16&output=embed"
                             allowfullscreen=""
-                            loading="lazy">
-                    </iframe>
+                            loading="lazy"></iframe>
                 </div>
 
                 <a href="https://www.google.com/maps/dir//GAMA,+Abdurahman+Al+Dakhel,+النهضة،+جدة+23615"
@@ -71,7 +67,6 @@
                 </a>
             </div>
 
-            <!-- الفورم -->
             <div class="contact-form-card">
                 <h2>أرسل لنا رسالة</h2>
                 <p class="box-subtitle">
@@ -109,6 +104,7 @@
                     </div>
 
                     <button type="submit" class="btn-send">
+                        <i class="fa-regular fa-paper-plane"></i>
                         إرسال الرسالة
                     </button>
                 </form>
@@ -120,15 +116,12 @@
 
 @section Styles {
     <style>
-
         .contact-luxury-hero {
-            position: relative;
             min-height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            /* 🔥 فقط التغميق */
             background: linear-gradient(135deg, rgba(8,34,66,.75), rgba(13,52,97,.65)), url('/images/services-bg.jpg') center center / cover no-repeat;
         }
 
@@ -136,13 +129,13 @@
             color: white;
         }
 
-            /* 🔥 رجعنا حجم الخط مثل أول */
             .contact-luxury-hero-content h1 {
                 font-size: 56px;
                 font-weight: 900;
             }
 
         .contact-page {
+            direction: rtl;
             background: #eef4ff;
             padding: 80px 24px;
         }
@@ -152,68 +145,148 @@
             margin: auto;
         }
 
+        .success-alert {
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            border-radius: 18px;
+            background: #dcfce7;
+            color: #166534;
+            font-weight: 900;
+            text-align: right;
+        }
+
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 28px;
+            align-items: start;
         }
 
         .contact-info-card,
         .contact-form-card {
-            background: #fff;
+            background: white;
             border-radius: 28px;
             padding: 34px;
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .10);
             border-top: 5px solid #0f3d75;
+            text-align: right;
+        }
+
+            .contact-info-card h2,
+            .contact-form-card h2 {
+                font-size: 26px;
+                font-weight: 900;
+                color: #07142b;
+                text-align: right;
+            }
+
+        .box-subtitle {
+            color: #64748b;
+            line-height: 1.9;
+            text-align: right;
+            margin-bottom: 22px;
         }
 
         .info-item {
             display: flex;
             flex-direction: row-reverse;
-            gap: 12px;
+            align-items: center;
+            gap: 14px;
             margin-bottom: 14px;
+            padding: 16px;
+            background: #f8fbff;
+            border: 1px solid #e2eaf5;
+            border-radius: 18px;
+            text-align: right;
         }
 
+        .info-content {
+            flex: 1;
+            text-align: right;
+        }
+
+            .info-content span {
+                display: block;
+                font-size: 13px;
+                color: #64748b;
+                font-weight: 800;
+                margin-bottom: 4px;
+            }
+
+            .info-content strong {
+                display: block;
+                font-size: 15px;
+                color: #0f172a;
+                font-weight: 900;
+                text-align: right;
+            }
+
         .info-icon {
-            width: 45px;
-            height: 45px;
-            background: #0f3d75;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: linear-gradient(135deg, #0f3d75, #1d4f91);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            border-radius: 14px;
+            box-shadow: 0 8px 18px rgba(15, 61, 117, .20);
         }
 
         .map-box {
             margin-top: 20px;
             height: 240px;
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
+            border: 1px solid #dbe6f5;
         }
 
             .map-box iframe {
                 width: 100%;
                 height: 100%;
+                border: 0;
             }
 
         .map-link-btn {
             display: block;
-            margin-top: 10px;
-            padding: 12px;
-            background: #0f3d75;
+            margin-top: 12px;
+            padding: 13px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
             color: white;
             text-align: center;
-            border-radius: 12px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 900;
         }
+
+        .form-group {
+            text-align: right;
+            margin-bottom: 16px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 7px;
+                text-align: right;
+                font-weight: 900;
+                color: #334155;
+            }
 
         .form-control {
             width: 100%;
             height: 50px;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            padding: 10px;
+            border-radius: 14px;
+            border: 1px solid #d6e0ee;
+            padding: 10px 14px;
+            text-align: right;
+            outline: none;
         }
+
+            .form-control:focus {
+                border-color: #0f3d75;
+                box-shadow: 0 0 0 4px rgba(15,61,117,.10);
+            }
 
         .textarea {
             height: 120px;
@@ -221,12 +294,12 @@
 
         .btn-send {
             width: 100%;
-            height: 50px;
-            background: #0f3d75;
+            height: 52px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
             color: white;
             border: none;
-            border-radius: 12px;
-            font-weight: bold;
+            border-radius: 14px;
+            font-weight: 900;
         }
 
         @@media(max-width:900px) {
@@ -234,7 +307,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
     </style>
 }
 

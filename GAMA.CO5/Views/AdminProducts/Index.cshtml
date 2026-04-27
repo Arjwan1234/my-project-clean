@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "إدارة المنتجات";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 
     var featuredTop3Ids = Model?
         .Where(x => x.IsFeatured)
@@ -10,121 +11,347 @@
         .ToList() ?? new List<int>();
 }
 
-<div class="container py-4">
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+<div class="admin-products-page">
+
+    <div class="products-hero">
         <div>
-            <h2 class="fw-bold mb-1">إدارة المنتجات</h2>
-            <p class="text-muted mb-0">إدارة جميع المنتجات التي تظهر في صفحة المنتجات العامة.</p>
+            <span class="hero-badge">GAMA Products</span>
+            <h2>إدارة المنتجات</h2>
+            <p>إدارة المنتجات التي تظهر في صفحة المنتجات العامة.</p>
         </div>
 
-        <a asp-action="Create" class="btn btn-primary">
-            + إضافة منتج
+        <a asp-action="Create" class="btn-add">
+            <i class="fa-solid fa-plus"></i>
+            إضافة منتج
         </a>
     </div>
 
-    <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table align-middle text-center mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="py-3">الصورة</th>
-                            <th class="py-3">الاسم</th>
-                            <th class="py-3">التصنيف</th>
-                            <th class="py-3">الشارة</th>
-                            <th class="py-3">مميز</th>
-                            <th class="py-3">ضمن أول 3</th>
-                            <th class="py-3">إجراءات</th>
+    <div class="products-card">
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th>الصورة</th>
+                    <th>الاسم</th>
+                    <th>التصنيف</th>
+                    <th>الشارة</th>
+                    <th>مميز</th>
+                    <th>ضمن أول 3</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var product in Model)
+                    {
+                        var isTop3 = featuredTop3Ids.Contains(product.Id);
+                        var imageUrl = string.IsNullOrWhiteSpace(product.ImageUrl)
+                        ? "/images/products/placeholder.jpg"
+                        : product.ImageUrl;
+
+                        <tr class="@(isTop3 ? "top-row" : "")">
+                            <td>
+                                <div class="product-image-box">
+                                    <img src="@imageUrl"
+                                         alt="@product.Name"
+                                         onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';" />
+                                </div>
+                            </td>
+
+                            <td class="product-name">@product.Name</td>
+
+                            <td>
+                                <span class="tag tag-blue">
+                                    @(string.IsNullOrWhiteSpace(product.Category) ? "غير محدد" : product.Category)
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="tag tag-dark">
+                                    @(string.IsNullOrWhiteSpace(product.BadgeText) ? "—" : product.BadgeText)
+                                </span>
+                            </td>
+
+                            <td>
+                                @if (product.IsFeatured)
+                                {
+                                    <span class="tag tag-green">نعم</span>
+                                }
+                                else
+                                {
+                                    <span class="tag tag-red">لا</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (isTop3)
+                                {
+                                    <span class="tag tag-gold">يظهر بالأعلى</span>
+                                }
+                                else
+                                {
+                                    <span class="muted">—</span>
+                                }
+                            </td>
+
+                            <td>
+                                <div class="actions">
+                                    <a asp-action="Edit"
+                                       asp-route-id="@product.Id"
+                                       class="btn-edit">
+                                        تعديل
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@product.Id"
+                                       class="btn-delete">
+                                        حذف
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
-                    </thead>
-
-                    <tbody>
-                        @if (Model != null && Model.Any())
-                        {
-                            @foreach (var product in Model)
-                            {
-                                var isTop3 = featuredTop3Ids.Contains(product.Id);
-                                var imageUrl = string.IsNullOrWhiteSpace(product.ImageUrl)
-                                ? "/images/products/placeholder.jpg"
-                                : product.ImageUrl;
-
-                                <tr class="@(isTop3 ? "table-warning" : "")">
-                                    <td>
-                                        <img src="@imageUrl"
-                                             alt="@product.Name"
-                                             onerror="this.onerror=null;this.src='/images/products/placeholder.jpg';"
-                                             style="width:90px;height:65px;object-fit:cover;border-radius:12px;" />
-                                    </td>
-
-                                    <td class="fw-semibold">
-                                        @product.Name
-                                    </td>
-
-                                    <td>
-                                        <span class="badge bg-secondary">
-                                            @(string.IsNullOrWhiteSpace(product.Category) ? "غير محدد" : product.Category)
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <span class="badge bg-dark">
-                                            @(string.IsNullOrWhiteSpace(product.BadgeText) ? "—" : product.BadgeText)
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        @if (product.IsFeatured)
-                                        {
-                                            <span class="badge bg-success">نعم</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="badge bg-danger">لا</span>
-                                        }
-                                    </td>
-
-                                    <td>
-                                        @if (isTop3)
-                                        {
-                                            <span class="badge bg-warning text-dark">
-                                                يظهر بالأعلى
-                                            </span>
-                                        }
-                                        else
-                                        {
-                                            <span class="text-muted">—</span>
-                                        }
-                                    </td>
-
-                                    <td>
-                                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                                            <a asp-action="Edit"
-                                               asp-route-id="@product.Id"
-                                               class="btn btn-sm btn-outline-primary">
-                                                تعديل
-                                            </a>
-
-                                            <a asp-action="Delete"
-                                               asp-route-id="@product.Id"
-                                               class="btn btn-sm btn-outline-danger">
-                                                حذف
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        }
-                        else
-                        {
-                            <tr>
-                                <td colspan="7" class="py-5 text-muted">
-                                    لا توجد منتجات حالياً.
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="empty">
+                            لا توجد منتجات حالياً.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
+
+@section Styles {
+    <style>
+        .admin-products-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29, 78, 216, .16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .products-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7,20,43,.22);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.2);
+            font-size: 12px;
+            font-weight: 900;
+            color: #dbeafe;
+        }
+
+        .products-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .products-hero p {
+            margin-top: 8px;
+            color: #cbd5f5;
+            font-weight: 600;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #d4af37, #f6d76b);
+            color: #07142b;
+            padding: 12px 22px;
+            border-radius: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: .25s;
+            white-space: nowrap;
+        }
+
+            .btn-add:hover {
+                color: #07142b;
+                transform: translateY(-2px);
+                box-shadow: 0 14px 30px rgba(212,175,55,.28);
+            }
+
+        .products-card {
+            border-radius: 28px;
+            overflow-x: auto;
+            background: rgba(255,255,255,.95);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 24px 60px rgba(15,23,42,.1);
+        }
+
+        .products-table {
+            width: 100%;
+            min-width: 1000px;
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+            .products-table thead {
+                background: linear-gradient(135deg, #07142b, #0f3d75);
+                color: white;
+            }
+
+            .products-table th {
+                padding: 18px;
+                font-size: 14px;
+                font-weight: 900;
+                white-space: nowrap;
+            }
+
+            .products-table td {
+                padding: 18px;
+                border-bottom: 1px solid #e5edf7;
+                color: #334155;
+                font-weight: 700;
+                vertical-align: middle;
+            }
+
+            .products-table tbody tr {
+                transition: .2s;
+            }
+
+                .products-table tbody tr:hover {
+                    background: #f1f6ff;
+                }
+
+            .products-table .top-row {
+                background: #fff8e1;
+            }
+
+        .product-image-box {
+            width: 96px;
+            height: 72px;
+            background: #f8fbff;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #dbe6f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .product-image-box img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .product-name {
+            color: #07142b !important;
+            font-weight: 900 !important;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .tag-blue {
+            background: #eef4ff;
+            color: #0f3d75;
+        }
+
+        .tag-dark {
+            background: #07142b;
+            color: white;
+        }
+
+        .tag-green {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .tag-red {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .tag-gold {
+            background: linear-gradient(135deg, #d4af37, #f6d76b);
+            color: #07142b;
+        }
+
+        .muted {
+            color: #94a3b8;
+            font-weight: 900;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            transition: .2s;
+        }
+
+        .btn-edit {
+            background: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+        }
+
+        .btn-delete {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+            .btn-edit:hover,
+            .btn-delete:hover {
+                transform: translateY(-1px);
+            }
+
+        .empty {
+            padding: 50px !important;
+            text-align: center;
+            color: #64748b !important;
+            font-weight: 900;
+        }
+
+        @@media(max-width: 768px) {
+            .products-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn-add {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+}

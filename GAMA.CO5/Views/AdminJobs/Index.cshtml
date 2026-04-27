@@ -2,51 +2,300 @@
 
 @{
     ViewData["Title"] = "إدارة الوظائف";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>إدارة الوظائف</h2>
+<div class="admin-jobs-page">
 
-        <div class="d-flex gap-2">
-            <a href="/AdminJobApplications" class="btn btn-success">
+    <div class="jobs-hero">
+        <div>
+            <span class="hero-badge">GAMA HR</span>
+            <h2>إدارة الوظائف</h2>
+            <p>إدارة الفرص الوظيفية وطلبات المتقدمين من لوحة واحدة.</p>
+        </div>
+
+        <div class="hero-actions">
+            <a href="/AdminJobApplications" class="btn-luxury btn-gold">
                 <i class="fa-solid fa-file-lines"></i>
                 طلبات التوظيف
             </a>
 
-            <a asp-action="Create" class="btn btn-primary">
-                إضافة وظيفة جديدة
+            <a asp-action="Create" class="btn-luxury btn-primary-dark">
+                <i class="fa-solid fa-plus"></i>
+                إضافة وظيفة
             </a>
         </div>
     </div>
 
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>الوظيفة</th>
-                <th>القسم</th>
-                <th>المدينة</th>
-                <th>النوع</th>
-                <th>مفعلة</th>
-                <th>العمليات</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var job in Model)
-            {
+    <div class="jobs-card">
+        <table class="jobs-table">
+            <thead>
                 <tr>
-                    <td>@job.Title</td>
-                    <td>@job.Department</td>
-                    <td>@job.Location</td>
-                    <td>@job.Type</td>
-                    <td>@(job.IsActive ? "نعم" : "لا")</td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@job.Id" class="btn btn-sm btn-warning">تعديل</a>
-                        <a asp-action="Delete" asp-route-id="@job.Id" class="btn btn-sm btn-danger">حذف</a>
-                    </td>
+                    <th>الوظيفة</th>
+                    <th>القسم</th>
+                    <th>المدينة</th>
+                    <th>النوع</th>
+                    <th>الحالة</th>
+                    <th>العمليات</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                @foreach (var job in Model)
+                {
+                    <tr>
+                        <td class="job-title">@job.Title</td>
+                        <td>@job.Department</td>
+                        <td>@job.Location</td>
+                        <td>@job.Type</td>
+                        <td>
+                            @if (job.IsActive)
+                            {
+                                <span class="status active">مفعلة</span>
+                            }
+                            else
+                            {
+                                <span class="status inactive">غير مفعلة</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="table-actions">
+                                <a asp-action="Edit" asp-route-id="@job.Id" class="action-btn edit">
+                                    تعديل
+                                </a>
+
+                                <a asp-action="Delete" asp-route-id="@job.Id" class="action-btn delete">
+                                    حذف
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+
+@section Styles {
+    <style>
+        .admin-jobs-page {
+            min-height: calc(100vh - 80px);
+            padding: 28px;
+            background:
+                radial-gradient(circle at top right, rgba(29, 78, 216, .16), transparent 28%),
+                linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .jobs-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            box-shadow: 0 24px 60px rgba(7, 20, 43, .22);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jobs-hero::before {
+            content: "";
+            position: absolute;
+            inset: -80px auto auto -80px;
+            width: 220px;
+            height: 220px;
+            background: rgba(255,255,255,.12);
+            border-radius: 999px;
+            filter: blur(20px);
+        }
+
+        .jobs-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 12px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.18);
+            font-weight: 900;
+            font-size: 12px;
+            color: #dbeafe;
+        }
+
+        .jobs-hero h2 {
+            margin: 0;
+            font-size: 34px;
+            font-weight: 900;
+        }
+
+        .jobs-hero p {
+            margin: 10px 0 0;
+            color: #dbeafe;
+            font-weight: 600;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-luxury {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 900;
+            transition: .25s;
+            white-space: nowrap;
+        }
+
+        .btn-luxury:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37, #f6d76b);
+            color: #07142b;
+            box-shadow: 0 14px 30px rgba(212, 175, 55, .28);
+        }
+
+        .btn-gold:hover {
+            color: #07142b;
+            box-shadow: 0 18px 36px rgba(212, 175, 55, .38);
+        }
+
+        .btn-primary-dark {
+            background: rgba(255,255,255,.12);
+            color: white;
+            border: 1px solid rgba(255,255,255,.18);
+        }
+
+        .btn-primary-dark:hover {
+            background: rgba(255,255,255,.18);
+        }
+
+        .jobs-card {
+            overflow-x: auto;
+            border-radius: 28px;
+            background: rgba(255,255,255,.92);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 24px 60px rgba(15,23,42,.10);
+        }
+
+        .jobs-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            min-width: 900px;
+        }
+
+        .jobs-table thead {
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+        }
+
+        .jobs-table th {
+            padding: 18px 22px;
+            font-size: 14px;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .jobs-table td {
+            padding: 18px 22px;
+            border-bottom: 1px solid #e5edf7;
+            color: #334155;
+            font-weight: 700;
+            vertical-align: middle;
+        }
+
+        .jobs-table tbody tr {
+            transition: .2s;
+        }
+
+        .jobs-table tbody tr:hover {
+            background: #f1f6ff;
+        }
+
+        .job-title {
+            color: #07142b !important;
+            font-weight: 900 !important;
+        }
+
+        .status {
+            display: inline-flex;
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .status.active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.inactive {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .table-actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-btn {
+            padding: 8px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            transition: .2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .action-btn.edit {
+            background: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+        }
+
+        .action-btn.delete {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        @@media(max-width: 768px) {
+            .jobs-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-actions {
+                width: 100%;
+            }
+
+            .btn-luxury {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+}

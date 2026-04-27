@@ -19,9 +19,17 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Identity + Roles
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
+
+    // ????? ???? ???? ?????? ??? ?????
+    options.Password.RequiredLength = 6;
+    options.Password.RequireDigit = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
 })
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -38,10 +46,17 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Routes
+app.MapControllerRoute(
+    name: "adminUsers",
+    pattern: "AdminUsers/{action=Index}/{id?}",
+    defaults: new { controller = "AdminUsers" });
 
 app.MapControllerRoute(
     name: "default",
@@ -49,6 +64,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
+// Seed Admin Role + Admin User
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -85,6 +101,9 @@ using (var scope = app.Services.CreateScope())
     }
     else
     {
+        adminUser.EmailConfirmed = true;
+        await userManager.UpdateAsync(adminUser);
+
         if (!await userManager.IsInRoleAsync(adminUser, adminRole))
         {
             await userManager.AddToRoleAsync(adminUser, adminRole);

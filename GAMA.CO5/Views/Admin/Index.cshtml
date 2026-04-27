@@ -3,29 +3,224 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="admin-home-card">
-    <h2>مرحبًا بك في لوحة التحكم</h2>
-    <p>اختَر من القائمة اليمنى القسم الذي تريد إدارته.</p>
+<div class="admin-dashboard-page">
+
+    <div class="dashboard-hero">
+        <div>
+            <span class="hero-badge">GAMA Admin</span>
+            <h2>مرحبًا بك في لوحة التحكم</h2>
+            <p>إدارة محتوى الموقع، الوظائف، المنتجات، الخدمات، والشركاء من مكان واحد.</p>
+        </div>
+
+        <div class="hero-icon">
+            <i class="fa-solid fa-chart-line"></i>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <a href="/AdminJobs" class="dashboard-card">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3>إدارة الوظائف</h3>
+            <p>إضافة وتعديل الوظائف ومتابعة الطلبات.</p>
+        </a>
+
+        <a href="/AdminJobApplications" class="dashboard-card gold">
+            <i class="fa-solid fa-file-lines"></i>
+            <h3>طلبات التوظيف</h3>
+            <p>عرض بيانات المتقدمين والسير الذاتية.</p>
+        </a>
+
+        <a href="/AdminServices" class="dashboard-card">
+            <i class="fa-solid fa-gears"></i>
+            <h3>إدارة الخدمات</h3>
+            <p>تحديث خدمات الشركة والصور والفيديوهات.</p>
+        </a>
+
+        <a href="/AdminProducts" class="dashboard-card">
+            <i class="fa-solid fa-box-open"></i>
+            <h3>إدارة المنتجات</h3>
+            <p>إدارة المنتجات والتصنيفات والعروض.</p>
+        </a>
+
+        <a href="/AdminPartners" class="dashboard-card">
+            <i class="fa-solid fa-handshake"></i>
+            <h3>إدارة الشركاء</h3>
+            <p>إضافة شعارات وبيانات الشركاء.</p>
+        </a>
+
+        <a href="/AdminContactMessages" class="dashboard-card">
+            <i class="fa-solid fa-envelope"></i>
+            <h3>رسائل التواصل</h3>
+            <p>متابعة رسائل العملاء والاستفسارات.</p>
+        </a>
+    </div>
+
 </div>
 
-<style>
-    .admin-home-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 32px;
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-    }
-
-        .admin-home-card h2 {
-            font-size: 2rem;
-            font-weight: 900;
-            margin-bottom: 12px;
-            color: #0f172a;
+@section Styles {
+    <style>
+        .admin-dashboard-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29,78,216,.18), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 48%, #ffffff 100%);
         }
 
-        .admin-home-card p {
-            color: #475569;
+        .dashboard-hero {
+            margin-bottom: 28px;
+            padding: 36px;
+            border-radius: 34px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 28px 70px rgba(7,20,43,.25);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .dashboard-hero::before {
+                content: "";
+                position: absolute;
+                left: -80px;
+                top: -80px;
+                width: 260px;
+                height: 260px;
+                border-radius: 999px;
+                background: rgba(255,255,255,.12);
+                filter: blur(12px);
+            }
+
+            .dashboard-hero > * {
+                position: relative;
+                z-index: 1;
+            }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 12px;
+            padding: 7px 15px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.2);
+            font-size: 12px;
+            font-weight: 900;
+            color: #dbeafe;
+        }
+
+        .dashboard-hero h2 {
             margin: 0;
+            font-size: 36px;
+            font-weight: 900;
+        }
+
+        .dashboard-hero p {
+            margin: 12px 0 0;
+            color: #dbeafe;
+            font-weight: 700;
             line-height: 1.9;
         }
-</style>
+
+        .hero-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 28px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            min-height: 190px;
+            padding: 26px;
+            border-radius: 28px;
+            background: rgba(255,255,255,.96);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 20px 55px rgba(15,23,42,.09);
+            text-decoration: none;
+            color: #07142b;
+            transition: .25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .dashboard-card::before {
+                content: "";
+                position: absolute;
+                inset-inline-start: 0;
+                top: 0;
+                width: 100%;
+                height: 5px;
+                background: linear-gradient(135deg, #07142b, #0f3d75);
+            }
+
+            .dashboard-card:hover {
+                color: #07142b;
+                transform: translateY(-5px);
+                box-shadow: 0 28px 75px rgba(15,23,42,.16);
+                border-color: rgba(7,20,43,.35);
+            }
+
+            .dashboard-card.gold::before {
+                background: linear-gradient(135deg, #d4af37, #f6d76b);
+            }
+
+            .dashboard-card i {
+                width: 56px;
+                height: 56px;
+                margin-bottom: 18px;
+                border-radius: 18px;
+                background: linear-gradient(135deg, #07142b, #0f3d75);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 22px;
+                box-shadow: 0 14px 30px rgba(7,20,43,.22);
+            }
+
+            .dashboard-card.gold i {
+                background: linear-gradient(135deg, #d4af37, #f6d76b);
+                color: #07142b;
+            }
+
+            .dashboard-card h3 {
+                margin: 0;
+                font-size: 20px;
+                font-weight: 900;
+            }
+
+            .dashboard-card p {
+                margin: 10px 0 0;
+                color: #64748b;
+                line-height: 1.8;
+                font-weight: 700;
+            }
+
+        @@media(max-width: 992px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @@media(max-width: 640px) {
+            .dashboard-hero {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+}

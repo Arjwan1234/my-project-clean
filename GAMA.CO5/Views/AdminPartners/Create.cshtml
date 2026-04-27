@@ -2,40 +2,192 @@
 
 @{
     ViewData["Title"] = "إضافة شريك";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="mb-4">إضافة شريك</h2>
+<div class="admin-partner-form-page">
 
-<form asp-action="Create" method="post" enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+    <!-- HERO -->
+    <div class="partner-form-hero">
+        <div>
+            <span class="hero-badge">GAMA Partners</span>
+            <h2>إضافة شريك</h2>
+            <p>أضيفي شريك جديد ليظهر في الموقع بشكل احترافي.</p>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Name" class="form-label">اسم الشريك</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+        <a asp-action="Index" class="btn-back">
+            <i class="fa-solid fa-arrow-right"></i>
+            رجوع
+        </a>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Description" class="form-label">الوصف</label>
-        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
+    <!-- FORM -->
+    <div class="partner-form-card">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
 
-    <div class="mb-3">
-        <label asp-for="WebsiteUrl" class="form-label">رابط الموقع</label>
-        <input asp-for="WebsiteUrl" class="form-control" />
-        <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
-    </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-    <div class="mb-3">
-        <label asp-for="ImageFile" class="form-label">صورة الشريك</label>
-        <input asp-for="ImageFile" type="file" class="form-control" />
-        <span asp-validation-for="ImageFile" class="text-danger"></span>
-    </div>
+            <div class="form-grid">
 
-    <button type="submit" class="btn btn-success">حفظ</button>
-    <a asp-action="Index" class="btn btn-secondary">رجوع</a>
-</form>
+                <div class="field">
+                    <label asp-for="Name">اسم الشريك</label>
+                    <input asp-for="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="field">
+                    <label asp-for="WebsiteUrl">رابط الموقع</label>
+                    <input asp-for="WebsiteUrl" placeholder="https://example.com" />
+                    <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <div class="field mt-4">
+                <label asp-for="Description">الوصف</label>
+                <textarea asp-for="Description" rows="5"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="field mt-4">
+                <label asp-for="ImageFile">صورة الشريك</label>
+                <input asp-for="ImageFile" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    حفظ
+                </button>
+
+                <a asp-action="Index" class="btn-cancel">
+                    إلغاء
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+
+        .admin-partner-form-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29,78,216,.16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        /* HERO */
+        .partner-form-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7,20,43,.22);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-badge {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .partner-form-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .partner-form-hero p {
+            margin-top: 8px;
+            color: #cbd5f5;
+        }
+
+        /* BACK BUTTON */
+        .btn-back {
+            background: rgba(255,255,255,.12);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 18px;
+            text-decoration: none;
+        }
+
+            .btn-back:hover {
+                color: white;
+            }
+
+        /* CARD */
+        .partner-form-card {
+            border-radius: 30px;
+            background: white;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.08);
+        }
+
+        /* GRID */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .field {
+            text-align: right;
+        }
+
+            .field label {
+                font-weight: 900;
+                margin-bottom: 6px;
+                display: block;
+            }
+
+            .field input,
+            .field textarea {
+                width: 100%;
+                padding: 12px;
+                border-radius: 14px;
+                border: 1px solid #dbe6f5;
+                background: #f8fbff;
+            }
+
+        /* ACTIONS */
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 16px;
+            border: none;
+        }
+
+        .btn-cancel {
+            background: #e2e8f0;
+            padding: 12px 22px;
+            border-radius: 16px;
+            text-decoration: none;
+        }
+
+        @@media(max-width:768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+}
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
