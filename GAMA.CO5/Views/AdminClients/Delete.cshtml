@@ -1,0 +1,182 @@
+﻿@model GAMA.CO5.Models.Client
+
+@{
+    ViewData["Title"] = "حذف العميل";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-delete-page">
+
+    <div class="delete-hero">
+        <div>
+            <span class="hero-badge">GAMA Clients</span>
+            <h2>حذف العميل</h2>
+            <p>تأكدي من بيانات العميل قبل الحذف.</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">رجوع</a>
+    </div>
+
+    <div class="delete-card">
+        <div class="warning-box">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+                <h3>هل أنت متأكد من حذف هذا العميل؟</h3>
+                <p>لا يمكن التراجع عن هذه العملية.</p>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
+        {
+            <div class="logo-preview">
+                <img src="@Model.LogoUrl" alt="@Model.Name" />
+            </div>
+        }
+
+        <div class="detail-item">
+            <span>اسم العميل</span>
+            <strong>@Model.Name</strong>
+        </div>
+
+        <div class="detail-item">
+            <span>رابط الموقع</span>
+            <strong>@Model.WebsiteUrl</strong>
+        </div>
+
+        <form asp-action="Delete" method="post" class="delete-actions">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+
+            <button type="submit" class="btn-delete-confirm">تأكيد الحذف</button>
+            <a asp-action="Index" class="btn-cancel">إلغاء</a>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .admin-delete-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(220,38,38,.12), transparent 26%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .delete-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7,20,43,.22);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            font-weight: 900;
+        }
+
+        .delete-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,.12);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .delete-card {
+            border-radius: 30px;
+            background: white;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.08);
+        }
+
+        .warning-box {
+            display: flex;
+            gap: 14px;
+            padding: 18px;
+            border-radius: 18px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            margin-bottom: 24px;
+        }
+
+            .warning-box h3 {
+                margin: 0;
+                font-weight: 900;
+            }
+
+        .logo-preview {
+            margin-bottom: 16px;
+        }
+
+            .logo-preview img {
+                width: 130px;
+                height: 130px;
+                object-fit: contain;
+                background: #f8fbff;
+                border-radius: 20px;
+                padding: 14px;
+                border: 1px solid #dbe6f5;
+            }
+
+        .detail-item {
+            padding: 16px;
+            border-radius: 16px;
+            background: #f8fbff;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 12px;
+            text-align: right;
+        }
+
+            .detail-item span {
+                display: block;
+                font-size: 13px;
+                color: #64748b;
+                font-weight: 800;
+            }
+
+            .detail-item strong {
+                font-weight: 900;
+                color: #07142b;
+            }
+
+        .delete-actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-delete-confirm {
+            background: linear-gradient(135deg, #991b1b, #dc2626);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 16px;
+            border: none;
+            font-weight: 900;
+        }
+
+        .btn-cancel {
+            background: #e2e8f0;
+            padding: 12px 22px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #334155;
+            font-weight: 900;
+        }
+    </style>
+}

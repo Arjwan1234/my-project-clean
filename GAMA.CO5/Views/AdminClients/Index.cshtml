@@ -1,0 +1,238 @@
+﻿@model IEnumerable<GAMA.CO5.Models.Client>
+
+@{
+    ViewData["Title"] = "إدارة العملاء";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-clients-page">
+
+    <div class="clients-hero">
+        <div>
+            <span class="hero-badge">GAMA Clients</span>
+            <h2>إدارة العملاء</h2>
+            <p>إدارة شعارات وروابط العملاء الذين يظهرون في الصفحة الرئيسية.</p>
+        </div>
+
+        <a asp-action="Create" class="btn-add">
+            <i class="fa-solid fa-plus"></i>
+            إضافة عميل
+        </a>
+    </div>
+
+    <div class="clients-card">
+        <table class="clients-table">
+            <thead>
+                <tr>
+                    <th>الشعار</th>
+                    <th>اسم العميل</th>
+                    <th>الموقع</th>
+                    <th>العمليات</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var client in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="logo-box">
+                                <img src="@client.LogoUrl" alt="@client.Name" />
+                            </div>
+                        </td>
+
+                        <td class="name">@client.Name</td>
+
+                        <td>
+                            @if (!string.IsNullOrEmpty(client.WebsiteUrl))
+                            {
+                                <a href="@client.WebsiteUrl" target="_blank" class="visit-btn">
+                                    زيارة
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="no-site">لا يوجد</span>
+                            }
+                        </td>
+
+                        <td>
+                            <div class="actions">
+                                <a asp-action="Edit" asp-route-id="@client.Id" class="btn-edit">
+                                    تعديل
+                                </a>
+
+                                <a asp-action="Delete" asp-route-id="@client.Id" class="btn-delete">
+                                    حذف
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .admin-clients-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29,78,216,.16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .clients-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7,20,43,.22);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.2);
+            font-size: 12px;
+            font-weight: 900;
+            color: #dbeafe;
+        }
+
+        .clients-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .clients-hero p {
+            margin: 8px 0 0;
+            color: #cbd5f5;
+            font-weight: 600;
+        }
+
+        .btn-add {
+            background: linear-gradient(135deg, #d4af37, #f6d76b);
+            color: #07142b;
+            padding: 12px 22px;
+            border-radius: 18px;
+            font-weight: 900;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: .25s;
+        }
+
+            .btn-add:hover {
+                color: #07142b;
+                transform: translateY(-2px);
+            }
+
+        .clients-card {
+            border-radius: 28px;
+            overflow-x: auto;
+            background: rgba(255,255,255,.95);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 24px 60px rgba(15,23,42,.1);
+        }
+
+        .clients-table {
+            width: 100%;
+            min-width: 850px;
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+            .clients-table thead {
+                background: linear-gradient(135deg, #07142b, #0f3d75);
+                color: white;
+            }
+
+            .clients-table th,
+            .clients-table td {
+                padding: 18px;
+                border-bottom: 1px solid #e5edf7;
+                font-weight: 700;
+                color: #334155;
+            }
+
+            .clients-table th {
+                font-size: 14px;
+                font-weight: 900;
+                color: white;
+            }
+
+            .clients-table tr:hover {
+                background: #f1f6ff;
+            }
+
+        .logo-box {
+            width: 90px;
+            height: 70px;
+            background: #f8fbff;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dbe6f5;
+        }
+
+            .logo-box img {
+                max-width: 70px;
+                max-height: 50px;
+                object-fit: contain;
+            }
+
+        .name {
+            font-weight: 900;
+            color: #07142b !important;
+        }
+
+        .visit-btn {
+            background: #eef4ff;
+            color: #0f3d75;
+            padding: 8px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .no-site {
+            color: #94a3b8;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .btn-edit,
+        .btn-delete {
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .btn-edit {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .btn-delete {
+            background: #fef2f2;
+            color: #b91c1c;
+        }
+    </style>
+}

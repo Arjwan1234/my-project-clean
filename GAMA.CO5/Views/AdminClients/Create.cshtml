@@ -1,0 +1,157 @@
+﻿@model GAMA.CO5.Models.Client
+
+@{
+    ViewData["Title"] = "إضافة عميل";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-client-form-page">
+
+    <div class="client-form-hero">
+        <div>
+            <span class="hero-badge">GAMA Clients</span>
+            <h2>إضافة عميل</h2>
+            <p>أضيفي عميل جديد ليظهر في الصفحة الرئيسية.</p>
+        </div>
+
+        <a asp-action="Index" class="btn-back">
+            رجوع
+        </a>
+    </div>
+
+    <div class="client-form-card">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div class="form-grid">
+                <div class="field">
+                    <label asp-for="Name">اسم العميل</label>
+                    <input asp-for="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="field">
+                    <label asp-for="WebsiteUrl">رابط الموقع</label>
+                    <input asp-for="WebsiteUrl" placeholder="https://example.com" />
+                </div>
+            </div>
+
+            <div class="field mt-4">
+                <label asp-for="ImageFile">شعار العميل</label>
+                <input asp-for="ImageFile" type="file" />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-save">حفظ</button>
+                <a asp-action="Index" class="btn-cancel">إلغاء</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .admin-client-form-page {
+            padding: 28px;
+            min-height: calc(100vh - 80px);
+            background: radial-gradient(circle at top right, rgba(29,78,216,.16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .client-form-hero {
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            box-shadow: 0 24px 60px rgba(7,20,43,.22);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .client-form-hero h2 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 900;
+        }
+
+        .client-form-hero p {
+            margin-top: 8px;
+            color: #cbd5f5;
+        }
+
+        .btn-back {
+            background: rgba(255,255,255,.12);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .client-form-card {
+            border-radius: 30px;
+            background: white;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.08);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .field {
+            text-align: right;
+        }
+
+            .field label {
+                font-weight: 900;
+                margin-bottom: 6px;
+                display: block;
+            }
+
+            .field input {
+                width: 100%;
+                padding: 12px;
+                border-radius: 14px;
+                border: 1px solid #dbe6f5;
+                background: #f8fbff;
+            }
+
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 16px;
+            border: none;
+            font-weight: 900;
+        }
+
+        .btn-cancel {
+            background: #e2e8f0;
+            padding: 12px 22px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #334155;
+            font-weight: 900;
+        }
+    </style>
+}

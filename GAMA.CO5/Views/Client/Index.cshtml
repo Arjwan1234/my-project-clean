@@ -1,0 +1,30 @@
+﻿@model IEnumerable<GAMA.CO5.Models.Client>
+
+<h2>إدارة العملاء</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">إضافة عميل</a>
+
+<table class="table table-bordered text-center">
+    <tr>
+        <th>الشعار</th>
+        <th>الاسم</th>
+        <th>الموقع</th>
+        <th>العمليات</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@item.LogoUrl" style="width:80px;" />
+            </td>
+            <td>@item.Name</td>
+            <td>
+                <a href="@item.WebsiteUrl" target="_blank">زيارة</a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">حذف</a>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,12 +1,29 @@
+using GAMA.CO5.Data;
 using GAMA.CO5.Models;
 using Microsoft.AspNetCore.Mvc;
-// test shahad
+using Microsoft.EntityFrameworkCore;
+
 namespace GAMA.CO5.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
         {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var partnersFromDb = await _context.Partners
+                .OrderByDescending(p => p.Id)
+                .ToListAsync();
+
+            var clientsFromDb = await _context.Clients
+                .OrderByDescending(c => c.Id)
+                .ToListAsync();
+
             var model = new HomeViewModel
             {
                 PageTitle = "الرئيسية",
@@ -76,49 +93,19 @@ namespace GAMA.CO5.Controllers
                     }
                 },
 
-                Partners = new List<PartnerItem>
+                Partners = partnersFromDb.Select(p => new PartnerItem
                 {
-                    new PartnerItem { Name = "Microsoft", ImagePath = "~/images/Microsoft.png" },
-                    new PartnerItem { Name = "HP", ImagePath = "~/images/hp.png" },
-                    new PartnerItem { Name = "Palo Alto", ImagePath = "~/images/paloalto.png" },
-                    new PartnerItem { Name = "Cisco", ImagePath = "~/images/cisco.png" },
-                    new PartnerItem { Name = "Suprema", ImagePath = "~/images/suprema.png" }
-                },
+                    Name = p.Name,
+                    ImagePath = p.LogoUrl
+                }).ToList(),
 
-                Clients = new List<ClientItem>
+                Clients = clientsFromDb.Select(c => new ClientItem
                 {
-                    new ClientItem
-                    {
-                        Name = "الهيئة العامة للطيران المدني",
-                        ImagePath = "~/images/clients/GACA.png",
-                        Url = "https://gaca.gov.sa"
-                    },
-                    new ClientItem
-                    {
-                        Name = "الاتصالات السعودية",
-                        ImagePath = "~/images/clients/stc.png",
-                        Url = "https://www.stc.com.sa",
-                        IsFeatured = true
-                    },
-                    new ClientItem
-                    {
-                        Name = "أمانة جدة",
-                        ImagePath = "~/images/clients/امانة جدة.png",
-                        Url = "https://www.jeddah.gov.sa"
-                    },
-                    new ClientItem
-                    {
-                        Name = "جامعة الملك سعود",
-                        ImagePath = "~/images/clients/جامعة الملك سعود.png",
-                        Url = "https://ksu.edu.sa"
-                    },
-                    new ClientItem
-                    {
-                        Name = "مصرف الراجحي",
-                        ImagePath = "~/images/clients/مصرف الراجحي.png",
-                        Url = "https://www.alrajhibank.com.sa"
-                    }
-                }
+                    Name = c.Name,
+                    ImagePath = c.LogoUrl,
+                    Url = c.WebsiteUrl,
+                    IsFeatured = false
+                }).ToList()
             };
 
             return View(model);
