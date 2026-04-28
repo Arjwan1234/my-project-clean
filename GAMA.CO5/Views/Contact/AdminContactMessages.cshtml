@@ -33,15 +33,33 @@
                         <td class="message-id">@item.Id</td>
                         <td class="sender-name">@item.Name</td>
                         <td>
-                            <a href="mailto:@item.Email" class="email-link">
-                                @item.Email
-                            </a>
+                            <a href="mailto:@item.Email" class="email-link">@item.Email</a>
                         </td>
-                        <td class="message-text">@item.Message</td>
+                        <td>
+                            <div class="message-preview">
+                                @item.Message
+                            </div>
+
+                            <div id="msg-@item.Id" class="message-full-hidden">
+                                @item.Message
+                            </div>
+
+                            <button type="button" class="btn-view" onclick="openMessage('@item.Id')">
+                                عرض
+                            </button>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
+    </div>
+</div>
+
+<div id="messageModal" class="message-modal">
+    <div class="message-modal-content">
+        <button type="button" class="close-btn" onclick="closeMessage()">×</button>
+        <h3>نص الرسالة</h3>
+        <div id="fullMessage" class="full-message"></div>
     </div>
 </div>
 
@@ -106,45 +124,143 @@
                 color: white;
             }
 
-            .messages-table th {
+            .messages-table th,
+            .messages-table td {
                 padding: 18px;
+                border-bottom: 1px solid #e5edf7;
+                vertical-align: top;
+            }
+
+            .messages-table th {
                 font-size: 14px;
                 font-weight: 900;
             }
 
             .messages-table td {
-                padding: 18px;
-                border-bottom: 1px solid #e5edf7;
                 color: #334155;
                 font-weight: 700;
-                vertical-align: top;
             }
 
-            .messages-table tbody tr:hover {
-                background: #f1f6ff;
+        .message-preview {
+            max-width: 420px;
+            max-height: 52px;
+            overflow: hidden;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .message-full-hidden {
+            display: none;
+        }
+
+        .btn-view {
+            margin-top: 8px;
+            padding: 7px 14px;
+            border-radius: 10px;
+            border: none;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        .message-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(15, 23, 42, .55);
+            padding: 20px;
+        }
+
+        .message-modal-content {
+            position: relative;
+            width: min(720px, 100%);
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 8vh auto;
+            background: white;
+            border-radius: 24px;
+            padding: 28px;
+            text-align: right;
+            box-shadow: 0 30px 80px rgba(0,0,0,.25);
+        }
+
+            .message-modal-content h3 {
+                margin: 0 0 18px;
+                color: #07142b;
+                font-weight: 900;
             }
 
-        .message-id {
-            color: #64748b;
-            font-weight: 900;
+        .full-message {
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            line-height: 1.9;
+            color: #334155;
+            font-weight: 700;
         }
 
-        .sender-name {
-            color: #07142b !important;
-            font-weight: 900 !important;
-            white-space: nowrap;
+        .close-btn {
+            position: absolute;
+            left: 18px;
+            top: 14px;
+            border: none;
+            background: #f1f5f9;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
         }
 
-        .email-link {
-            color: #0f3d75;
-            font-weight: 900;
-            text-decoration: none;
-        }
+        @@media(max-width: 768px) {
+            .admin-messages-page {
+                padding: 14px;
+            }
 
-        .message-text {
-            max-width: 520px;
-            line-height: 1.8;
-            color: #475569 !important;
+            .messages-hero {
+                padding: 22px;
+                border-radius: 22px;
+            }
+
+                .messages-hero h2 {
+                    font-size: 24px;
+                }
+
+            .messages-table {
+                min-width: 760px;
+            }
+
+            .message-modal-content {
+                margin: 10vh auto;
+                padding: 22px;
+                border-radius: 20px;
+            }
         }
     </style>
+}
+
+@section Scripts {
+    <script>
+        function openMessage(id) {
+            const source = document.getElementById("msg-" + id);
+            const target = document.getElementById("fullMessage");
+
+            target.innerText = source ? source.innerText.trim() : "";
+            document.getElementById("messageModal").style.display = "block";
+        }
+
+        function closeMessage() {
+            document.getElementById("messageModal").style.display = "none";
+        }
+
+        document.getElementById("messageModal").addEventListener("click", function (event) {
+            if (event.target === this) {
+                closeMessage();
+            }
+        });
+    </script>
 }

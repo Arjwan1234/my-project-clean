@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+﻿@model IEnumerable<GAMA.CO5.Models.ApplicationUser>
 
 @{
     ViewData["Title"] = "إدارة المستخدمين";
@@ -11,7 +11,7 @@
         <div>
             <span class="hero-badge">GAMA Users</span>
             <h2>إدارة المستخدمين</h2>
-            <p>إضافة مستخدمين بإيميل الشركة، وتعطيل أو تفعيل دخولهم للوحة التحكم.</p>
+            <p>مراجعة المستخدمين والموافقة عليهم أو رفض دخولهم للوحة التحكم.</p>
         </div>
 
         <a href="/AdminUsers/Create" class="btn-add">
@@ -38,6 +38,7 @@
                     <th>اسم المستخدم</th>
                     <th>رقم الجوال</th>
                     <th>تأكيد البريد</th>
+                    <th>الموافقة</th>
                     <th>الحالة</th>
                     <th>العمليات</th>
                 </tr>
@@ -82,6 +83,17 @@
                         </td>
 
                         <td>
+                            @if (user.IsApproved)
+                            {
+                                <span class="status active">مقبول</span>
+                            }
+                            else
+                            {
+                                <span class="status pending">بانتظار الموافقة</span>
+                            }
+                        </td>
+
+                        <td>
                             @if (isDisabled)
                             {
                                 <span class="status disabled">معطّل</span>
@@ -93,30 +105,33 @@
                         </td>
 
                         <td>
-                            @if (isDisabled)
-                            {
-                                <form action="/AdminUsers/Enable" method="post" class="inline-form">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@user.Id" />
+                            <div class="actions">
+                                @if (!user.IsApproved || isDisabled)
+                                {
+                                    <form action="/AdminUsers/Approve" method="post" class="inline-form">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@user.Id" />
 
-                                    <button type="submit" class="btn-enable">
-                                        تفعيل
-                                    </button>
-                                </form>
-                            }
-                            else
-                            {
-                                <form action="/AdminUsers/Disable" method="post" class="inline-form">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@user.Id" />
+                                        <button type="submit" class="btn-enable">
+                                            موافقة
+                                        </button>
+                                    </form>
+                                }
 
-                                    <button type="submit"
-                                            class="btn-disable"
-                                            onclick="return confirm('هل تريد تعطيل هذا المستخدم؟ لن يتمكن من الدخول.');">
-                                        تعطيل
-                                    </button>
-                                </form>
-                            }
+                                @if (user.IsApproved && !isDisabled)
+                                {
+                                    <form action="/AdminUsers/Reject" method="post" class="inline-form">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@user.Id" />
+
+                                        <button type="submit"
+                                                class="btn-disable"
+                                                onclick="return confirm('هل تريد رفض هذا المستخدم؟ لن يتمكن من الدخول.');">
+                                            رفض
+                                        </button>
+                                    </form>
+                                }
+                            </div>
                         </td>
                     </tr>
                 }
@@ -221,7 +236,7 @@
 
         .users-table {
             width: 100%;
-            min-width: 950px;
+            min-width: 1050px;
             border-collapse: collapse;
             text-align: right;
         }
@@ -289,10 +304,21 @@
             color: #166534;
         }
 
+        .pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
         .not-confirmed,
         .disabled {
             background: #fee2e2;
             color: #991b1b;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
         }
 
         .inline-form {

@@ -1,4 +1,5 @@
 using GAMA.CO5.Data;
+using GAMA.CO5.Models;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,12 +20,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Identity + Roles
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 
-    // ????? ???? ???? ?????? ??? ?????
     options.Password.RequiredLength = 6;
     options.Password.RequireDigit = true;
     options.Password.RequireUppercase = true;
@@ -50,9 +49,29 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();
+
+app.Use(async (context, next) =>
+{
+    if (context.User.Identity?.IsAuthenticated == true)
+    {
+        var userManager = context.RequestServices.GetRequiredService<UserManager<ApplicationUser>>();
+        var signInManager = context.RequestServices.GetRequiredService<SignInManager<ApplicationUser>>();
+
+        var user = await userManager.GetUserAsync(context.User);
+
+        if (user != null && !user.IsApproved)
+        {
+            await signInManager.SignOutAsync();
+            context.Response.Redirect("/Identity/Account/AccessDenied");
+            return;
+        }
+    }
+
+    await next();
+});
+
 app.UseAuthorization();
 
-// Routes
 app.MapControllerRoute(
     name: "adminUsers",
     pattern: "AdminUsers/{action=Index}/{id?}",
@@ -64,13 +83,12 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-// Seed Admin Role + Admin User
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
     string adminRole = "Admin";
     string adminEmail = "admin@gama.com";
@@ -85,11 +103,14 @@ using (var scope = app.Services.CreateScope())
 
     if (adminUser == null)
     {
-        adminUser = new IdentityUser
+        adminUser = new ApplicationUser
         {
             UserName = adminEmail,
             Email = adminEmail,
-            EmailConfirmed = true
+            EmailConfirmed = true,
+            IsApproved = true,
+            LockoutEnabled = true,
+            LockoutEnd = null
         };
 
         var result = await userManager.CreateAsync(adminUser, adminPassword);
@@ -102,11 +123,31 @@ using (var scope = app.Services.CreateScope())
     else
     {
         adminUser.EmailConfirmed = true;
+        adminUser.IsApproved = true;
+        adminUser.LockoutEnabled = true;
+        adminUser.LockoutEnd = null;
+
         await userManager.UpdateAsync(adminUser);
 
         if (!await userManager.IsInRoleAsync(adminUser, adminRole))
         {
             await userManager.AddToRoleAsync(adminUser, adminRole);
+        }
+    }
+
+    var approvedUsers = userManager.Users.Where(u => u.IsApproved).ToList();
+
+    foreach (var user in approvedUsers)
+    {
+        user.EmailConfirmed = true;
+        user.LockoutEnabled = true;
+        user.LockoutEnd = null;
+
+        await userManager.UpdateAsync(user);
+
+        if (!await userManager.IsInRoleAsync(user, adminRole))
+        {
+            await userManager.AddToRoleAsync(user, adminRole);
         }
     }
 }
