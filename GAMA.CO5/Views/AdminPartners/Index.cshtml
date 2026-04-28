@@ -5,12 +5,11 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="admin-partners-page">
+<div class="admin-products-page">
 
-    <!-- HERO -->
-    <div class="partners-hero">
+    <div class="products-hero">
         <div>
-            <span class="hero-badge">GAMA</span>
+            <span class="hero-badge">GAMA Partners</span>
             <h2>إدارة الشركاء</h2>
             <p>إدارة شركاء المنصة وعرضهم في الموقع بشكل احترافي.</p>
         </div>
@@ -21,77 +20,83 @@
         </a>
     </div>
 
-    <!-- TABLE -->
-    <div class="partners-card">
-        <table class="partners-table">
-
+    <div class="products-card">
+        <table class="products-table">
             <thead>
                 <tr>
                     <th>الشعار</th>
                     <th>الاسم</th>
                     <th>الوصف</th>
-                    <th>الموقع</th>
-                    <th>العمليات</th>
+                    <th>إجراءات</th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach (var partner in Model)
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var partner in Model)
+                    {
+                        var logo = string.IsNullOrWhiteSpace(partner.LogoUrl)
+                        ? "/images/placeholder.png"
+                        : partner.LogoUrl;
+
+                        <tr>
+                            <td>
+                                <div class="product-image-box">
+                                    <img src="@logo"
+                                         alt="@partner.Name"
+                                         onerror="this.onerror=null;this.src='/images/placeholder.png';" />
+                                </div>
+                            </td>
+
+                            <td class="product-name">@partner.Name</td>
+
+                            <td>
+                                <span class="tag tag-blue">
+                                    @(string.IsNullOrWhiteSpace(partner.Description) ? "لا يوجد وصف" : partner.Description)
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="actions">
+                                    <a asp-action="Edit"
+                                       asp-route-id="@partner.Id"
+                                       class="btn-edit">
+                                        تعديل
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@partner.Id"
+                                       class="btn-delete">
+                                        حذف
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
                 {
                     <tr>
-                        <td>
-                            <div class="logo-box">
-                                <img src="@partner.LogoUrl" />
-                            </div>
-                        </td>
-
-                        <td class="name">@partner.Name</td>
-
-                        <td class="desc">@partner.Description</td>
-
-                        <td>
-                            @if (!string.IsNullOrEmpty(partner.WebsiteUrl))
-                            {
-                                <a href="@partner.WebsiteUrl" target="_blank" class="visit-btn">
-                                    زيارة
-                                </a>
-                            }
-                            else
-                            {
-                                <span class="no-site">لا يوجد</span>
-                            }
-                        </td>
-
-                        <td>
-                            <div class="actions">
-                                <a asp-action="Edit" asp-route-id="@partner.Id" class="btn-edit">
-                                    تعديل
-                                </a>
-
-                                <a asp-action="Delete" asp-route-id="@partner.Id" class="btn-delete">
-                                    حذف
-                                </a>
-                            </div>
+                        <td colspan="4" class="empty">
+                            لا توجد شركاء حالياً.
                         </td>
                     </tr>
                 }
             </tbody>
-
         </table>
     </div>
 </div>
 
 @section Styles {
     <style>
-
-        .admin-partners-page {
+        .admin-products-page {
             padding: 28px;
             min-height: calc(100vh - 80px);
             background: radial-gradient(circle at top right, rgba(29, 78, 216, .16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
         }
 
-        /* HERO */
-        .partners-hero {
+        .products-hero {
             margin-bottom: 28px;
             padding: 32px;
             border-radius: 30px;
@@ -101,6 +106,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
 
         .hero-badge {
@@ -112,17 +118,19 @@
             border: 1px solid rgba(255,255,255,.2);
             font-size: 12px;
             font-weight: 900;
+            color: #dbeafe;
         }
 
-        .partners-hero h2 {
+        .products-hero h2 {
             margin: 0;
             font-size: 32px;
             font-weight: 900;
         }
 
-        .partners-hero p {
+        .products-hero p {
             margin-top: 8px;
             color: #cbd5f5;
+            font-weight: 600;
         }
 
         .btn-add {
@@ -135,98 +143,91 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: .25s;
         }
 
             .btn-add:hover {
-                color: #07142b;
                 transform: translateY(-2px);
+                box-shadow: 0 14px 30px rgba(212,175,55,.28);
             }
 
-        /* TABLE CARD */
-        .partners-card {
+        .products-card {
             border-radius: 28px;
-            overflow: hidden;
+            overflow-x: auto;
             background: rgba(255,255,255,.95);
             border: 1px solid #dbe6f5;
             box-shadow: 0 24px 60px rgba(15,23,42,.1);
         }
 
-        /* TABLE */
-        .partners-table {
+        .products-table {
             width: 100%;
+            min-width: 800px;
             border-collapse: collapse;
             text-align: right;
         }
 
-            .partners-table thead {
+            .products-table thead {
                 background: linear-gradient(135deg, #07142b, #0f3d75);
                 color: white;
             }
 
-            .partners-table th {
+            .products-table th {
                 padding: 18px;
                 font-size: 14px;
                 font-weight: 900;
             }
 
-            .partners-table td {
+            .products-table td {
                 padding: 18px;
                 border-bottom: 1px solid #e5edf7;
-                font-weight: 700;
                 color: #334155;
+                font-weight: 700;
             }
 
-            .partners-table tr:hover {
+            .products-table tbody tr:hover {
                 background: #f1f6ff;
             }
 
-        /* LOGO */
-        .logo-box {
-            width: 90px;
-            height: 70px;
+        .product-image-box {
+            width: 96px;
+            height: 72px;
             background: #f8fbff;
             border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #dbe6f5;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #dbe6f5;
         }
 
-            .logo-box img {
-                max-width: 70px;
-                max-height: 50px;
+            .product-image-box img {
+                width: 100%;
+                height: 100%;
                 object-fit: contain;
             }
 
-        /* TEXT */
-        .name {
-            font-weight: 900;
+        .product-name {
             color: #07142b;
+            font-weight: 900;
         }
 
-        .desc {
-            max-width: 300px;
-            font-size: 13px;
+        .tag {
+            display: inline-flex;
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 900;
         }
 
-        /* BUTTONS */
-        .visit-btn {
+        .tag-blue {
             background: #eef4ff;
             color: #0f3d75;
-            padding: 8px 14px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 900;
-        }
-
-        .no-site {
-            color: #94a3b8;
         }
 
         .actions {
             display: flex;
-            gap: 8px;
             justify-content: center;
+            gap: 8px;
         }
 
         .btn-edit {
@@ -249,10 +250,11 @@
             font-weight: 900;
         }
 
-            .btn-edit:hover,
-            .btn-delete:hover {
-                transform: translateY(-1px);
-            }
-
+        .empty {
+            padding: 40px;
+            text-align: center;
+            color: #64748b;
+            font-weight: 900;
+        }
     </style>
 }
