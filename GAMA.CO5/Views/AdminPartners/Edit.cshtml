@@ -1,69 +1,59 @@
 ﻿@model GAMA.CO5.Models.Partner
-
 @{
-    ViewData["Title"] = "تعديل الشريك";
+    ViewData["Title"] = "تعديل العميل";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="admin-partner-form-page">
+<div class="admin-client-form-page">
 
-    <div class="partner-form-hero">
+    <div class="client-form-hero">
         <div>
-            <span class="hero-badge">GAMA Partners</span>
-            <h2>تعديل الشريك</h2>
-            <p>حدّثي بيانات الشريك والصورة الخاصة به.</p>
+            <span class="hero-badge">GAMA Clients</span>
+            <h2>تعديل العميل</h2>
+            <p>تحديث اسم العميل وشعاره فقط</p>
         </div>
 
         <a asp-action="Index" class="btn-back">
-            <i class="fa-solid fa-arrow-right"></i>
             رجوع
         </a>
     </div>
 
-    <div class="partner-form-card">
+    <div class="client-form-card">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
+
+            @Html.AntiForgeryToken()
+
             <input asp-for="Id" type="hidden" />
             <input asp-for="LogoUrl" type="hidden" />
 
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
+            <!-- الشعار الحالي -->
             @if (!string.IsNullOrWhiteSpace(Model.LogoUrl))
             {
                 <div class="preview-box">
-                    <label>الصورة الحالية</label>
-                    <img src="@Model.LogoUrl" alt="@Model.Name" />
+                    <label>الشعار الحالي</label>
+                    <img src="@Model.LogoUrl" />
                 </div>
             }
 
-            <div class="form-grid">
-                <div class="field">
-                    <label asp-for="Name">اسم الشريك</label>
-                    <input asp-for="Name" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-
-                <div class="field">
-                    <label asp-for="WebsiteUrl">رابط الموقع</label>
-                    <input asp-for="WebsiteUrl" placeholder="https://example.com" />
-                    <span asp-validation-for="WebsiteUrl" class="text-danger"></span>
-                </div>
+            <!-- اسم العميل -->
+            <div class="field">
+                <label asp-for="Name">اسم العميل</label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
+            <!-- تغيير الشعار -->
             <div class="field mt-4">
-                <label asp-for="Description">الوصف</label>
-                <textarea asp-for="Description" rows="5"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-
-            <div class="field mt-4">
-                <label asp-for="ImageFile">تغيير الصورة</label>
+                <label asp-for="ImageFile">تغيير الشعار</label>
                 <input asp-for="ImageFile" type="file" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
 
+            <!-- أزرار -->
             <div class="form-actions">
                 <button type="submit" class="btn-save">
-                    <i class="fa-solid fa-floppy-disk"></i>
                     حفظ التعديلات
                 </button>
 
@@ -71,19 +61,22 @@
                     إلغاء
                 </a>
             </div>
+
         </form>
     </div>
 </div>
 
 @section Styles {
     <style>
-        .admin-partner-form-page {
+
+        .admin-client-form-page {
             padding: 28px;
             min-height: calc(100vh - 80px);
             background: radial-gradient(circle at top right, rgba(29,78,216,.16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
         }
 
-        .partner-form-hero {
+        /* HERO */
+        .client-form-hero {
             margin-bottom: 28px;
             padding: 32px;
             border-radius: 30px;
@@ -93,7 +86,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 20px;
         }
 
         .hero-badge {
@@ -102,179 +94,75 @@
             padding: 6px 14px;
             border-radius: 999px;
             background: rgba(255,255,255,.12);
-            border: 1px solid rgba(255,255,255,.2);
             font-size: 12px;
             font-weight: 900;
-            color: #dbeafe;
         }
 
-        .partner-form-hero h2 {
-            margin: 0;
-            font-size: 32px;
-            font-weight: 900;
-        }
-
-        .partner-form-hero p {
-            margin: 8px 0 0;
-            color: #cbd5f5;
-            font-weight: 600;
-        }
-
-        .btn-back {
-            background: rgba(255,255,255,.12);
-            color: white;
-            border: 1px solid rgba(255,255,255,.18);
-            padding: 12px 22px;
-            border-radius: 18px;
-            font-weight: 900;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: .25s;
-            white-space: nowrap;
-        }
-
-            .btn-back:hover {
-                color: white;
-                background: rgba(255,255,255,.18);
-                transform: translateY(-2px);
-            }
-
-        .partner-form-card {
+        /* CARD */
+        .client-form-card {
             border-radius: 30px;
-            background: rgba(255,255,255,.95);
-            border: 1px solid #dbe6f5;
-            box-shadow: 0 24px 60px rgba(15,23,42,.10);
+            background: white;
             padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.08);
         }
 
+        /* PREVIEW */
         .preview-box {
             margin-bottom: 24px;
             padding: 18px;
             border-radius: 22px;
             background: #f8fbff;
             border: 1px solid #dbe6f5;
-            text-align: right;
         }
-
-            .preview-box label {
-                display: block;
-                margin-bottom: 12px;
-                font-weight: 900;
-                color: #07142b;
-            }
 
             .preview-box img {
-                width: 140px;
-                height: 140px;
-                border-radius: 24px;
+                width: 130px;
+                height: 100px;
                 object-fit: contain;
                 background: white;
-                border: 1px solid #d6e0ee;
-                padding: 12px;
+                border-radius: 18px;
+                padding: 10px;
             }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .field {
-            text-align: right;
-        }
-
-            .field label {
-                display: block;
-                margin-bottom: 8px;
-                font-weight: 900;
-                color: #07142b;
-            }
-
-            .field input,
-            .field textarea {
-                width: 100%;
-                border: 1px solid #d6e0ee;
-                border-radius: 16px;
-                padding: 13px 15px;
-                outline: none;
-                background: #f8fbff;
-                color: #0f172a;
-                font-weight: 700;
-                transition: .2s;
-            }
-
-                .field input:focus,
-                .field textarea:focus {
-                    border-color: #0f3d75;
-                    box-shadow: 0 0 0 4px rgba(15,61,117,.10);
-                    background: white;
-                }
-
-        .form-actions {
-            margin-top: 28px;
-            display: flex;
-            gap: 12px;
-            justify-content: flex-start;
-        }
-
-        .btn-save,
-        .btn-cancel {
-            border: none;
-            border-radius: 18px;
-            padding: 13px 22px;
+        /* FIELDS */
+        .field label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 900;
-            text-decoration: none;
-            transition: .25s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1px solid #dbe6f5;
+        }
+
+        /* BUTTONS */
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
         }
 
         .btn-save {
             background: linear-gradient(135deg, #07142b, #0f3d75);
             color: white;
-            box-shadow: 0 14px 30px rgba(7,20,43,.22);
+            padding: 12px 22px;
+            border-radius: 14px;
+            border: none;
+            font-weight: 900;
         }
-
-            .btn-save:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 18px 38px rgba(7,20,43,.30);
-            }
 
         .btn-cancel {
-            background: #eef2f7;
+            background: #e2e8f0;
+            padding: 12px 22px;
+            border-radius: 14px;
+            text-decoration: none;
             color: #334155;
+            font-weight: 900;
         }
 
-            .btn-cancel:hover {
-                color: #334155;
-                background: #e2e8f0;
-                transform: translateY(-2px);
-            }
-
-        @@media(max-width: 768px) {
-            .partner-form-hero {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .btn-back,
-            .btn-save,
-            .btn-cancel {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-        }
     </style>
 }
 
