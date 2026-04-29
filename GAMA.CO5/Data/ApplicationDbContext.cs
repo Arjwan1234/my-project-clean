@@ -18,5 +18,9 @@ namespace GAMA.CO5.Data
         public DbSet<Partner> Partners { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<Client> Clients { get; set; }
+
+        public DbSet<HomeHero> HomeHeroes { get; set; }
+        public DbSet<HomeAbout> HomeAbouts { get; set; }
+        public DbSet<HomeNews> HomeNews { get; set; }
     }
 }
