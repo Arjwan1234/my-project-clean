@@ -4,6 +4,7 @@ using GAMA.CO5.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GAMA.CO5.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260428113537_AddIsApprovedToUsers")]
+    partial class AddIsApprovedToUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,102 +147,6 @@ namespace GAMA.CO5.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ContactMessages");
-                });
-
-            modelBuilder.Entity("GAMA.CO5.Models.HomeAbout", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BadgeText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stat1Number")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stat1Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stat2Number")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stat2Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stat3Number")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Stat3Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HomeAbouts");
-                });
-
-            modelBuilder.Entity("GAMA.CO5.Models.HomeHero", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BadgeText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subtitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VideoUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HomeHeroes");
-                });
-
-            modelBuilder.Entity("GAMA.CO5.Models.HomeNews", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LinkUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("NewsDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("HomeNews");
                 });
 
             modelBuilder.Entity("GAMA.CO5.Models.Job", b =>
