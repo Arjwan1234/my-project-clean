@@ -12,27 +12,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     @await RenderSectionAsync("Styles", required: false)
+<nav dir="rtl" class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/90 border-b border-white/10">
+    <div class="relative mx-auto max-w-[1200px] pr-4 pl-8 py-4 flex items-center justify-center">
 
+        <!-- Logo (يمين ثابت) -->
+        <a asp-controller="Home" asp-action="Index"
+           class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
+            <img src="~/images/Gama_logo.png"
+                 alt="GAMA Logo"
+                 class="h-16 w-auto object-contain" />
+        </a>
 
+        <!-- Links (بالنص) -->
+        <ul class="hidden md:flex items-center gap-8">
 
-    <nav class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+            <li><a asp-controller="Services" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">الخدمات</a></li>
 
-            <a asp-controller="Home" asp-action="Index" class="logo">
-                <img src="~/images/logo-gama-new.png" alt="GAMA Logo" />
-            </a>
+            <li><a asp-controller="Products" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">المنتجات</a></li>
 
-            <ul class="hidden items-center gap-2 md:flex">
-                <li><a asp-controller="Services" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">الخدمات</a></li>
-                <li><a asp-controller="Products" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">المنتجات</a></li>
-                <li><a asp-controller="DTI" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">مؤشر التحول الرقمي</a></li>
-                <li><a asp-controller="Partners" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">الشركاء</a></li>
-                <li><a asp-controller="Careers" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">الوظائف</a></li>
-                <li><a asp-controller="Contact" asp-action="Index" class="rounded-xl px-4 py-2 font-bold text-white/90 no-underline transition hover:bg-sky-500/15 hover:text-white">التواصل</a></li>
-            </ul>
+            <li><a asp-controller="DTI" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">مؤشر التحول الرقمي</a></li>
 
-        </div>
-    </nav>
+            <li><a asp-controller="Partners" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">الشركاء</a></li>
+
+            <li><a asp-controller="Careers" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">الوظائف</a></li>
+
+            <li><a asp-controller="Contact" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">التواصل</a></li>
+
+        </ul>
+
+    </div>
+</nav>
 
     <main class="min-h-screen bg-slate-50">
         @RenderBody()
