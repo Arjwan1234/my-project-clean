@@ -1,0 +1,90 @@
+﻿@model GAMA.CO5.Models.HomeNews
+
+@{
+    ViewData["Title"] = "تعديل خبر";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    var imageUrl = string.IsNullOrWhiteSpace(Model.ImageUrl)
+        ? "/images/news/placeholder.jpg"
+        : Model.ImageUrl;
+}
+
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-slate-50 p-7">
+
+    <div class="mb-7 rounded-[30px] bg-gradient-to-br from-[#07142b] to-[#0f3d75] p-8 text-white shadow-2xl flex items-center justify-between gap-5">
+        <div>
+            <span class="inline-flex mb-3 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-black text-blue-100">
+                GAMA News
+            </span>
+            <h2 class="text-3xl font-black">تعديل خبر</h2>
+            <p class="mt-2 font-semibold text-blue-100">حدّث بيانات الخبر الظاهر في الصفحة الرئيسية.</p>
+        </div>
+
+        <a asp-action="Index" class="rounded-2xl border border-white/20 bg-white/10 px-6 py-3 font-black text-white no-underline">
+            رجوع
+        </a>
+    </div>
+
+    <div class="rounded-[30px] border border-blue-100 bg-white p-8 shadow-2xl">
+        <form asp-action="EditNews" method="post" enctype="multipart/form-data">
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="ImageUrl" type="hidden" />
+
+            <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
+                <div>
+                    <label class="mb-2 block font-black text-[#07142b]">الصورة الحالية</label>
+                    <div class="overflow-hidden rounded-3xl border border-blue-100 bg-slate-50">
+                        <img src="@imageUrl"
+                             class="h-[240px] w-full object-cover"
+                             onerror="this.onerror=null;this.src='/images/news/placeholder.jpg';" />
+                    </div>
+                </div>
+
+                <div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="mb-2 block font-black text-[#07142b]">عنوان الخبر</label>
+                            <input asp-for="Title" class="w-full rounded-2xl border border-blue-100 bg-slate-50 p-4 font-bold" />
+                        </div>
+
+                        <div>
+                            <label class="mb-2 block font-black text-[#07142b]">تاريخ الخبر</label>
+                            <input asp-for="NewsDate" type="date" class="w-full rounded-2xl border border-blue-100 bg-slate-50 p-4 font-bold" />
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <label class="mb-2 block font-black text-[#07142b]">الوصف</label>
+                        <textarea asp-for="Description" rows="5" class="w-full rounded-2xl border border-blue-100 bg-slate-50 p-4 font-bold"></textarea>
+                    </div>
+
+                    <div class="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="mb-2 block font-black text-[#07142b]">تغيير الصورة</label>
+                            <input asp-for="ImageFile" type="file" class="w-full rounded-2xl border border-blue-100 bg-slate-50 p-4 font-bold" />
+                        </div>
+
+                        <div>
+                            <label class="mb-2 block font-black text-[#07142b]">رابط اقرأ المزيد</label>
+                            <input asp-for="LinkUrl" class="w-full rounded-2xl border border-blue-100 bg-slate-50 p-4 font-bold" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 flex gap-3">
+                <button type="submit" class="rounded-2xl bg-gradient-to-br from-[#07142b] to-[#0f3d75] px-6 py-3 font-black text-white">
+                    تحديث
+                </button>
+
+                <a asp-action="Index" class="rounded-2xl bg-slate-100 px-6 py-3 font-black text-slate-700 no-underline">
+                    إلغاء
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
