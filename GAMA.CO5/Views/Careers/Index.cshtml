@@ -15,13 +15,12 @@
         <div class="absolute inset-0 bg-black/50"></div>
     </div>
 
-    <div class="relative mx-auto max-w-7xl px-6 py-24">
-
+    <div class="relative mx-auto flex max-w-7xl flex-col items-end px-6 py-24" dir="rtl">
         <h1 class="text-5xl font-black text-white text-right">
             @Model.PageTitle
         </h1>
 
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-white/90 text-right">
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-white/90 text-right mr-auto">
             انضم إلى فريقنا وكن جزءًا من رحلة الابتكار والتحول الرقمي
         </p>
 
@@ -57,7 +56,8 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
+        <!-- ✅ هنا التعديل الوحيد -->
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3" dir="rtl">
 
             @foreach (var job in Model.Jobs)
             {

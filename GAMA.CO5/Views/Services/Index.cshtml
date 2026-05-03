@@ -13,37 +13,35 @@
         <div class="absolute inset-0 bg-gradient-to-br from-[#07142b]/60 via-[#0a1d3d]/50 to-[#020617]/70"></div>
     </div>
 
-    <div class="relative mx-auto max-w-7xl px-6 py-24">
-        <h1 class="text-5xl font-black text-white">
+    <div class="relative mx-auto flex max-w-7xl flex-col items-end px-6 py-24" dir="rtl">
+        <h1 class="text-5xl font-black text-white text-right">
             الخدمات
         </h1>
     </div>
 </section>
 
 <!-- SERVICES -->
-<section class="relative overflow-hidden bg-[#eef4ff] py-24">
-
-    
+<section class="relative overflow-hidden bg-[#eef4ff] py-24" dir="rtl">
 
     <div class="relative z-10 mx-auto max-w-7xl px-6">
 
-        <h2 class="mb-14 text-3xl font-black text-[#020617]">
+        <h2 class="mb-14 text-right text-3xl font-black text-[#020617]">
             خدمات تقنية احترافية
         </h2>
 
         @if (Model != null && Model.Any())
         {
-            <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3">
+            <div class="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3" dir="rtl">
 
                 @foreach (var service in Model)
                 {
                     <a asp-action="Details"
                        asp-route-id="@service.Id"
                        class="group block rounded-[26px]
-                                      bg-[#f8fbff]
-                                      border border-[#b6c2d2]
-                                      p-4
-                                      transition duration-500 hover:-translate-y-1">
+                                              bg-[#f8fbff]
+                                              border border-[#b6c2d2]
+                                              p-4
+                                              transition duration-500 hover:-translate-y-1">
 
                         <!-- IMAGE -->
                         <div class="mb-4 overflow-hidden rounded-[18px] bg-[#f1f5ff]">
@@ -63,41 +61,26 @@
                     <!-- CONTENT -->
                     <div class="px-1 pb-2 text-right">
 
-                        <h3 class="text-[24px] font-black text-[#020617] transition">
+                        <h3 class="text-[24px] font-black text-[#020617]">
                             @service.Title
                         </h3>
 
-                        <p class="mt-2 text-sm text-slate-700 leading-6 min-h-[60px]">
+                        <p class="mt-2 min-h-[60px] text-sm leading-6 text-slate-700">
                             @(service.Description != null && service.Description.Length > 90
                                                     ? service.Description.Substring(0, 90) + "..."
                                                     : service.Description)
                     </p>
 
                             <!-- BUTTON -->
-                            <div class="mt-5 flex items-center justify-between border-t border-[#e6edf5] pt-4">
+                            <div class="mt-5 flex justify-end border-t border-[#e6edf5] pt-4">
 
-                                <div class="flex h-10 w-10 items-center justify-center rounded-full
-                                                    bg-[#eef4ff] text-[#2563eb]
-                                                    border border-[#dbe5f0]
-                                                    group-hover:bg-[#e0edff]
-                                                    group-hover:text-[#1d4ed8]
-                                                    transition">
-                                    ←
-                                </div>
+                                <div class="inline-flex items-center gap-2 ml-auto
+                        px-4 py-2 rounded-xl
+                        bg-[#1e293b] text-white text-sm font-bold
+                        transition group-hover:bg-[#334155]">
 
-                                <div class="text-right">
-                                    <div class="text-[10px] tracking-[0.2em] text-slate-500">
-                                        EXPLORE
-                                    </div>
-
-                                    <div class="mt-1 inline-flex items-center gap-2
-                                                        px-4 py-2 rounded-xl
-                                                        bg-[#1e293b] text-white text-sm font-bold
-                                                        transition group-hover:bg-[#334155]">
-
-                                        عرض التفاصيل
-                                        <span>←</span>
-                                    </div>
+                                    عرض التفاصيل
+                                    <span>←</span>
                                 </div>
 
                             </div>

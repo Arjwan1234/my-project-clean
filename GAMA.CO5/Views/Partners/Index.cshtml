@@ -4,64 +4,63 @@
     ViewData["Title"] = "الشركاء";
 }
 
-<section dir="rtl" class="min-h-screen bg-white text-slate-900">
-    <div class="mx-auto max-w-[1180px] px-6 py-14 lg:px-8">
+<!-- HERO -->
+<section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="@Url.Content("~/images/services-bg.jpg")"
+             alt="الشركاء"
+             class="h-full w-full object-cover scale-105" />
+        <div class="absolute inset-0 bg-black/50"></div>
+    </div>
 
-        <div class="text-center">
-            <h1 class="text-[44px] font-extrabold tracking-tight text-slate-900">
-                الشركاء
-            </h1>
+    <div class="relative mx-auto flex max-w-7xl flex-col items-end px-6 py-24" dir="rtl">
+        <h1 class="text-5xl font-black text-white text-right">
+            الشركاء
+        </h1>
 
-            <p class="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-500">
-                نفتخر بشراكاتنا الاستراتيجية التي تدعم الابتكار والتحول الرقمي
-            </p>
-        </div>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-white/90 text-right">
+            نفتخر بشراكاتنا الاستراتيجية التي تدعم الابتكار والتحول الرقمي
+        </p>
+    </div>
+</section>
+
+<!-- PARTNERS -->
+<section dir="rtl" class="relative overflow-hidden bg-white py-24">
+    <div class="mx-auto max-w-7xl px-6">
 
         @{
             var partners = Model?.ToList() ?? new List<GAMA.CO5.Models.Partner>();
         }
 
-        <div class="mt-12">
-            <p class="text-sm text-slate-400">
-                عرض @partners.Count شريك
-            </p>
+        <div class="text-center">
+
+
+
+            <h2 class="mt-8 text-2xl font-medium leading-10 text-slate-700">
+                نعمل مع أفضل الشركات العالمية لتقديم حلول تقنية متميزة
+            </h2>
+
         </div>
 
-        <div class="mt-8 grid grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-4">
+        <div class="mx-auto mt-16 flex max-w-5xl flex-wrap items-center justify-center gap-10">
+
             @foreach (var partner in partners)
             {
-                <article class="overflow-hidden rounded-[24px] border border-slate-200 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.09)]">
+                <a href="@(string.IsNullOrWhiteSpace(partner.WebsiteUrl) ? "#" : partner.WebsiteUrl)"
+                   target="@(string.IsNullOrWhiteSpace(partner.WebsiteUrl) ? "_self" : "_blank")"
+                   class="group flex h-[130px] w-[130px] items-center justify-center rounded-full border-[3px] border-purple-100 bg-white p-7 shadow-[0_12px_30px_rgba(15,23,42,0.10)] transition duration-300 hover:-translate-y-2 hover:border-purple-200 hover:shadow-[0_18px_45px_rgba(147,51,234,0.18)]">
 
-                    <div class="relative flex h-[220px] items-center justify-center overflow-hidden bg-slate-50 p-8">
-                        <img src="@(string.IsNullOrWhiteSpace(partner.LogoUrl) ? "/images/placeholder.png" : partner.LogoUrl)"
-                             alt="@partner.Name"
-                             class="max-h-[140px] max-w-full object-contain" />
-                    </div>
-
-                    <div class="p-6 text-right">
-                        <h3 class="text-[24px] font-extrabold leading-tight text-slate-900">
-                            @partner.Name
-                        </h3>
-
-                        <p class="mt-4 line-clamp-3 text-sm leading-7 text-slate-500">
-                            @(string.IsNullOrWhiteSpace(partner.Description) ? "لا يوجد وصف متاح لهذا الشريك حالياً." : partner.Description)
-                        </p>
-
-                        @if (!string.IsNullOrWhiteSpace(partner.WebsiteUrl))
-                        {
-                            <div class="mt-5">
-                                <a href="@partner.WebsiteUrl"
-                                   target="_blank"
-                                   class="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-violet-600">
-                                    زيارة الموقع
-                                </a>
-                            </div>
-                        }
-                    </div>
-
-                </article>
+                    <img src="@(string.IsNullOrWhiteSpace(partner.LogoUrl) ? "/images/placeholder.png" : partner.LogoUrl)"
+                         alt="@partner.Name"
+                         class="max-h-[70px] max-w-[85px] object-contain transition duration-300 group-hover:scale-110" />
+                </a>
             }
+
         </div>
+
+        <p class="mt-16 text-center text-sm text-slate-500">
+            نفخر بشراكاتنا الاستراتيجية مع كبرى الشركات التقنية العالمية
+        </p>
 
     </div>
 </section>
