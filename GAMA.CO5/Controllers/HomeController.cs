@@ -1,5 +1,6 @@
 using GAMA.CO5.Data;
 using GAMA.CO5.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -109,6 +110,17 @@ namespace GAMA.CO5.Controllers
             };
 
             return View(model);
+        }
+
+        public IActionResult SetLanguage(string culture)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
     }
 }
