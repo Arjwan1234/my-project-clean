@@ -1,5 +1,13 @@
-﻿
+﻿@using System.Globalization
+@{
+    var isEn = CultureInfo.CurrentCulture.Name.StartsWith("en");
+    var logoPosition = isEn ? "left-0" : "right-0";
+    var langPosition = isEn ? "right-0" : "left-0";
+}
 
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentCulture.Name" dir="@(isEn ? "ltr" : "rtl")">
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GAMA.CO5</title>
@@ -12,36 +20,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
     @await RenderSectionAsync("Styles", required: false)
-<nav dir="rtl" class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/90 border-b border-white/10">
-    <div class="relative mx-auto max-w-[1200px] pr-4 pl-8 py-4 flex items-center justify-center">
+</head>
 
-        <!-- Logo (يمين ثابت) -->
-        <a asp-controller="Home" asp-action="Index"
-           class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center">
-            <img src="~/images/Gama_logo.png"
-                 alt="GAMA Logo"
-                 class="h-16 w-auto object-contain" />
-        </a>
+<body>
+    <nav class="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/90 border-b border-white/10">
+        <div class="relative mx-auto max-w-[1200px] px-24 py-4 flex items-center justify-center">
 
-        <!-- Links (بالنص) -->
-        <ul class="hidden md:flex items-center gap-8">
+            <a asp-controller="Home" asp-action="Index"
+               class="absolute @logoPosition top-1/2 -translate-y-1/2 flex items-center">
+                <img src="~/images/Gama_logo.png"
+                     alt="GAMA Logo"
+                     class="h-16 w-auto object-contain" />
+            </a>
 
-            <li><a asp-controller="Services" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">الخدمات</a></li>
+            <ul class="hidden md:flex items-center gap-8">
+                <li><a asp-controller="Services" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Services" : "الخدمات")</a></li>
+                <li><a asp-controller="Products" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Products" : "المنتجات")</a></li>
+                <li><a asp-controller="DTI" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Digital Index" : "مؤشر التحول الرقمي")</a></li>
+                <li><a asp-controller="Partners" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Partners" : "الشركاء")</a></li>
+                <li><a asp-controller="Careers" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Careers" : "الوظائف")</a></li>
+                <li><a asp-controller="Contact" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Contact" : "التواصل")</a></li>
+            </ul>
 
-            <li><a asp-controller="Products" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">المنتجات</a></li>
+            <div class="absolute @langPosition top-1/2 -translate-y-1/2 flex gap-2">
+                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="ar"
+                   class="px-3 py-1 text-sm font-bold text-white border border-white/20 rounded-lg hover:bg-white/10">
+                    عربي
+                </a>
 
-            <li><a asp-controller="DTI" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">مؤشر التحول الرقمي</a></li>
-
-            <li><a asp-controller="Partners" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">الشركاء</a></li>
-
-            <li><a asp-controller="Careers" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">الوظائف</a></li>
-
-            <li><a asp-controller="Contact" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">التواصل</a></li>
-
-        </ul>
-
-    </div>
-</nav>
+                <a asp-controller="Home" asp-action="SetLanguage" asp-route-culture="en"
+                   class="px-3 py-1 text-sm font-bold text-white border border-white/20 rounded-lg hover:bg-white/10">
+                    EN
+                </a>
+            </div>
+        </div>
+    </nav>
 
     <main class="min-h-screen bg-slate-50">
         @RenderBody()
@@ -57,8 +70,9 @@
                     </div>
 
                     <p class="text-sm leading-8 text-slate-300">
-                        نقدم حلولاً تقنية مبتكرة تدعم ريادة الشركات
-                        على النمو والازدهار في العصر الرقمي
+                        @(isEn
+                                                ? "We provide innovative technology solutions that support business growth and digital excellence."
+                                                : "نقدم حلولاً تقنية مبتكرة تدعم ريادة الشركات على النمو والازدهار في العصر الرقمي")
                     </p>
 
                     <div class="mt-4 flex gap-3 text-sky-400">
@@ -70,44 +84,43 @@
                 </div>
 
                 <div>
-                    <h3 class="mb-4 text-xl font-extrabold">خدماتنا</h3>
+                    <h3 class="mb-4 text-xl font-extrabold">@(isEn ? "Our Services" : "خدماتنا")</h3>
                     <ul class="space-y-3 text-slate-300">
-                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">أنظمة الحضور والانصراف</a></li>
-                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">السحابات</a></li>
-                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">التحول الرقمي</a></li>
-                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">الفوترة الإلكترونية</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">@(isEn ? "Attendance Systems" : "أنظمة الحضور والانصراف")</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">@(isEn ? "Cloud Solutions" : "السحابات")</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">@(isEn ? "Digital Transformation" : "التحول الرقمي")</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">@(isEn ? "E-Invoicing" : "الفوترة الإلكترونية")</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 class="mb-4 text-xl font-extrabold">الشركة</h3>
+                    <h3 class="mb-4 text-xl font-extrabold">@(isEn ? "Company" : "الشركة")</h3>
                     <ul class="space-y-3 text-slate-300">
-                        <li><a asp-controller="Home" asp-action="About" class="hover:text-white">من نحن</a></li>
-                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">الخدمات</a></li>
-                        <li><a asp-controller="Products" asp-action="Index" class="hover:text-white">المنتجات</a></li>
-                        <li><a asp-controller="Contact" asp-action="Index" class="hover:text-white">التواصل</a></li>
+                        <li><a asp-controller="Home" asp-action="About" class="hover:text-white">@(isEn ? "About Us" : "من نحن")</a></li>
+                        <li><a asp-controller="Services" asp-action="Index" class="hover:text-white">@(isEn ? "Services" : "الخدمات")</a></li>
+                        <li><a asp-controller="Products" asp-action="Index" class="hover:text-white">@(isEn ? "Products" : "المنتجات")</a></li>
+                        <li><a asp-controller="Contact" asp-action="Index" class="hover:text-white">@(isEn ? "Contact" : "التواصل")</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h3 class="mb-4 text-xl font-extrabold">معلومات التواصل</h3>
+                    <h3 class="mb-4 text-xl font-extrabold">@(isEn ? "Contact Info" : "معلومات التواصل")</h3>
                     <ul class="space-y-3 text-slate-300">
-                        <li>📍 جدة، السعودية</li>
+                        <li>📍 @(isEn ? "Jeddah, Saudi Arabia" : "جدة، السعودية")</li>
                         <li>📞 +966 XX XXX XXXX</li>
                         <li>✉️ info@gama-ksa.com</li>
                     </ul>
                 </div>
-
             </div>
 
             <div class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
                 <div class="flex gap-4">
-                    <a asp-controller="Home" asp-action="Privacy" class="hover:text-white">سياسة الخصوصية</a>
-                    <a href="#" class="hover:text-white">الشروط</a>
+                    <a asp-controller="Home" asp-action="Privacy" class="hover:text-white">@(isEn ? "Privacy Policy" : "سياسة الخصوصية")</a>
+                    <a href="#" class="hover:text-white">@(isEn ? "Terms" : "الشروط")</a>
                 </div>
 
                 <div>
-                    © 2026 جميع الحقوق محفوظة
+                    @(isEn ? "© 2026 All rights reserved" : "© 2026 جميع الحقوق محفوظة")
                 </div>
             </div>
         </div>
@@ -115,4 +128,5 @@
 
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
+</body>
+</html>

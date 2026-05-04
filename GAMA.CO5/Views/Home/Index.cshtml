@@ -1,6 +1,14 @@
 ﻿@model GAMA.CO5.Models.HomeViewModel
+@using System.Globalization
 
-<div class="relative text-white overflow-x-hidden">     style="background: linear-gradient(180deg, #071225 0%, #0b1730 45%, #10233f 100%);">
+@{
+    var isEn = CultureInfo.CurrentCulture.Name.StartsWith("en");
+    var textAlign = isEn ? "text-left" : "text-right";
+    var featureDirection = isEn ? "flex-row-reverse" : "flex-row-reverse";
+    var linePosition = isEn ? "mr-auto ml-0" : "mr-0 ml-auto";
+}
+
+<div class="relative text-white overflow-x-hidden" style="background: linear-gradient(180deg, #071225 0%, #0b1730 45%, #10233f 100%);">
 
     <div class="fixed inset-0 z-0 pointer-events-none">
         <div class="absolute inset-0" style="background: linear-gradient(180deg, #071225 0%, #0b1730 45%, #10233f 100%);"></div>
@@ -24,34 +32,39 @@
                 <div class="reveal">
                     <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/10 px-5 py-2 text-sm mb-6">
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                        فيديو تعريفي
+                        @(isEn ? "Intro Video" : "فيديو تعريفي")
                     </span>
 
                     <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-[1.2]">
-                        نبتكر حلولًا رقمية
-                        <br />
-                        تصنع الأثر
+                        @if (isEn)
+                        {
+                            <text>We create digital solutions<br />that make impact</text>
+                        }
+                        else
+                        {
+                            <text>نبتكر حلولًا رقمية<br />تصنع الأثر</text>
+                        }
                     </h1>
 
                     <p class="mt-6 text-lg md:text-2xl text-white/85">
-                        حلول تقنية متقدمة تدعم الجهات الحكومية والمؤسسات
+                        @(isEn
+                                                ? "Advanced technology solutions for government entities and enterprises"
+                                                : "حلول تقنية متقدمة تدعم الجهات الحكومية والمؤسسات")
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- DIGITAL PARTNER -->
         <section class="relative min-h-screen flex items-center justify-center py-24 px-6">
             <div class="max-w-[1180px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-20">
 
-                <!-- الإحصائيات - يسار -->
                 <div class="relative space-y-5 max-w-[430px] w-full justify-self-center lg:justify-self-start">
                     <div class="float-soft reveal rounded-[24px] glass-strong px-5 py-6 shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
                         <div class="flex items-center justify-between">
                             <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">↗</div>
                             <div class="text-right">
                                 <div class="text-5xl font-black">+30</div>
-                                <div class="text-lg mt-2">عامًا من الخبرة</div>
+                                <div class="text-lg mt-2">@(isEn ? "Years of experience" : "عامًا من الخبرة")</div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +74,7 @@
                             <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">◎</div>
                             <div class="text-right">
                                 <div class="text-5xl font-black">+500</div>
-                                <div class="text-lg mt-2">مشروع ناجح</div>
+                                <div class="text-lg mt-2">@(isEn ? "Successful projects" : "مشروع ناجح")</div>
                             </div>
                         </div>
                     </div>
@@ -71,54 +84,59 @@
                             <div class="w-14 h-14 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">🏅</div>
                             <div class="text-right">
                                 <div class="text-5xl font-black">100%</div>
-                                <div class="text-lg mt-2">نسبة رضا العملاء</div>
+                                <div class="text-lg mt-2">@(isEn ? "Customer satisfaction" : "نسبة رضا العملاء")</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- النص - يمين -->
-                <div class="max-w-[560px] w-full text-right reveal justify-self-center lg:justify-self-end">
+                <div class="max-w-[560px] w-full @textAlign reveal justify-self-center lg:justify-self-end">
                     <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-2 text-sm mb-6">
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                        شركتك الموثوق
+                        @(isEn ? "Your trusted partner" : "شريكك الموثوق")
                     </div>
 
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.15]">
-                        شريكك في التحول
-                        <br />
-                        الرقمي
+                        @if (isEn)
+                        {
+                            <text>Your partner in<br />digital transformation</text>
+                        }
+                        else
+                        {
+                            <text>شريكك في التحول<br />الرقمي</text>
+                        }
                     </h1>
 
-                    <div class="w-24 h-1.5 bg-gradient-to-l from-cyan-400 to-blue-500 rounded-full mt-5 mr-0 ml-auto"></div>
+                    <div class="w-24 h-1.5 bg-gradient-to-l from-cyan-400 to-blue-500 rounded-full mt-5 @linePosition"></div>
 
                     <p class="mt-8 text-xl md:text-2xl leading-loose">
-                        نقدم حلول تقنية متطورة للجهات الحكومية والمؤسسات
-                        لتحقيق رؤية المملكة 2030
+                        @(isEn
+                                                ? "We provide advanced technology solutions for government entities and enterprises to support Saudi Vision 2030"
+                                                : "نقدم حلول تقنية متطورة للجهات الحكومية والمؤسسات لتحقيق رؤية المملكة 2030")
                     </p>
 
                     <div class="mt-10 space-y-7">
-                        <div class="flex flex-row-reverse items-start gap-4 reveal">
+                        <div class="flex @featureDirection items-start gap-4 reveal">
                             <div class="w-12 h-12 shrink-0 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">🚀</div>
                             <div>
-                                <h3 class="text-2xl font-extrabold">ابتكار مستمر</h3>
-                                <p class="text-lg mt-1">حلول تقنية مبتكرة ومتوافقة مع رؤية المملكة 2030</p>
+                                <h3 class="text-2xl font-extrabold">@(isEn ? "Continuous Innovation" : "ابتكار مستمر")</h3>
+                                <p class="text-lg mt-1">@(isEn ? "Innovative solutions aligned with Saudi Vision 2030" : "حلول تقنية مبتكرة ومتوافقة مع رؤية المملكة 2030")</p>
                             </div>
                         </div>
 
-                        <div class="flex flex-row-reverse items-start gap-4 reveal">
+                        <div class="flex @featureDirection items-start gap-4 reveal">
                             <div class="w-12 h-12 shrink-0 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">👥</div>
                             <div>
-                                <h3 class="text-2xl font-extrabold">فريق الخبراء</h3>
-                                <p class="text-lg mt-1">فريق من الخبراء والمتخصصين في جميع المجالات التقنية</p>
+                                <h3 class="text-2xl font-extrabold">@(isEn ? "Expert Team" : "فريق الخبراء")</h3>
+                                <p class="text-lg mt-1">@(isEn ? "A team of experts and specialists across technical fields" : "فريق من الخبراء والمتخصصين في جميع المجالات التقنية")</p>
                             </div>
                         </div>
 
-                        <div class="flex flex-row-reverse items-start gap-4 reveal">
+                        <div class="flex @featureDirection items-start gap-4 reveal">
                             <div class="w-12 h-12 shrink-0 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">🛡️</div>
                             <div>
-                                <h3 class="text-2xl font-extrabold">دعم متواصل</h3>
-                                <p class="text-lg mt-1">دعم فني متواصل وصيانة مستمرة لضمان استمرارية العمل</p>
+                                <h3 class="text-2xl font-extrabold">@(isEn ? "Continuous Support" : "دعم متواصل")</h3>
+                                <p class="text-lg mt-1">@(isEn ? "Continuous technical support and maintenance to ensure business continuity" : "دعم فني متواصل وصيانة مستمرة لضمان استمرارية العمل")</p>
                             </div>
                         </div>
                     </div>
@@ -126,85 +144,78 @@
                     <a asp-controller="Contact"
                        asp-action="Index"
                        class="mt-10 inline-flex rounded-2xl bg-gradient-to-l from-blue-500 to-cyan-400 px-8 py-4 text-lg font-bold shadow-[0_0_30px_rgba(34,211,238,0.35)] no-underline text-white">
-                        ابدأ رحلتك الرقمية ←
+                        @(isEn ? "Start your digital journey →" : "ابدأ رحلتك الرقمية ←")
                     </a>
                 </div>
-
             </div>
         </section>
 
-     
-
-
-
-           
-
-        <!-- SERVICES -->
         <section class="relative py-24 px-6 text-center">
             <div class="max-w-[1400px] mx-auto">
                 <div class="text-center mb-16 reveal">
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-200 text-sm">
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                        خدماتنا
+                        @(isEn ? "Our Services" : "خدماتنا")
                     </span>
 
-                    <h2 class="mt-5 text-4xl md:text-5xl font-black">حلولنا التقنية</h2>
+                    <h2 class="mt-5 text-4xl md:text-5xl font-black">@(isEn ? "Our Technical Solutions" : "حلولنا التقنية")</h2>
 
                     <p class="mt-4 text-white/80 text-lg max-w-2xl mx-auto leading-8">
-                        نقدم مجموعة متكاملة من الخدمات التقنية التي تدعم التحول الرقمي للجهات الحكومية والمؤسسات
+                        @(isEn
+                                                ? "We provide integrated technical services that support digital transformation for government entities and enterprises"
+                                                : "نقدم مجموعة متكاملة من الخدمات التقنية التي تدعم التحول الرقمي للجهات الحكومية والمؤسسات")
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                     <div class="reveal rounded-3xl glass-card p-8 text-center flex flex-col items-center">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">💻</div>
-                        <h3 class="text-2xl font-bold mb-3">تطوير الأنظمة</h3>
-                        <p class="text-white/80 leading-8">تصميم وتطوير أنظمة مخصصة وبوابات إلكترونية ولوحات تحكم متقدمة.</p>
+                        <h3 class="text-2xl font-bold mb-3">@(isEn ? "System Development" : "تطوير الأنظمة")</h3>
+                        <p class="text-white/80 leading-8">@(isEn ? "Design and development of custom systems, portals, and advanced dashboards." : "تصميم وتطوير أنظمة مخصصة وبوابات إلكترونية ولوحات تحكم متقدمة.")</p>
                     </div>
 
                     <div class="reveal rounded-3xl glass-card p-8 text-center flex flex-col items-center">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">☁️</div>
-                        <h3 class="text-2xl font-bold mb-3">الحلول السحابية</h3>
-                        <p class="text-white/80 leading-8">بنية تحتية سحابية حديثة وآمنة تساعد في رفع الأداء.</p>
+                        <h3 class="text-2xl font-bold mb-3">@(isEn ? "Cloud Solutions" : "الحلول السحابية")</h3>
+                        <p class="text-white/80 leading-8">@(isEn ? "Modern and secure cloud infrastructure that improves performance." : "بنية تحتية سحابية حديثة وآمنة تساعد في رفع الأداء.")</p>
                     </div>
 
                     <div class="reveal rounded-3xl glass-card p-8 text-center flex flex-col items-center">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">🔒</div>
-                        <h3 class="text-2xl font-bold mb-3">الأمن السيبراني</h3>
-                        <p class="text-white/80 leading-8">حماية الأنظمة والبيانات من التهديدات الرقمية.</p>
+                        <h3 class="text-2xl font-bold mb-3">@(isEn ? "Cybersecurity" : "الأمن السيبراني")</h3>
+                        <p class="text-white/80 leading-8">@(isEn ? "Protecting systems and data from digital threats." : "حماية الأنظمة والبيانات من التهديدات الرقمية.")</p>
                     </div>
 
                     <div class="reveal rounded-3xl glass-card p-8 text-center flex flex-col items-center">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">📊</div>
-                        <h3 class="text-2xl font-bold mb-3">تحليل البيانات</h3>
-                        <p class="text-white/80 leading-8">لوحات بيانات وتقارير ذكية تساعد في اتخاذ القرار.</p>
+                        <h3 class="text-2xl font-bold mb-3">@(isEn ? "Data Analytics" : "تحليل البيانات")</h3>
+                        <p class="text-white/80 leading-8">@(isEn ? "Smart dashboards and reports that support decision-making." : "لوحات بيانات وتقارير ذكية تساعد في اتخاذ القرار.")</p>
                     </div>
 
                     <div class="reveal rounded-3xl glass-card p-8 text-center flex flex-col items-center">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">🤖</div>
-                        <h3 class="text-2xl font-bold mb-3">الذكاء الاصطناعي</h3>
-                        <p class="text-white/80 leading-8">حلول ذكية لتحسين الكفاءة وأتمتة العمليات.</p>
+                        <h3 class="text-2xl font-bold mb-3">@(isEn ? "Artificial Intelligence" : "الذكاء الاصطناعي")</h3>
+                        <p class="text-white/80 leading-8">@(isEn ? "Smart solutions to improve efficiency and automate operations." : "حلول ذكية لتحسين الكفاءة وأتمتة العمليات.")</p>
                     </div>
 
                     <div class="reveal rounded-3xl glass-card p-8 text-center flex flex-col items-center">
                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-2xl mb-6">🛠️</div>
-                        <h3 class="text-2xl font-bold mb-3">الدعم والصيانة</h3>
-                        <p class="text-white/80 leading-8">دعم فني وصيانة مستمرة لضمان استقرار الأنظمة.</p>
+                        <h3 class="text-2xl font-bold mb-3">@(isEn ? "Support & Maintenance" : "الدعم والصيانة")</h3>
+                        <p class="text-white/80 leading-8">@(isEn ? "Continuous support and maintenance to ensure system stability." : "دعم فني وصيانة مستمرة لضمان استقرار الأنظمة.")</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PARTNERS -->
         <section class="relative py-24 px-6">
             <div class="max-w-[1400px] mx-auto">
                 <div class="text-center mb-16 reveal">
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-200 text-sm">
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                        شركاء النجاح
+                        @(isEn ? "Success Partners" : "شركاء النجاح")
                     </span>
 
-                    <h2 class="mt-5 text-4xl md:text-5xl font-black">شركاؤنا</h2>
+                    <h2 class="mt-5 text-4xl md:text-5xl font-black">@(isEn ? "Our Partners" : "شركاؤنا")</h2>
                 </div>
 
                 @if (Model.Partners != null && Model.Partners.Any())
@@ -223,21 +234,20 @@
                 }
                 else
                 {
-                    <p class="text-center text-white/60">لا توجد شركاء حالياً.</p>
+                    <p class="text-center text-white/60">@(isEn ? "No partners available currently." : "لا توجد شركاء حالياً.")</p>
                 }
             </div>
         </section>
 
-        <!-- CLIENTS -->
         <section class="relative py-24 px-6">
             <div class="max-w-[1400px] mx-auto">
                 <div class="text-center mb-16 reveal">
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-fuchsia-500/10 border border-fuchsia-300/25 text-fuchsia-200 text-sm">
                         <span class="w-2 h-2 rounded-full bg-fuchsia-400"></span>
-                        نحن نفخر
+                        @(isEn ? "We are proud of" : "نحن نفخر")
                     </span>
 
-                    <h2 class="mt-5 text-4xl md:text-5xl font-black">عملاؤنا</h2>
+                    <h2 class="mt-5 text-4xl md:text-5xl font-black">@(isEn ? "Our Clients" : "عملاؤنا")</h2>
                 </div>
 
                 @if (Model.Clients != null && Model.Clients.Any())
@@ -263,24 +273,25 @@
                 }
                 else
                 {
-                    <p class="text-center text-white/60">لا يوجد عملاء حالياً.</p>
+                    <p class="text-center text-white/60">@(isEn ? "No clients available currently." : "لا يوجد عملاء حالياً.")</p>
                 }
             </div>
         </section>
 
-        <!-- NEWS -->
         <section class="relative py-24 px-6">
             <div class="max-w-[1200px] mx-auto">
                 <div class="text-center mb-14 reveal">
                     <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-400/15 border border-cyan-400/30 text-cyan-200 text-sm">
                         <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-                        الأخبار
+                        @(isEn ? "News" : "الأخبار")
                     </span>
 
-                    <h2 class="mt-4 text-4xl md:text-5xl font-black">أخبار وتحديثات</h2>
+                    <h2 class="mt-4 text-4xl md:text-5xl font-black">@(isEn ? "News & Updates" : "أخبار وتحديثات")</h2>
 
                     <p class="mt-4 text-white/70 text-lg">
-                        تابع آخر أخبارنا ومستجداتنا في عالم التقنية والتحول الرقمي
+                        @(isEn
+                                                ? "Follow our latest news and updates in technology and digital transformation"
+                                                : "تابع آخر أخبارنا ومستجداتنا في عالم التقنية والتحول الرقمي")
                     </p>
                 </div>
 
@@ -291,21 +302,30 @@
                             <div class="absolute inset-0 bg-gradient-to-t from-[#071225] via-transparent to-transparent"></div>
                         </div>
 
-                        <div class="p-8 md:p-12 text-right flex flex-col justify-center">
-                            <div class="text-cyan-300 mb-6">📅 فبراير 10 2026</div>
+                        <div class="p-8 md:p-12 @textAlign flex flex-col justify-center">
+                            <div class="text-cyan-300 mb-6">
+                                @(isEn ? "📅 February 10, 2026" : "📅 فبراير 10 2026")
+                            </div>
 
                             <h3 class="text-3xl md:text-4xl font-black leading-snug">
-                                مشاركتنا في المنتدى السعودي
-                                <br>
-                                للتقنية والابتكار 2026
+                                @if (isEn)
+                                {
+                                    <text>Our participation in the Saudi<br />Technology and Innovation Forum 2026</text>
+                                }
+                                else
+                                {
+                                    <text>مشاركتنا في المنتدى السعودي<br />للتقنية والابتكار 2026</text>
+                                }
                             </h3>
 
                             <p class="mt-6 text-white/75 text-lg leading-9">
-                                شاركت الشركة في أحد أبرز الأحداث التقنية في المملكة، حيث عرضت أحدث حلولها وابتكاراتها التقنية.
+                                @(isEn
+                                                                ? "The company participated in one of the leading technology events in the Kingdom, showcasing its latest solutions and innovations."
+                                                                : "شاركت الشركة في أحد أبرز الأحداث التقنية في المملكة، حيث عرضت أحدث حلولها وابتكاراتها التقنية.")
                             </p>
 
                             <a href="#" class="mt-8 inline-flex w-fit rounded-2xl bg-gradient-to-l from-blue-500 to-cyan-400 px-7 py-3 font-bold text-white no-underline">
-                                اقرأ المزيد ←
+                                @(isEn ? "Read more →" : "اقرأ المزيد ←")
                             </a>
                         </div>
                     </div>
@@ -344,5 +364,4 @@
         updateParallax();
         window.addEventListener('scroll', updateParallax, { passive: true });
     </script>
-
 </div>

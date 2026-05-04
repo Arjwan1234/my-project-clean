@@ -1,8 +1,12 @@
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 using GAMA.CO5.Data;
 using GAMA.CO5.Models;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +37,22 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+// ? Localization
+builder.Services.AddLocalization();
+
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("ar"),
+        new CultureInfo("en")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture("ar");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -47,6 +67,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// ? ???? ???? ??? UseRouting ???? Authentication/Authorization
+app.UseRequestLocalization();
 
 app.UseAuthentication();
 
