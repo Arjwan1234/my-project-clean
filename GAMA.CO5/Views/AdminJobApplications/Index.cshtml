@@ -1,0 +1,219 @@
+﻿@model IEnumerable<GAMA.CO5.Models.JobApplication>
+
+@{
+    ViewData["Title"] = "طلبات التوظيف";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="admin-jobs-page">
+
+    <div class="jobs-hero">
+        <div>
+            <span class="hero-badge">GAMA HR</span>
+            <h2>طلبات التوظيف</h2>
+            <p>عرض جميع طلبات المتقدمين وإدارة السير الذاتية.</p>
+        </div>
+
+        <div class="hero-actions">
+            <a href="/AdminJobs" class="btn-luxury btn-primary-dark">
+                <i class="fa-solid fa-briefcase"></i>
+                إدارة الوظائف
+            </a>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="jobs-card">
+        <table class="jobs-table">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>الإيميل</th>
+                    <th>الجوال</th>
+                    <th>الوظيفة</th>
+                    <th>السيرة الذاتية</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="job-title">@item.FullName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Phone</td>
+                        <td>@item.JobTitle</td>
+
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.CVFileName))
+                            {
+                                <div class="table-actions">
+
+                                    <!-- عرض -->
+                                    <a href="/uploads/cv/@item.CVFileName"
+                                       target="_blank"
+                                       class="action-btn edit">
+                                        عرض
+                                    </a>
+
+                                    <!-- تحميل -->
+                                    <a href="/uploads/cv/@item.CVFileName"
+                                       download
+                                       class="action-btn delete">
+                                        تحميل
+                                    </a>
+
+                                </div>
+                            }
+                            else
+                            {
+                                <span class="status inactive">لا يوجد</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .admin-jobs-page {
+            min-height: calc(100vh - 80px);
+            padding: 28px;
+            background: radial-gradient(circle at top right, rgba(29, 78, 216, .16), transparent 28%), linear-gradient(135deg, #eef4ff 0%, #f8fbff 45%, #ffffff 100%);
+        }
+
+        .jobs-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 28px;
+            padding: 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #07142b, #0f3d75);
+            box-shadow: 0 24px 60px rgba(7, 20, 43, .22);
+            color: white;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            margin-bottom: 12px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.18);
+            font-weight: 900;
+            font-size: 12px;
+        }
+
+        .jobs-hero h2 {
+            margin: 0;
+            font-size: 34px;
+            font-weight: 900;
+        }
+
+        .jobs-hero p {
+            margin: 10px 0 0;
+            color: #dbeafe;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-luxury {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .btn-primary-dark {
+            background: rgba(255,255,255,.12);
+            color: white;
+            border: 1px solid rgba(255,255,255,.18);
+        }
+
+        .jobs-card {
+            overflow-x: auto;
+            border-radius: 28px;
+            background: rgba(255,255,255,.92);
+            border: 1px solid #dbe6f5;
+            box-shadow: 0 24px 60px rgba(15,23,42,.10);
+        }
+
+        .jobs-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            min-width: 900px;
+        }
+
+            .jobs-table thead {
+                background: linear-gradient(135deg, #07142b, #0f3d75);
+                color: white;
+            }
+
+            .jobs-table th {
+                padding: 18px 22px;
+                font-size: 14px;
+                font-weight: 900;
+            }
+
+            .jobs-table td {
+                padding: 18px 22px;
+                border-bottom: 1px solid #e5edf7;
+                color: #334155;
+                font-weight: 700;
+            }
+
+            .jobs-table tbody tr:hover {
+                background: #f1f6ff;
+            }
+
+        .job-title {
+            color: #07142b;
+            font-weight: 900;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            padding: 8px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 900;
+            transition: .2s;
+        }
+
+            .action-btn.edit {
+                background: #eef4ff;
+                color: #07142b;
+                border: 1px solid #b6c2d2;
+            }
+
+            .action-btn.delete {
+                background: #07142b;
+                color: white;
+            }
+
+        .status.inactive {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+        }
+    </style>
+}
