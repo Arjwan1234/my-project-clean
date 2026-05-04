@@ -14,6 +14,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             _context = context;
         }
 
+        // ✅ عرض الوظائف للزوار
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -28,6 +29,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
             return View(model);
         }
 
+        // ✅ إرسال طلب توظيف
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Apply(JobApplication model, IFormFile CVFile)
@@ -38,6 +40,7 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
                 return RedirectToAction("Index");
             }
 
+            // رفع ملف CV
             if (CVFile != null && CVFile.Length > 0)
             {
                 var uploadsFolder = Path.Combine(
@@ -66,17 +69,6 @@ namespace GAMA_ASP_MVC_CLEAN.Controllers
 
             TempData["Success"] = "تم إرسال طلبك بنجاح";
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        [Route("AdminJobApplications")]
-        public async Task<IActionResult> AdminJobApplications()
-        {
-            var applications = await _context.JobApplications
-                .OrderByDescending(x => x.Id)
-                .ToListAsync();
-
-            return View(applications);
         }
     }
 }
