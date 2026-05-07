@@ -4,7 +4,6 @@
     var logoPosition = isEn ? "left-0" : "right-0";
     var langPosition = isEn ? "right-0" : "left-0";
 }
-
 <!DOCTYPE html>
 <html lang="@CultureInfo.CurrentCulture.Name" dir="@(isEn ? "ltr" : "rtl")">
 <head>
@@ -31,7 +30,6 @@
                      alt="GAMA Logo"
                      class="h-16 w-auto object-contain" />
             </a>
-
             <ul class="hidden md:flex items-center gap-8">
                 <li><a asp-controller="Services" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Services" : "الخدمات")</a></li>
                 <li><a asp-controller="Products" asp-action="Index" class="text-white font-bold hover:text-cyan-300 transition">@(isEn ? "Products" : "المنتجات")</a></li>
